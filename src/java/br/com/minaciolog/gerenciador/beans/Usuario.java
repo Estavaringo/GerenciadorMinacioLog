@@ -10,7 +10,8 @@ package br.com.minaciolog.gerenciador.beans;
  * @author flaviosampaioreisdelima
  */
 public class Usuario {
-	private int id;
+    
+    private int id;
     private String email;
     private String senha;
     private String perfil;
