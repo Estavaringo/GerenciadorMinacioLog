@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.minaciolog.gerenciador.web;
+package br.com.minaciolog.gerenciador.servlet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,10 +12,16 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author flaviosampaioreisdelima
  */
-public class Logout implements Tarefa{
+public class Logout implements Tarefa {
 
     public String executa(HttpServletRequest req, HttpServletResponse response) {
         req.getSession().removeAttribute("usuarioLogado");
-        return "/WEB-INF/paginas/logout.html";    }
-    
+        return "/WEB-INF/paginas/logout.html";
+    }
+
+    @Override
+    public boolean verifica() {
+        return false;
+    }
+
 }

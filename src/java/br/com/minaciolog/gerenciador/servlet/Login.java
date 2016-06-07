@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.minaciolog.gerenciador.web;
+package br.com.minaciolog.gerenciador.servlet;
 
 import br.com.minaciolog.gerenciador.beans.Usuario;
 import br.com.minaciolog.gerenciador.dao.UsuarioDAO;
@@ -30,7 +30,7 @@ public class Login extends HttpServlet {
 		String senha = req.getParameter("senha");
 		Usuario usuario;
 		try {
-			usuario = new UsuarioDAO().consultar(email, senha);
+			usuario = new UsuarioDAO().Consultar(email, senha);
 
 			PrintWriter writer = resp.getWriter();
 			if (usuario == null) {

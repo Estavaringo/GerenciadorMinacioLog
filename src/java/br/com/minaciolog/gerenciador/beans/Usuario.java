@@ -7,7 +7,7 @@ package br.com.minaciolog.gerenciador.beans;
 
 /**
  *
- * @author flaviosampaioreisdelima
+ * @author gabri
  */
 public class Usuario {
     
@@ -70,4 +70,6 @@ public class Usuario {
 		this.id = id;
 	}
 
+    
+    
 }

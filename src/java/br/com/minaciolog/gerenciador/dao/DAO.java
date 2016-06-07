@@ -13,9 +13,9 @@ import java.util.ArrayList;
  * @author flaviosampaioreisdelima
  */
 public interface DAO <T> {
-    public void incluir(T obj) throws SQLException;
-    public void excluir(int codigo) throws SQLException;
-    public void alterar(T obj) throws SQLException;
-    public ArrayList<T> consultar() throws SQLException;
-    public T consultar(int codigo) throws SQLException;    
+    public void Incluir(T obj) throws SQLException;
+    public void Excluir(int codigo) throws SQLException;
+    public void Alterar(T obj) throws SQLException;
+    public ArrayList<T> Consultar() throws SQLException;
+    public T Consultar(int codigo) throws SQLException;    
 }

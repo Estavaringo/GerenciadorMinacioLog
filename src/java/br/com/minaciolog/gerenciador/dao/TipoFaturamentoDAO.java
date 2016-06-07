@@ -5,7 +5,7 @@
  */
 package br.com.minaciolog.gerenciador.dao;
 
-import TO.TipoFaturamento;
+import br.com.minaciolog.gerenciador.beans.TipoFaturamento;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

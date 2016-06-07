@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.minaciolog.gerenciador.web;
+package br.com.minaciolog.gerenciador.servlet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author flaviosampaioreisdelima
  */
 public interface Tarefa {
-	
-	String executa(HttpServletRequest req, HttpServletResponse response);
 
+    String executa(HttpServletRequest req, HttpServletResponse response);
+    public boolean verifica();
 }

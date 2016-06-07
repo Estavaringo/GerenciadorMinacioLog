@@ -5,7 +5,7 @@
  */
 package br.com.minaciolog.gerenciador.dao;
 
-import TO.EnderecoCliente;
+import br.com.minaciolog.gerenciador.beans.EnderecoCliente;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;

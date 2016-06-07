@@ -20,7 +20,7 @@ public class UsuarioDAO implements DAO<Usuario> {
 
     BancoDados bd = new BancoDados();
 
-    public Usuario consultar(String email, String senha) throws SQLException {
+    public Usuario Consultar(String email, String senha) throws SQLException {
         try {
             Usuario usuario = null;
 
@@ -53,7 +53,7 @@ public class UsuarioDAO implements DAO<Usuario> {
     }
 
     @Override
-    public void incluir(Usuario usuario) throws SQLException {
+    public void Incluir(Usuario usuario) throws SQLException {
         try {
             bd.conectar();
             String strSql
@@ -72,7 +72,7 @@ public class UsuarioDAO implements DAO<Usuario> {
         }
     }
 
-    public void excluir(String email) throws SQLException {
+    public void Excluir(String email) throws SQLException {
         try {
             bd.conectar();
             String strSql
@@ -90,7 +90,7 @@ public class UsuarioDAO implements DAO<Usuario> {
     }
 
     @Override
-    public void alterar(Usuario usuario) throws SQLException {
+    public void Alterar(Usuario usuario) throws SQLException {
         try {
             bd.conectar();
             String strSql
@@ -110,7 +110,7 @@ public class UsuarioDAO implements DAO<Usuario> {
     }
 
     @Override
-    public ArrayList<Usuario> consultar() throws SQLException {
+    public ArrayList<Usuario> Consultar() throws SQLException {
         try {
             ArrayList<Usuario> lista = new ArrayList<>();
             bd.conectar();
@@ -133,15 +133,12 @@ public class UsuarioDAO implements DAO<Usuario> {
     }
 
     @Override
-    public Usuario consultar(int codigo) throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+    public void Excluir(int codigo) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void excluir(int codigo) throws SQLException {
-        // TODO Auto-generated method stub
-
+    public Usuario Consultar(int codigo) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }

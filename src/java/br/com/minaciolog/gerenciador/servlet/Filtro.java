@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.minaciolog.gerenciador.web;
+package br.com.minaciolog.gerenciador.servlet;
 
 import br.com.minaciolog.gerenciador.beans.Usuario;
 import java.io.IOException;

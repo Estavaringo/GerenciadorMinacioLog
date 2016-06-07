@@ -5,8 +5,8 @@
  */
 package br.com.minaciolog.gerenciador.dao;
 
-import TO.Cliente;
-import TO.ContatoCliente;
+import br.com.minaciolog.gerenciador.beans.Cliente;
+import br.com.minaciolog.gerenciador.beans.ContatoCliente;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
