@@ -1,0 +1,138 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.com.minaciolog.gerenciador.servlet;
+
+import br.com.minaciolog.gerenciador.beans.TipoContato;
+import br.com.minaciolog.gerenciador.dao.TipoContatoDAO;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ *
+ * @author gabri
+ */
+public class TipoContatoServlet implements Tarefa {
+
+    //Declarações
+    private TipoContato tipoContato = null;
+    private String acao;
+    
+    @Override
+    public String executa(HttpServletRequest req, HttpServletResponse response) {
+    
+        acao = req.getParameter(acao);
+        switch (acao) {
+            case "incluir":
+                try {
+
+                    //instancia uma nova tipoContato
+                    tipoContato = new TipoContato();
+
+                    //Atribui as informações da tipoContato no objeto
+                    tipoContato.setDescricao(req.getParameter("descricao"));
+
+                    //Grava um nova tipoContato no banco de dados
+                    new TipoContatoDAO().Incluir(tipoContato);
+
+                    //Atribui a ultima tipoContato como Atributo a ser enviado na próxima Requisição 
+                    req.setAttribute("incluidoTipoContato", tipoContato);
+
+                } catch (SQLException ex) {
+                    System.err.println("Erro ao inserir tipo de contato no banco de dados. Detalhes: " + ex.getMessage());
+                    return "Erro.html";
+                }
+                break;
+
+            case "remover":
+                try {
+
+                    //instancia uma nova tipoContato
+                    tipoContato = new TipoContato();
+
+                    //Atribui as informações da tipoContato no objeto
+                    tipoContato.setDescricao(req.getParameter("descricao"));
+                    tipoContato.setCodigo(Integer.parseInt(req.getParameter("codigo")));
+
+                    //Exclui tipoContato no banco de dados
+                    new TipoContatoDAO().Excluir(Integer.parseInt(req.getParameter("codigo")));
+
+                    //Atribui a ultima tipoContato como Atributo a ser enviado na próxima Requisição 
+                    req.setAttribute("excluidoTipoContato", tipoContato);
+
+                } catch (SQLException ex) {
+                    System.err.println("Erro ao remover tipo de contato no banco de dados. Detalhes: " + ex.getMessage());
+                    return "Erro.html";
+                }
+                break;
+
+            case "alterar":
+                try {
+
+                    //instancia uma nova tipoContato
+                    tipoContato = new TipoContato();
+
+                    //Atribui as informações da tipoContato no objeto
+                    tipoContato.setDescricao(req.getParameter("descricao"));
+                    tipoContato.setCodigo(Integer.parseInt(req.getParameter("codigo")));
+
+                    //altera tipoContato no banco de dados
+                    new TipoContatoDAO().Alterar(tipoContato);
+
+                    //Atribui a ultima tipoContato como Atributo a ser enviado na próxima Requisição 
+                    req.setAttribute("alteradoTipoContato", tipoContato);
+
+                } catch (SQLException ex) {
+                    System.err.println("Erro ao alterar tipo de contato no banco de dados. Detalhes: " + ex.getMessage());
+                    return "Erro.html";
+                }
+                break;
+
+            case "consultar":
+                try {
+
+                    //instancia uma nova tipoContato
+                    tipoContato = new TipoContato();
+
+                    //Grava um nova tipoContato no banco de dados
+                    tipoContato = new TipoContatoDAO().Consultar(Integer.parseInt(req.getParameter("codigo")));
+
+                    //Atribui a ultima tipoContato como Atributo a ser enviado na próxima Requisição 
+                    req.setAttribute("consultaTipoContato", tipoContato);
+
+                } catch (SQLException ex) {
+                    System.err.println("Erro ao consultar tipo de contato no banco de dados. Detalhes: " + ex.getMessage());
+                    return "Erro.html";
+                }
+                break;
+            case "consultarLista":
+                try {
+
+                    ArrayList<TipoContato> listaTipoContato = new ArrayList<>();
+
+                    //Grava um nova tipoContato no banco de dados
+                    listaTipoContato = new TipoContatoDAO().Consultar();
+
+                    //Atribui a ultima tipoContato como Atributo a ser enviado na próxima Requisição 
+                    req.setAttribute("consultaListaTipoContato", listaTipoContato);
+
+                } catch (SQLException ex) {
+                    System.err.println("Erro ao cosultar tipo de contato no banco de dados. Detalhes: " + ex.getMessage());
+                    return "Erro.html";
+                }
+                break;
+
+        }
+        return "/WEB-INF/Paginas/TipoContato.jsp";
+    }
+
+    @Override
+    public boolean verifica() {
+        return true;
+    }
+
+}
