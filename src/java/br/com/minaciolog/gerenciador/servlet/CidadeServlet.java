@@ -8,8 +8,8 @@ package br.com.minaciolog.gerenciador.servlet;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import br.com.minaciolog.gerenciador.beans.TipoCliente;
-import br.com.minaciolog.gerenciador.dao.TipoClienteDAO;
+import br.com.minaciolog.gerenciador.beans.Cidade;
+import br.com.minaciolog.gerenciador.dao.CidadeDAO;
 import java.util.ArrayList;
 
 /**
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class CidadeServlet implements Tarefa {
 
     //Declarações
-    private TipoCliente tipoCliente = null;
+    private Cidade cidade = null;
     private String acao;
 
     @Override
@@ -30,20 +30,21 @@ public class CidadeServlet implements Tarefa {
             case "incluir":
                 try {
 
-                    //instancia uma nova tipoCliente
-                    tipoCliente = new TipoCliente();
+                    //instancia uma nova cidade
+                    cidade = new Cidade();
 
-                    //Atribui as informações da tipoCliente no objeto
-                    tipoCliente.setDescricao(req.getParameter("descricao"));
+                    //Atribui as informações da cidade no objeto
+                    cidade.setDescricao(req.getParameter("descricao"));
+                    cidade.setCodigoUF(req.getParameter("codigoUF"));
 
-                    //Grava um nova tipoCliente no banco de dados
-                    new TipoClienteDAO().Incluir(tipoCliente);
+                    //Grava um nova cidade no banco de dados
+                    new CidadeDAO().Incluir(cidade);
 
-                    //Atribui a ultima tipoCliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("incluidoTipoCliente", tipoCliente);
+                    //Atribui a ultima cidade como Atributo a ser enviado na próxima Requisição 
+                    req.setAttribute("incluidoCidade", cidade);
 
                 } catch (SQLException ex) {
-                    System.err.println("Erro ao inserir tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
+                    System.err.println("Erro ao inserir cidade no banco de dados. Detalhes: " + ex.getMessage());
                     return "Erro.html";
                 }
                 break;
@@ -51,21 +52,22 @@ public class CidadeServlet implements Tarefa {
             case "remover":
                 try {
 
-                    //instancia uma nova tipoCliente
-                    tipoCliente = new TipoCliente();
+                    //instancia uma nova cidade
+                    cidade = new Cidade();
 
-                    //Atribui as informações da tipoCliente no objeto
-                    tipoCliente.setDescricao(req.getParameter("descricao"));
-                    tipoCliente.setCodigo(Integer.parseInt(req.getParameter("codigo")));
+                    //Atribui as informações da cidade no objeto
+                    cidade.setDescricao(req.getParameter("descricao"));
+                    cidade.setCodigoUF(req.getParameter("codigoUF"));
+                    cidade.setCodigo(Integer.parseInt(req.getParameter("codigo")));
 
-                    //Exclui tipoCliente no banco de dados
-                    new TipoClienteDAO().Excluir(Integer.parseInt(req.getParameter("codigo")));
+                    //Exclui cidade no banco de dados
+                    new CidadeDAO().Excluir(Integer.parseInt(req.getParameter("codigo")));
 
-                    //Atribui a ultima tipoCliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("excluidoTipoCliente", tipoCliente);
+                    //Atribui a ultima cidade como Atributo a ser enviado na próxima Requisição 
+                    req.setAttribute("excluidoCidade", cidade);
 
                 } catch (SQLException ex) {
-                    System.err.println("Erro ao remover tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
+                    System.err.println("Erro ao remover cidade no banco de dados. Detalhes: " + ex.getMessage());
                     return "Erro.html";
                 }
                 break;
@@ -73,21 +75,22 @@ public class CidadeServlet implements Tarefa {
             case "alterar":
                 try {
 
-                    //instancia uma nova tipoCliente
-                    tipoCliente = new TipoCliente();
+                    //instancia uma nova cidade
+                    cidade = new Cidade();
 
-                    //Atribui as informações da tipoCliente no objeto
-                    tipoCliente.setDescricao(req.getParameter("descricao"));
-                    tipoCliente.setCodigo(Integer.parseInt(req.getParameter("codigo")));
+                    //Atribui as informações da cidade no objeto
+                    cidade.setDescricao(req.getParameter("descricao"));
+                    cidade.setCodigoUF(req.getParameter("codigoUF"));
+                    cidade.setCodigo(Integer.parseInt(req.getParameter("codigo")));
 
-                    //altera tipoCliente no banco de dados
-                    new TipoClienteDAO().Alterar(tipoCliente);
+                    //altera cidade no banco de dados
+                    new CidadeDAO().Alterar(cidade);
 
-                    //Atribui a ultima tipoCliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("alteradoTipoCliente", tipoCliente);
+                    //Atribui a ultima cidade como Atributo a ser enviado na próxima Requisição 
+                    req.setAttribute("alteradoCidade", cidade);
 
                 } catch (SQLException ex) {
-                    System.err.println("Erro ao alterar tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
+                    System.err.println("Erro ao alterar cidade no banco de dados. Detalhes: " + ex.getMessage());
                     return "Erro.html";
                 }
                 break;
@@ -95,39 +98,41 @@ public class CidadeServlet implements Tarefa {
             case "consultar":
                 try {
 
-                    //instancia uma nova tipoCliente
-                    tipoCliente = new TipoCliente();
+                    //instancia uma nova cidade
+                    cidade = new Cidade();
 
-                    //Grava um nova tipoCliente no banco de dados
-                    tipoCliente = new TipoClienteDAO().Consultar(Integer.parseInt(req.getParameter("codigo")));
+                    //Grava um nova cidade no banco de dados
+                    cidade = new CidadeDAO().Consultar(Integer.parseInt(req.getParameter("codigo")));
 
-                    //Atribui a ultima tipoCliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaTipoCliente", tipoCliente);
+                    //Atribui a ultima cidade como Atributo a ser enviado na próxima Requisição 
+                    req.setAttribute("consultaCidade", cidade);
 
                 } catch (SQLException ex) {
-                    System.err.println("Erro ao consultar tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
+                    System.err.println("Erro ao consultar cidade no banco de dados. Detalhes: " + ex.getMessage());
                     return "Erro.html";
                 }
                 break;
             case "consultarLista":
                 try {
 
-                    ArrayList<TipoCliente> listaTipoCliente = new ArrayList<>();
+                    ArrayList<Cidade> listaCidade = new ArrayList<>();
 
-                    //Grava um nova tipoCliente no banco de dados
-                    listaTipoCliente = new TipoClienteDAO().Consultar();
+                    //Grava um nova cidade no banco de dados
+                    listaCidade = new CidadeDAO().Consultar();
 
-                    //Atribui a ultima tipoCliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaListaTipoCliente", listaTipoCliente);
+                    //Atribui a ultima cidade como Atributo a ser enviado na próxima Requisição 
+                    req.setAttribute("consultaListaCidade", listaCidade);
 
                 } catch (SQLException ex) {
-                    System.err.println("Erro ao cosultar tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
+                    System.err.println("Erro ao cosultar cidade no banco de dados. Detalhes: " + ex.getMessage());
                     return "Erro.html";
                 }
                 break;
-
+            default:
+                    System.err.println("Erro ao cosultar cidade no banco de dados. Ação inválida!");
+                    return "Erro.html";
         }
-        return "/WEB-INF/Paginas/TipoCliente.jsp";
+        return "/WEB-INF/Paginas/Cidade.jsp";
     }
 
     @Override

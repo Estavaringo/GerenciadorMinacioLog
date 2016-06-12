@@ -55,6 +55,23 @@ public class UFDAO implements DAO<UF> {
             throw ex;
         }
     }
+    
+    public void Excluir(String codigo) throws SQLException {
+        try {
+            bd.conectar();
+            String strSql
+                    = "DELETE FROM uf WHERE UF_ID = ?";
+            PreparedStatement p
+                    = bd.connection.prepareStatement(strSql);
+            p.setString(1, codigo);
+            p.execute();
+            p.close();
+            bd.desconectar();
+        } catch (SQLException ex) {
+            bd.desconectar();
+            throw ex;
+        }
+    }
 
     @Override
     public void Alterar(UF obj) throws SQLException {

@@ -16,7 +16,7 @@ import java.util.ArrayList;
  *
  * @author gabri
  */
-public class TipoClienteServlet implements Tarefa {
+public class JobServlet implements Tarefa {
 
     //Declarações
     private TipoCliente tipoCliente = null;

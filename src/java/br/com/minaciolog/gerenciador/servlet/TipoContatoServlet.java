@@ -125,6 +125,9 @@ public class TipoContatoServlet implements Tarefa {
                     return "Erro.html";
                 }
                 break;
+            default:
+                    System.err.println("Erro ao cosultar tipo de contato no banco de dados. Ação inválida!");
+                    return "Erro.html";
 
         }
         return "/WEB-INF/Paginas/TipoContato.jsp";

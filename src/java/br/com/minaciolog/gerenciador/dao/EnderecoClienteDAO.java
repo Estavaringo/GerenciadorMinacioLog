@@ -5,9 +5,12 @@
  */
 package br.com.minaciolog.gerenciador.dao;
 
+import br.com.minaciolog.gerenciador.beans.Cidade;
 import br.com.minaciolog.gerenciador.beans.EnderecoCliente;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class EnderecoClienteDAO implements DAO<EnderecoCliente> {
@@ -43,22 +46,88 @@ public class EnderecoClienteDAO implements DAO<EnderecoCliente> {
 
     @Override
     public void Excluir(int codigo) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            bd.conectar();
+            String strSql
+                    = "DELETE FROM cidade WHERE CIDA_ID = ?";
+            PreparedStatement p
+                    = bd.connection.prepareStatement(strSql);
+            p.setInt(1, codigo);
+            p.execute();
+            p.close();
+            bd.desconectar();
+        } catch (SQLException ex) {
+            bd.desconectar();
+            throw ex;
+        }
     }
 
     @Override
     public void Alterar(EnderecoCliente obj) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            bd.conectar();
+            String strSql
+                    = "UPDATE cidade SET CIDA_DESC = ?, UF_UF_ID = ?  WHERE CIDA_ID = ?";
+            PreparedStatement p
+                    = bd.connection.prepareStatement(strSql);
+            p.setString(1, obj.getDescricao());
+            p.setString(2, obj.getCodigoUF());
+            p.setInt(3, obj.getCodigo());
+            p.execute();
+            p.close();
+            bd.desconectar();
+        } catch (SQLException ex) {
+            bd.desconectar();
+            throw ex;
+        }
     }
 
     @Override
     public ArrayList<EnderecoCliente> Consultar() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            ArrayList<Cidade> lista = new ArrayList<>();
+            bd.conectar();
+            Statement comando;
+            comando = bd.connection.createStatement();
+            ResultSet rs = comando.executeQuery("SELECT CIDA_ID, CIDA_DESC, UF_UF_ID FROM cidade");
+            while (rs.next()) {
+                Cidade obj = new Cidade();
+                obj.setCodigo(rs.getInt("CIDA_ID"));
+                obj.setDescricao(rs.getString("CIDA_DESC"));
+                obj.setCodigoUF(rs.getString("UF_UF_ID"));
+                lista.add(obj);
+            }
+            bd.desconectar();
+            return lista;
+        } catch (SQLException ex) {
+            bd.desconectar();
+            throw ex;
+        }
     }
 
     @Override
     public EnderecoCliente Consultar(int codigo) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Cidade obj = null;
+            bd.conectar();
+            String strSQL = "SELECT CIDA_ID, CIDA_DESC, UF_UF_ID FROM cidade WHERE CIDA_ID = ?";
+            PreparedStatement p = bd.connection.prepareStatement(strSQL);
+            p.setInt(1, codigo);
+            ResultSet rs = p.executeQuery();
+            if (rs.next()) {
+                obj = new Cidade();
+                obj.setCodigo(rs.getInt("CIDA_ID"));
+                obj.setDescricao(rs.getString("CIDA_DESC"));
+                obj.setCodigoUF(rs.getString("UF_UF_ID"));
+                bd.desconectar();
+                return obj;
+            }
+            bd.desconectar();
+            return obj;
+        } catch (SQLException ex) {
+            bd.desconectar();
+            throw ex;
+        }
     }
 
 }
