@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author flaviosampaioreisdelima
  */
-public interface Tarefa {
+public interface LogicaDeNegocio {
 
-    String executa(HttpServletRequest req, HttpServletResponse response);
+    public String executa(HttpServletRequest req, HttpServletResponse response);
     public boolean verifica();
 }

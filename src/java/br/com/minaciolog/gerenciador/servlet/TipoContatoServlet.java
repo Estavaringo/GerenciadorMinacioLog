@@ -16,17 +16,17 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author gabri
  */
-public class TipoContatoServlet implements Tarefa {
+public class TipoContatoServlet implements LogicaDeNegocio {
 
     //Declarações
     private TipoContato tipoContato = null;
-    private String acao;
+    private String tarefa;
     
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse response) {
     
-        acao = req.getParameter(acao);
-        switch (acao) {
+        tarefa = req.getParameter("tarefa");
+        switch (tarefa) {
             case "incluir":
                 try {
 

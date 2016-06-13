@@ -19,19 +19,19 @@ import java.util.ArrayList;
  *
  * @author gabri
  */
-public class ProspeccaoServlet implements Tarefa {
+public class ProspeccaoServlet implements LogicaDeNegocio {
 
     //Declarações
     private Prospeccao prospeccao = null;
-    private String acao;
+    private String tarefa;
 
     SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse resp) {
 
-        acao = req.getParameter(acao);
-        switch (acao) {
+        tarefa = req.getParameter("tarefa");
+        switch (tarefa) {
             case "incluir":
                 try {
 

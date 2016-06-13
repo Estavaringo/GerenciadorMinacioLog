@@ -16,17 +16,17 @@ import java.util.ArrayList;
  *
  * @author gabri
  */
-public class TipoEnderecoServlet implements Tarefa {
+public class TipoEnderecoServlet implements LogicaDeNegocio {
 
     //Declarações
     private TipoEndereco tipoEndereco = null;
-    private String acao;
+    private String tarefa;
 
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse resp) {
 
-        acao = req.getParameter(acao);
-        switch (acao) {
+        tarefa = req.getParameter("tarefa");
+        switch (tarefa) {
             case "incluir":
                 try {
 

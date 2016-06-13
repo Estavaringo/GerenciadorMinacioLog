@@ -16,17 +16,17 @@ import java.util.ArrayList;
  *
  * @author gabri
  */
-public class CidadeServlet implements Tarefa {
+public class CidadeServlet implements LogicaDeNegocio {
 
     //Declarações
     private Cidade cidade = null;
-    private String acao;
+    private String tarefa;
 
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse resp) {
 
-        acao = req.getParameter(acao);
-        switch (acao) {
+        tarefa = req.getParameter("tarefa");
+        switch (tarefa) {
             case "incluir":
                 try {
 
@@ -129,7 +129,7 @@ public class CidadeServlet implements Tarefa {
                 }
                 break;
             default:
-                    System.err.println("Erro ao cosultar cidade no banco de dados. Ação inválida!");
+                    System.err.println("Tarefa informada é inválida!");
                     return "Erro.html";
         }
         return "/WEB-INF/Paginas/Cidade.jsp";

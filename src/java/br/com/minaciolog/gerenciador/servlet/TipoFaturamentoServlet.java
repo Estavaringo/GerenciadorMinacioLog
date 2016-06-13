@@ -16,17 +16,17 @@ import java.util.ArrayList;
  *
  * @author gabri
  */
-public class TipoFaturamentoServlet implements Tarefa {
+public class TipoFaturamentoServlet implements LogicaDeNegocio {
 
     //Declarações
     private TipoFaturamento tipoFaturamento = null;
-    private String acao;
+    private String tarefa;
 
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse resp) {
 
-        acao = req.getParameter(acao);
-        switch (acao) {
+        tarefa = req.getParameter("tarefa");
+        switch (tarefa) {
             case "incluir":
                 try {
 

@@ -16,17 +16,17 @@ import java.util.ArrayList;
  *
  * @author gabri
  */
-public class UFServlet implements Tarefa {
+public class UFServlet implements LogicaDeNegocio {
 
     //Declarações
     private UF uf = null;
-    private String acao;
+    private String tarefa;
 
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse resp) {
 
-        acao = req.getParameter(acao);
-        switch (acao) {
+        tarefa = req.getParameter("tarefa");
+        switch (tarefa) {
             case "incluir":
                 try {
 

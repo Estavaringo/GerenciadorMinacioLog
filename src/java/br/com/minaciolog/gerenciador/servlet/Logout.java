@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author flaviosampaioreisdelima
  */
-public class Logout implements Tarefa {
+public class Logout implements LogicaDeNegocio {
 
     public String executa(HttpServletRequest req, HttpServletResponse response) {
         req.getSession().removeAttribute("usuarioLogado");
