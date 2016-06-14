@@ -8,8 +8,8 @@ package br.com.minaciolog.gerenciador.servlet;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import br.com.minaciolog.gerenciador.beans.TipoCliente;
-import br.com.minaciolog.gerenciador.dao.TipoClienteDAO;
+import br.com.minaciolog.gerenciador.beans.Comissao;
+import br.com.minaciolog.gerenciador.dao.ComissaoDAO;
 import java.util.ArrayList;
 
 /**
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class ComissaoServlet implements LogicaDeNegocio {
 
     //Declarações
-    private TipoCliente tipoCliente = null;
+    private Comissao comissao = null;
     private String tarefa;
 
     @Override
@@ -30,20 +30,24 @@ public class ComissaoServlet implements LogicaDeNegocio {
             case "incluir":
                 try {
 
-                    //instancia uma nova tipoCliente
-                    tipoCliente = new TipoCliente();
+                    //instancia uma nova comissao
+                    comissao = new Comissao();
 
-                    //Atribui as informações da tipoCliente no objeto
-                    tipoCliente.setDescricao(req.getParameter("descricao"));
+                    //Atribui as informações da comissao no objeto
+                    comissao.setCodigoJob(Integer.parseInt(req.getParameter("codigoJob")));
+                    comissao.setBv(Float.parseFloat(req.getParameter("bv")));
+                    comissao.setBvAgencia(Float.parseFloat(req.getParameter("bvAgencia")));
+                    comissao.setBvProdutor(Float.parseFloat(req.getParameter("bvProdutor")));
+                    
+                   
+                    //Grava um nova comissao no banco de dados
+                    new ComissaoDAO().Incluir(comissao);
 
-                    //Grava um nova tipoCliente no banco de dados
-                    new TipoClienteDAO().Incluir(tipoCliente);
-
-                    //Atribui a ultima tipoCliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("incluidoTipoCliente", tipoCliente);
+                    //Atribui a ultima comissao como Atributo a ser enviado na próxima Requisição 
+                    req.setAttribute("incluidoComissao", comissao);
 
                 } catch (SQLException ex) {
-                    System.err.println("Erro ao inserir tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
+                    System.err.println("Erro ao inserir comissao no banco de dados. Detalhes: " + ex.getMessage());
                     return "Erro.html";
                 }
                 break;
@@ -51,21 +55,24 @@ public class ComissaoServlet implements LogicaDeNegocio {
             case "remover":
                 try {
 
-                    //instancia uma nova tipoCliente
-                    tipoCliente = new TipoCliente();
+                    //instancia uma nova comissao
+                    comissao = new Comissao();
 
-                    //Atribui as informações da tipoCliente no objeto
-                    tipoCliente.setDescricao(req.getParameter("descricao"));
-                    tipoCliente.setCodigo(Integer.parseInt(req.getParameter("codigo")));
+                    //Atribui as informações da comissao no objeto
+                    comissao.setCodigoJob(Integer.parseInt(req.getParameter("codigoJob")));
+                    comissao.setBv(Float.parseFloat(req.getParameter("bv")));
+                    comissao.setBvAgencia(Float.parseFloat(req.getParameter("bvAgencia")));
+                    comissao.setBvProdutor(Float.parseFloat(req.getParameter("bvProdutor")));
+                    comissao.setCodigo(Integer.parseInt(req.getParameter("codigo")));
 
-                    //Exclui tipoCliente no banco de dados
-                    new TipoClienteDAO().Excluir(Integer.parseInt(req.getParameter("codigo")));
+                    //Exclui comissao no banco de dados
+                    new ComissaoDAO().Excluir(Integer.parseInt(req.getParameter("codigo")));
 
-                    //Atribui a ultima tipoCliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("excluidoTipoCliente", tipoCliente);
+                    //Atribui a ultima comissao como Atributo a ser enviado na próxima Requisição 
+                    req.setAttribute("excluidoComissao", comissao);
 
                 } catch (SQLException ex) {
-                    System.err.println("Erro ao remover tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
+                    System.err.println("Erro ao remover comissao no banco de dados. Detalhes: " + ex.getMessage());
                     return "Erro.html";
                 }
                 break;
@@ -73,21 +80,24 @@ public class ComissaoServlet implements LogicaDeNegocio {
             case "alterar":
                 try {
 
-                    //instancia uma nova tipoCliente
-                    tipoCliente = new TipoCliente();
+                    //instancia uma nova comissao
+                    comissao = new Comissao();
 
-                    //Atribui as informações da tipoCliente no objeto
-                    tipoCliente.setDescricao(req.getParameter("descricao"));
-                    tipoCliente.setCodigo(Integer.parseInt(req.getParameter("codigo")));
+                    //Atribui as informações da comissao no objeto
+                    comissao.setCodigoJob(Integer.parseInt(req.getParameter("codigoJob")));
+                    comissao.setBv(Float.parseFloat(req.getParameter("bv")));
+                    comissao.setBvAgencia(Float.parseFloat(req.getParameter("bvAgencia")));
+                    comissao.setBvProdutor(Float.parseFloat(req.getParameter("bvProdutor")));
+                    comissao.setCodigo(Integer.parseInt(req.getParameter("codigo")));
 
-                    //altera tipoCliente no banco de dados
-                    new TipoClienteDAO().Alterar(tipoCliente);
+                    //altera comissao no banco de dados
+                    new ComissaoDAO().Alterar(comissao);
 
-                    //Atribui a ultima tipoCliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("alteradoTipoCliente", tipoCliente);
+                    //Atribui a ultima comissao como Atributo a ser enviado na próxima Requisição 
+                    req.setAttribute("alteradoComissao", comissao);
 
                 } catch (SQLException ex) {
-                    System.err.println("Erro ao alterar tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
+                    System.err.println("Erro ao alterar comissao no banco de dados. Detalhes: " + ex.getMessage());
                     return "Erro.html";
                 }
                 break;
@@ -95,42 +105,42 @@ public class ComissaoServlet implements LogicaDeNegocio {
             case "consultar":
                 try {
 
-                    //instancia uma nova tipoCliente
-                    tipoCliente = new TipoCliente();
+                    //instancia uma nova comissao
+                    comissao = new Comissao();
 
-                    //Grava um nova tipoCliente no banco de dados
-                    tipoCliente = new TipoClienteDAO().Consultar(Integer.parseInt(req.getParameter("codigo")));
+                    //Grava um nova comissao no banco de dados
+                    comissao = new ComissaoDAO().Consultar(Integer.parseInt(req.getParameter("codigo")));
 
-                    //Atribui a ultima tipoCliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaTipoCliente", tipoCliente);
+                    //Atribui a ultima comissao como Atributo a ser enviado na próxima Requisição 
+                    req.setAttribute("consultaComissao", comissao);
 
                 } catch (SQLException ex) {
-                    System.err.println("Erro ao consultar tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
+                    System.err.println("Erro ao consultar comissao no banco de dados. Detalhes: " + ex.getMessage());
                     return "Erro.html";
                 }
                 break;
             case "consultarLista":
                 try {
 
-                    ArrayList<TipoCliente> listaTipoCliente = new ArrayList<>();
+                    ArrayList<Comissao> listaComissao = new ArrayList<>();
 
-                    //Grava um nova tipoCliente no banco de dados
-                    listaTipoCliente = new TipoClienteDAO().Consultar();
+                    //Grava um nova comissao no banco de dados
+                    listaComissao = new ComissaoDAO().Consultar();
 
-                    //Atribui a ultima tipoCliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaListaTipoCliente", listaTipoCliente);
+                    //Atribui a ultima comissao como Atributo a ser enviado na próxima Requisição 
+                    req.setAttribute("consultaListaComissao", listaComissao);
 
                 } catch (SQLException ex) {
-                    System.err.println("Erro ao cosultar tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
+                    System.err.println("Erro ao cosultar comissao no banco de dados. Detalhes: " + ex.getMessage());
                     return "Erro.html";
                 }
                 break;
             default:
-                    System.err.println("Erro ao cosultar tipo de cliente no banco de dados. Ação inválida!");
+                    System.err.println("Erro ao cosultar comissao no banco de dados. Ação inválida!");
                     return "Erro.html";
 
         }
-        return "/WEB-INF/Paginas/TipoCliente.jsp";
+        return "/WEB-INF/Paginas/Comissao.jsp";
     }
 
     @Override

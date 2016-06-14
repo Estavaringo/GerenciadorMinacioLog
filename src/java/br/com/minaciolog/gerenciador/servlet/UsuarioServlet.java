@@ -8,8 +8,8 @@ package br.com.minaciolog.gerenciador.servlet;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import br.com.minaciolog.gerenciador.beans.TipoCliente;
-import br.com.minaciolog.gerenciador.dao.TipoClienteDAO;
+import br.com.minaciolog.gerenciador.beans.Usuario;
+import br.com.minaciolog.gerenciador.dao.UsuarioDAO;
 import java.util.ArrayList;
 
 /**
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class UsuarioServlet implements LogicaDeNegocio {
 
     //Declarações
-    private TipoCliente tipoCliente = null;
+    private Usuario usuario = null;
     private String tarefa;
 
     @Override
@@ -30,20 +30,22 @@ public class UsuarioServlet implements LogicaDeNegocio {
             case "incluir":
                 try {
 
-                    //instancia uma nova tipoCliente
-                    tipoCliente = new TipoCliente();
+                    //instancia uma nova usuario
+                    usuario = new Usuario();
 
-                    //Atribui as informações da tipoCliente no objeto
-                    tipoCliente.setDescricao(req.getParameter("descricao"));
+                    //Atribui as informações da usuario no objeto
+                    usuario.setEmail(req.getParameter("email"));
+                    usuario.setSenha(req.getParameter("senha"));
+                    usuario.setPerfil(req.getParameter("perfil"));
 
-                    //Grava um nova tipoCliente no banco de dados
-                    new TipoClienteDAO().Incluir(tipoCliente);
+                    //Grava um nova usuario no banco de dados
+                    new UsuarioDAO().Incluir(usuario);
 
-                    //Atribui a ultima tipoCliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("incluidoTipoCliente", tipoCliente);
+                    //Atribui a ultima usuario como Atributo a ser enviado na próxima Requisição 
+                    req.setAttribute("incluidoUsuario", usuario);
 
                 } catch (SQLException ex) {
-                    System.err.println("Erro ao inserir tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
+                    System.err.println("Erro ao inserir usuario no banco de dados. Detalhes: " + ex.getMessage());
                     return "Erro.html";
                 }
                 break;
@@ -51,21 +53,23 @@ public class UsuarioServlet implements LogicaDeNegocio {
             case "remover":
                 try {
 
-                    //instancia uma nova tipoCliente
-                    tipoCliente = new TipoCliente();
+                    //instancia uma nova usuario
+                    usuario = new Usuario();
 
-                    //Atribui as informações da tipoCliente no objeto
-                    tipoCliente.setDescricao(req.getParameter("descricao"));
-                    tipoCliente.setCodigo(Integer.parseInt(req.getParameter("codigo")));
+                    //Atribui as informações da usuario no objeto
+                    usuario.setEmail(req.getParameter("email"));
+                    usuario.setSenha(req.getParameter("senha"));
+                    usuario.setPerfil(req.getParameter("perfil"));
+                    usuario.setId(Integer.parseInt(req.getParameter("codigo")));
 
-                    //Exclui tipoCliente no banco de dados
-                    new TipoClienteDAO().Excluir(Integer.parseInt(req.getParameter("codigo")));
+                    //Exclui usuario no banco de dados
+                    new UsuarioDAO().Excluir(Integer.parseInt(req.getParameter("codigo")));
 
-                    //Atribui a ultima tipoCliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("excluidoTipoCliente", tipoCliente);
+                    //Atribui a ultima usuario como Atributo a ser enviado na próxima Requisição 
+                    req.setAttribute("excluidoUsuario", usuario);
 
                 } catch (SQLException ex) {
-                    System.err.println("Erro ao remover tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
+                    System.err.println("Erro ao remover usuario no banco de dados. Detalhes: " + ex.getMessage());
                     return "Erro.html";
                 }
                 break;
@@ -73,21 +77,23 @@ public class UsuarioServlet implements LogicaDeNegocio {
             case "alterar":
                 try {
 
-                    //instancia uma nova tipoCliente
-                    tipoCliente = new TipoCliente();
+                    //instancia uma nova usuario
+                    usuario = new Usuario();
 
-                    //Atribui as informações da tipoCliente no objeto
-                    tipoCliente.setDescricao(req.getParameter("descricao"));
-                    tipoCliente.setCodigo(Integer.parseInt(req.getParameter("codigo")));
+                    //Atribui as informações da usuario no objeto
+                    usuario.setEmail(req.getParameter("email"));
+                    usuario.setSenha(req.getParameter("senha"));
+                    usuario.setPerfil(req.getParameter("perfil"));
+                    usuario.setId(Integer.parseInt(req.getParameter("codigo")));
 
-                    //altera tipoCliente no banco de dados
-                    new TipoClienteDAO().Alterar(tipoCliente);
+                    //altera usuario no banco de dados
+                    new UsuarioDAO().Alterar(usuario);
 
-                    //Atribui a ultima tipoCliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("alteradoTipoCliente", tipoCliente);
+                    //Atribui a ultima usuario como Atributo a ser enviado na próxima Requisição 
+                    req.setAttribute("alteradoUsuario", usuario);
 
                 } catch (SQLException ex) {
-                    System.err.println("Erro ao alterar tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
+                    System.err.println("Erro ao alterar usuario no banco de dados. Detalhes: " + ex.getMessage());
                     return "Erro.html";
                 }
                 break;
@@ -95,42 +101,42 @@ public class UsuarioServlet implements LogicaDeNegocio {
             case "consultar":
                 try {
 
-                    //instancia uma nova tipoCliente
-                    tipoCliente = new TipoCliente();
+                    //instancia uma nova usuario
+                    usuario = new Usuario();
 
-                    //Grava um nova tipoCliente no banco de dados
-                    tipoCliente = new TipoClienteDAO().Consultar(Integer.parseInt(req.getParameter("codigo")));
+                    //Grava um nova usuario no banco de dados
+                    usuario = new UsuarioDAO().Consultar(Integer.parseInt(req.getParameter("codigo")));
 
-                    //Atribui a ultima tipoCliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaTipoCliente", tipoCliente);
+                    //Atribui a ultima usuario como Atributo a ser enviado na próxima Requisição 
+                    req.setAttribute("consultaUsuario", usuario);
 
                 } catch (SQLException ex) {
-                    System.err.println("Erro ao consultar tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
+                    System.err.println("Erro ao consultar usuario no banco de dados. Detalhes: " + ex.getMessage());
                     return "Erro.html";
                 }
                 break;
             case "consultarLista":
                 try {
 
-                    ArrayList<TipoCliente> listaTipoCliente = new ArrayList<>();
+                    ArrayList<Usuario> listaUsuario = new ArrayList<>();
 
-                    //Grava um nova tipoCliente no banco de dados
-                    listaTipoCliente = new TipoClienteDAO().Consultar();
+                    //Grava um nova usuario no banco de dados
+                    listaUsuario = new UsuarioDAO().Consultar();
 
-                    //Atribui a ultima tipoCliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaListaTipoCliente", listaTipoCliente);
+                    //Atribui a ultima usuario como Atributo a ser enviado na próxima Requisição 
+                    req.setAttribute("consultaListaUsuario", listaUsuario);
 
                 } catch (SQLException ex) {
-                    System.err.println("Erro ao cosultar tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
+                    System.err.println("Erro ao cosultar usuario no banco de dados. Detalhes: " + ex.getMessage());
                     return "Erro.html";
                 }
                 break;
             default:
-                    System.err.println("Erro ao cosultar tipo de cliente no banco de dados. Ação inválida!");
+                    System.err.println("Erro ao cosultar usuario no banco de dados. Ação inválida!");
                     return "Erro.html";
 
         }
-        return "/WEB-INF/Paginas/TipoCliente.jsp";
+        return "/WEB-INF/Paginas/Usuario.jsp";
     }
 
     @Override
