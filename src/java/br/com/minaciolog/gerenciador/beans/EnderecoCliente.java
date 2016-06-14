@@ -107,7 +107,7 @@ public class EnderecoCliente {
     /**
      * @param codigoCcidade the codigoCidade to set
      */
-    public void setCodigoCcidade(int codigoCcidade) {
+    public void setCodigoCidade(int codigoCcidade) {
         this.codigoCidade = codigoCcidade;
     }
 
