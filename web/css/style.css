@@ -22,11 +22,17 @@
     background-color: #fff
 }
 
+#logo-container{
+    height: 116px;
+}
+
 
 ul.side-nav.fixed li.logo {
     text-align: center;
     margin-top: 60px;
-    margin-bottom: 80px
+    margin-bottom: 80px;
+    padding-bottom: 50px;
+    
 }
 
 ul.side-nav.fixed li.logo:hover {

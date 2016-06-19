@@ -67,7 +67,7 @@
                                 <div class="collapsible-body" style="display: block;">
                                     <ul>
                                         <!--Para deixar algum item ativado, adicionar class="active" -->
-                                        <li><a href="/Executa?logicaDeNegocio=TipoClienteServlet&tarefa=consultarLista">Tipo de Cliente</a></li>
+                                        <li class="active"><a href="#">Tipo de Cliente</a></li>
                                         <li><a href="#">Tipo de Contato</a></li>
                                         <li><a href="#">Tipo de Endereços</a></li>
                                         <li><a href="#">Cidade</a></li>
@@ -90,41 +90,26 @@
                       9-columns-wide on large screens,
                       8-columns-wide on medium screens,
                       12-columns-wide on small screens  -->
-                    <!-- CONTEÚDO INICIAL DE APRESENTAÇÃO DO SITE E BOTÃO ENTRAR -->
-                    <!-- 
-                    <div class="section no-pad-bot" id="index-banner">
-                            <div class="container">
-                                    <br><br>
-                                    <h1 class="header center orange-text">Gerenciador Minacio Log</h1>
-                                    <div class="row center">
-                                    <h5 class="header col s12 light">Sistema de gerenciamento de clientes e controle financeiros da Minacio Log.</h5>
-                                    </div>
-                                    <div class="row center">
-                                            <form action="executa" method="POST">
-                                                    <input type="hidden" name="tarefa" value="Logout" />
-                                                    <button class="btn-large waves-effect waves-light" type="submit" name="action" value="login">
-                                                            Entrar<i class="material-icons right">send</i>
-                                                    </button>
-                                            </form>
-                                    </div>
-                            </div>
-                    </div>
-                    -->
 
                     <!-- CONTEÚDO DE CADA PÁGINA -->
                     <div class="col s12 m8 l9">
                         <div id="introduction" class="section scrollspy">
                             <div class="divider"></div>
-                            <h2 class="header">Titulo Sessão 1</h2>
-                            <p>Texto de Descrição da Sessão 1</p>
-                            <h4>Sub-Titulo da Sessão 1</h4>
+                            <h2 class="header">Tipos de Clientes</h2>
+                            <p>O tipo de cliente irá distinguir os vários clientes cadastrados.</p>
+                            <h4>Todos os tipo de clientes cadastrados</h4>
                             <div class="section">
                                 <h5>Section 1</h5>
                                 <br><br><br>
-                                <p>COLOQUE O CONTEÚDO 1 AQUI</p>
+                                <p>TABELA COM TODOS OS TIPOS DE CLIENTES</p>
+                            </div>
+                        </div>
 
-                                <div id="Formulario_teste">
-
+                        <div id="structure" class="section scrollspy">
+                            <div class="divider"></div>
+                            <h4>Inclusão de novo tipo de cliente</h4>
+                            <div class="section">
+                                <h5>Novo Tipo de Cliente</h5>
                                     <form method="POST" action="Executa">
                                         <!--Nome das Classes que deverão ser informadas ocultas-->
                                         <input type="hidden" name="logicaDeNegocio" value="TipoClienteServlet">
@@ -136,40 +121,7 @@
                                         </div>
 
                                         <button type="submit" class="btn btn-default" value="Cadastrar">Cadastrar</button>
-
-
-
                                     </form>
-                                </div>
-
-                                <br><br><br>
-                            </div>
-                        </div>
-
-                        <div id="structure" class="section scrollspy">
-                            <div class="divider"></div>
-                            <h2 class="header">Titulo Sessão 2</h2>
-                            <p>Texto de Descrição da Sessão 2</p>
-                            <h4>Sub-Titulo da Sessão 2</h4>
-                            <div class="section">
-                                <h5>Section 2</h5>
-                                <br><br><br>
-                                <p>COLOQUE O CONTEÚDO 2 AQUI</p>
-                                <br><br><br>
-                            </div>
-                        </div>
-
-                        <div id="initialization" class="section scrollspy">
-                            <div class="divider"></div>
-                            <h2 class="header">Titulo Sessão 3</h2>
-                            <p>Texto de Descrição da Sessão 3</p>
-                            <h4>Sub-Titulo da Sessão 3</h4>
-
-                            <div class="section">
-                                <h5>Section 3</h5>
-                                <br><br><br>
-                                <p>COLOQUE O CONTEÚDO 3 AQUI</p>
-                                <br><br><br>
                             </div>
                         </div>
                     </div>
