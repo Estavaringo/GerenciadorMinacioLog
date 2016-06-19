@@ -23,7 +23,7 @@ public class ClienteServlet implements LogicaDeNegocio {
     //Declarações
     private Cliente cliente = null;
     private String tarefa;
-
+    
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse resp) {
 
