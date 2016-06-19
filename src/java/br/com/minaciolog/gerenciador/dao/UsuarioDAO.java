@@ -141,4 +141,35 @@ public class UsuarioDAO implements DAO<Usuario> {
     public Usuario Consultar(int codigo) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public Usuario Consultar(String email) throws SQLException {
+        try {
+            Usuario usuario = null;
+
+            if (email == null) {
+                return usuario;
+            }
+
+            bd.conectar();
+            String strSQL = "SELECT LOGI_USER, LOGI_PASS, LOGI_PERF FROM login WHERE LOGI_USER = ?";
+            PreparedStatement p = bd.connection.prepareStatement(strSQL);
+            p.setString(1, email);
+            ResultSet rs = p.executeQuery();
+            if (rs.next()) {
+                usuario = new Usuario();
+                usuario.setEmail(rs.getString("LOGI_USER"));
+                usuario.setSenha(rs.getString("LOGI_PASS"));
+                usuario.setPerfil(rs.getString("LOGI_PERF"));
+                p.close();
+                bd.desconectar();
+                return usuario;
+            }
+            p.close();
+            bd.desconectar();
+            return usuario;
+        } catch (SQLException ex) {
+            bd.desconectar();
+            throw ex;
+        }
+    }
 }

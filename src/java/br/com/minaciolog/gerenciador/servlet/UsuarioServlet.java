@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import br.com.minaciolog.gerenciador.beans.Usuario;
 import br.com.minaciolog.gerenciador.dao.UsuarioDAO;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 /**
@@ -35,7 +37,7 @@ public class UsuarioServlet implements LogicaDeNegocio {
 
                     //Atribui as informações da usuario no objeto
                     usuario.setEmail(req.getParameter("email"));
-                    usuario.setSenha(req.getParameter("senha"));
+                    usuario.setSenha(new Criptografia().Digest(req.getParameter("senha")));
                     usuario.setPerfil(req.getParameter("perfil"));
 
                     //Grava um nova usuario no banco de dados
@@ -46,6 +48,9 @@ public class UsuarioServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao inserir usuario no banco de dados. Detalhes: " + ex.getMessage());
+                    return "Erro.html";
+                } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
+                    System.err.println("Erro ao criptografar a senha. Detalhes: " + ex.getMessage());
                     return "Erro.html";
                 }
                 break;
@@ -82,7 +87,7 @@ public class UsuarioServlet implements LogicaDeNegocio {
 
                     //Atribui as informações da usuario no objeto
                     usuario.setEmail(req.getParameter("email"));
-                    usuario.setSenha(req.getParameter("senha"));
+                    usuario.setSenha(new Criptografia().Digest(req.getParameter("senha")));
                     usuario.setPerfil(req.getParameter("perfil"));
                     usuario.setId(Integer.parseInt(req.getParameter("codigo")));
 
@@ -94,6 +99,9 @@ public class UsuarioServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao alterar usuario no banco de dados. Detalhes: " + ex.getMessage());
+                    return "Erro.html";
+                } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
+                    System.err.println("Erro ao criptografar a senha no banco de dados. Detalhes: " + ex.getMessage());
                     return "Erro.html";
                 }
                 break;
@@ -132,8 +140,8 @@ public class UsuarioServlet implements LogicaDeNegocio {
                 }
                 break;
             default:
-                    System.err.println("Erro ao cosultar usuario no banco de dados. Ação inválida!");
-                    return "Erro.html";
+                System.err.println("Erro ao cosultar usuario no banco de dados. Ação inválida!");
+                return "Erro.html";
 
         }
         return "/WEB-INF/Paginas/Usuario.jsp";
@@ -143,5 +151,7 @@ public class UsuarioServlet implements LogicaDeNegocio {
     public boolean verifica() {
         return true;
     }
+
+
 
 }

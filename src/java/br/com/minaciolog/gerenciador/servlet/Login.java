@@ -7,12 +7,10 @@ package br.com.minaciolog.gerenciador.servlet;
 
 import br.com.minaciolog.gerenciador.beans.Usuario;
 import br.com.minaciolog.gerenciador.dao.UsuarioDAO;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,29 +20,43 @@ import javax.servlet.http.HttpSession;
  * @author flaviosampaioreisdelima
  */
 @WebServlet(urlPatterns = "/login")
-public class Login extends HttpServlet {
+public class Login implements LogicaDeNegocio {
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String email = req.getParameter("email");
-		String senha = req.getParameter("senha");
-		Usuario usuario;
-		try {
-			usuario = new UsuarioDAO().Consultar(email, senha);
+    @Override
+    public String executa(HttpServletRequest req, HttpServletResponse response) {
+        String email = req.getParameter("email");
+        String senha = "";
 
-			PrintWriter writer = resp.getWriter();
-			if (usuario == null) {
-				writer.println("<html><body>Usuario invalido</body></html>");
-			} else {
-				HttpSession session = req.getSession();
-				session.setAttribute("usuarioLogado", usuario);
-				writer.println("<html><body>Usuario logado: " + email + "</body></html>");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        try {
+            senha = new Criptografia().Digest(req.getParameter("senha"));
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
+            System.err.println("Erro ao criptografar a senha. Detalhes: " + ex.getMessage());
+        }
 
-	}
+        Usuario usuario;
+
+        try {
+            usuario = new UsuarioDAO().Consultar(email);
+
+            if (usuario == null) {
+                return "UsuarioInvalido.html";
+            } else if (!senha.equals(usuario.getSenha())) {
+                return "SenhaInvalida.html";
+            } else {
+                HttpSession session = req.getSession();
+                session.setAttribute("usuarioLogado", usuario);
+                return "index.jsp";
+            }
+
+        } catch (SQLException ex) {
+            System.err.println("Erro ao consultar usuário no banco de dados. Detalhes: " + ex.getMessage());
+            return "Erro.html";
+        }
+    }
+
+    @Override
+    public boolean verifica() {
+        return false;
+    }
 
 }

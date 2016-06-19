@@ -16,7 +16,7 @@ import java.util.ArrayList;
  *
  * @author gabri
  */
-public class tipoFaturamentoServlet implements Tarefa {
+public class TipoFaturamentoServlet implements LogicaDeNegocio {
 
     //Declarações
     private TipoFaturamento tipoFaturamento = null;
@@ -131,6 +131,9 @@ public class tipoFaturamentoServlet implements Tarefa {
                     return "Erro.html";
                 }
                 break;
+            default:
+                    System.err.println("Erro ao cosultar tipo de faturamento no banco de dados. Ação inválida!");
+                    return "Erro.html";
 
         }
         return "/WEB-INF/Paginas/TipoFaturamento.jsp";

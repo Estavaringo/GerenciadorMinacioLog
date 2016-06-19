@@ -16,27 +16,35 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author flaviosampaioreisdelima
  */
-@WebServlet(urlPatterns="/Executa")
+@WebServlet(urlPatterns = "/Executa")
 public class Controller extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+
         //Pega o nome da classe
-        String nomeDaClasse = "br.com.minaciolog.gerenciador.servlet." + request.getParameter("logicaDeNegocio");     
+        String nomeDaClasse = "br.com.minaciolog.gerenciador.servlet." + request.getParameter("logicaDeNegocio");
 
         try {
             //Localiza a classe através do seu nome
             Class<?> classe = Class.forName(nomeDaClasse);
-            
+
             //Instancia a classe que foi localizada
             LogicaDeNegocio logicaDeNegocio = (LogicaDeNegocio) classe.newInstance();
 
-            // Recebe o nome da página que deverá ser renderiza como resposta a solicitação
-            String pagina = logicaDeNegocio.executa(request, response);
+            //Verifica se o usuario tem acesso a pagina
+            if (!VerificaPermissao.executa(request, response, logicaDeNegocio)) {
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("Negado.html");
+                requestDispatcher.forward(request, response);
 
-            // Dispacha o usuário para página JSP
-            request.getRequestDispatcher(pagina).forward(request, response);
+            } else {
+
+                // Recebe o nome da página que deverá ser renderiza como resposta a solicitação
+                String pagina = logicaDeNegocio.executa(request, response);
+
+                // Dispacha o usuário para página JSP
+                request.getRequestDispatcher(pagina).forward(request, response);
+            }
 
         } catch (ClassNotFoundException ex) {
             throw new ServletException("A classe informada na requisição não foi localizada.");
@@ -44,7 +52,7 @@ public class Controller extends HttpServlet {
             throw new ServletException("Não foi possível instanciar a classse informada.");
         } catch (IllegalAccessException ex) {
             throw new ServletException("Não foi possível acessar a classe informada.");
-        }catch(ServletException ex){
+        } catch (ServletException ex) {
             throw new ServletException(ex);
         }
     }
