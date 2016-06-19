@@ -5,7 +5,7 @@
  */
 package br.com.minaciolog.gerenciador.dao;
 
-import br.com.minaciolog.gerenciador.beans.Cidade;
+import br.com.minaciolog.gerenciador.beans.Prospeccao;
 import br.com.minaciolog.gerenciador.beans.Prospeccao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,10 +26,12 @@ public class ProspeccaoDAO implements DAO<Prospeccao> {
         try {
             bd.conectar();
             String strSql
-                    = "INSERT INTO cidade (CIDA_DESC, UF_UF_ID) VALUES (?, ?)";
+                    = "INSERT INTO cliente_prospeccao (PROS_DT, PROS_NM, PROS_DESC, CLIENTE_CLIE_ID) VALUES (?,?,?,?)";
             PreparedStatement p = bd.connection.prepareStatement(strSql);
-            p.setString(1, obj.getDescricao());
-            p.setString(2, obj.getCodigoUF());
+            p.setDate(1, obj.getData());
+            p.setString(2, obj.getNome());
+            p.setString(3, obj.getDescricao());
+            p.setInt(4, obj.getCodigoCliente());
             p.execute();
             p.close();
             bd.desconectar();
@@ -44,7 +46,7 @@ public class ProspeccaoDAO implements DAO<Prospeccao> {
         try {
             bd.conectar();
             String strSql
-                    = "DELETE FROM cidade WHERE CIDA_ID = ?";
+                    = "DELETE FROM cliente_prospeccao WHERE PROS_ID = ?";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
             p.setInt(1, codigo);
@@ -62,12 +64,14 @@ public class ProspeccaoDAO implements DAO<Prospeccao> {
         try {
             bd.conectar();
             String strSql
-                    = "UPDATE cidade SET CIDA_DESC = ?, UF_UF_ID = ?  WHERE CIDA_ID = ?";
+                    = "UPDATE cliente_prospeccao SET PROS_DT = ?, PROS_NM = ?, PROS_DESC = ?, CLIENTE_CLIE_ID = ?  WHERE PROS_ID= ?";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
-            p.setString(1, obj.getDescricao());
-            p.setString(2, obj.getCodigoUF());
-            p.setInt(3, obj.getCodigo());
+            p.setDate(1, obj.getData());
+            p.setString(2, obj.getNome());
+            p.setString(3, obj.getDescricao());
+            p.setInt(4, obj.getCodigoCliente());
+            p.setInt(5, obj.getCodigo());
             p.execute();
             p.close();
             bd.desconectar();
@@ -80,16 +84,18 @@ public class ProspeccaoDAO implements DAO<Prospeccao> {
     @Override
     public ArrayList<Prospeccao> Consultar() throws SQLException {
         try {
-            ArrayList<Cidade> lista = new ArrayList<>();
+            ArrayList<Prospeccao> lista = new ArrayList<>();
             bd.conectar();
             Statement comando;
             comando = bd.connection.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT CIDA_ID, CIDA_DESC, UF_UF_ID FROM cidade");
+            ResultSet rs = comando.executeQuery("SELECT PROS_ID, PROS_DT, PROS_NM, PROS_DESC, CLIENTE_CLIE_ID FROM cliente_prospeccao");
             while (rs.next()) {
-                Cidade obj = new Cidade();
-                obj.setCodigo(rs.getInt("CIDA_ID"));
-                obj.setDescricao(rs.getString("CIDA_DESC"));
-                obj.setCodigoUF(rs.getString("UF_UF_ID"));
+                Prospeccao obj = new Prospeccao();
+                obj.setCodigo(rs.getInt("PROS_ID"));
+                obj.setData(rs.getDate("PROS_DT"));
+                obj.setNome(rs.getString("PROS_NM"));
+                obj.setDescricao(rs.getString("PROS_DESC"));
+                obj.setCodigoCliente(rs.getInt("CLIENTE_CLIE_ID"));
                 lista.add(obj);
             }
             bd.desconectar();
@@ -103,17 +109,19 @@ public class ProspeccaoDAO implements DAO<Prospeccao> {
     @Override
     public Prospeccao Consultar(int codigo) throws SQLException {
         try {
-            Cidade obj = null;
+            Prospeccao obj = null;
             bd.conectar();
-            String strSQL = "SELECT CIDA_ID, CIDA_DESC, UF_UF_ID FROM cidade WHERE CIDA_ID = ?";
+            String strSQL = "SELECT PROS_ID, PROS_DT, PROS_NM, PROS_DESC, CLIENTE_CLIE_ID FROM cliente_prospeccao WHERE PROS_ID = ?";
             PreparedStatement p = bd.connection.prepareStatement(strSQL);
             p.setInt(1, codigo);
             ResultSet rs = p.executeQuery();
             if (rs.next()) {
-                obj = new Cidade();
-                obj.setCodigo(rs.getInt("CIDA_ID"));
-                obj.setDescricao(rs.getString("CIDA_DESC"));
-                obj.setCodigoUF(rs.getString("UF_UF_ID"));
+                obj = new Prospeccao();
+                obj.setCodigo(rs.getInt("PROS_ID"));
+                obj.setData(rs.getDate("PROS_DT"));
+                obj.setNome(rs.getString("PROS_NM"));
+                obj.setDescricao(rs.getString("PROS_DESC"));
+                obj.setCodigoCliente(rs.getInt("CLIENTE_CLIE_ID"));
                 bd.desconectar();
                 return obj;
             }
@@ -124,7 +132,22 @@ public class ProspeccaoDAO implements DAO<Prospeccao> {
             throw ex;
         }
     }
-
-   
+    
+       public void ExcluirCliente(int codigo) throws SQLException {
+        try {
+            bd.conectar();
+            String strSql
+                    = "DELETE FROM cliente_prospeccao WHERE CLIENTE_CLIE_ID = ?";
+            PreparedStatement p
+                    = bd.connection.prepareStatement(strSql);
+            p.setInt(1, codigo);
+            p.execute();
+            p.close();
+            bd.desconectar();
+        } catch (SQLException ex) {
+            bd.desconectar();
+            throw ex;
+        }
+    }
 
 }
