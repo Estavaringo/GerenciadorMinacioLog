@@ -6,6 +6,7 @@
 package br.com.minaciolog.gerenciador.servlet;
 
 import java.io.IOException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,8 +35,7 @@ public class Controller extends HttpServlet {
 
             //Verifica se o usuario tem acesso a pagina
             if (!VerificaPermissao.executa(request, response, logicaDeNegocio)) {
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("Negado.html");
-                requestDispatcher.forward(request, response);
+                request.getRequestDispatcher("Negado.html").forward(request, response);
 
             } else {
 
