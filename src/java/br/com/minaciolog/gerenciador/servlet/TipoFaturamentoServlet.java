@@ -46,7 +46,7 @@ public class TipoFaturamentoServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao inserir tipo de faturamento no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -70,7 +70,7 @@ public class TipoFaturamentoServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao remover tipo de faturamento no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -94,7 +94,7 @@ public class TipoFaturamentoServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao alterar tipo de faturamento no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -112,7 +112,7 @@ public class TipoFaturamentoServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao consultar tipo de faturamento no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
             case "consultarLista":
@@ -128,15 +128,15 @@ public class TipoFaturamentoServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar tipo de faturamento no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
             default:
                     System.err.println("Erro ao cosultar tipo de faturamento no banco de dados. Ação inválida!");
-                    return "Erro.html";
+                    return "erro.html";
 
         }
-        return "/WEB-INF/Paginas/TipoFaturamento.jsp";
+        return "/WEB-INF/Paginas/tipofaturamento.jsp";
     }
 
     @Override

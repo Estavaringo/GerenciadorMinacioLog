@@ -44,7 +44,7 @@ public class TipoContatoServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao inserir tipo de contato no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -66,7 +66,7 @@ public class TipoContatoServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao remover tipo de contato no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -88,7 +88,7 @@ public class TipoContatoServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao alterar tipo de contato no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -106,7 +106,7 @@ public class TipoContatoServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao consultar tipo de contato no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
             case "consultarLista":
@@ -122,15 +122,15 @@ public class TipoContatoServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar tipo de contato no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
             default:
                     System.err.println("Erro ao cosultar tipo de contato no banco de dados. Ação inválida!");
-                    return "Erro.html";
+                    return "erro.html";
 
         }
-        return "/WEB-INF/Paginas/TipoContato.jsp";
+        return "/WEB-INF/Paginas/tipocontato.jsp";
     }
 
     @Override

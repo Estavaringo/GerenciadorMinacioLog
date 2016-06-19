@@ -47,7 +47,7 @@ public class ContatoClienteServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao inserir tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -69,7 +69,7 @@ public class ContatoClienteServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao remover tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -94,7 +94,7 @@ public class ContatoClienteServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao alterar tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -112,7 +112,7 @@ public class ContatoClienteServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao consultar tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
             case "consultarLista":
@@ -128,15 +128,15 @@ public class ContatoClienteServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
             default:
                     System.err.println("Erro ao cosultar tipo de cliente no banco de dados. Ação inválida!");
-                    return "Erro.html";
+                    return "erro.html";
 
         }
-        return "/WEB-INF/Paginas/ContatoCliente.jsp";
+        return "/WEB-INF/Paginas/contatocliente.jsp";
     }
 
     @Override

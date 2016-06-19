@@ -44,7 +44,7 @@ public class UFServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao inserir UF no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -66,7 +66,7 @@ public class UFServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao remover UF no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -88,7 +88,7 @@ public class UFServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao alterar UF no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -106,7 +106,7 @@ public class UFServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao consultar UF no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
             case "consultarLista":
@@ -122,15 +122,15 @@ public class UFServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar UF no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
             default:
                     System.err.println("Erro ao cosultar UF no banco de dados. Ação inválida!");
-                    return "Erro.html";
+                    return "erro.html";
 
         }
-        return "/WEB-INF/Paginas/UF.jsp";
+        return "/WEB-INF/Paginas/uf.jsp";
     }
 
     @Override

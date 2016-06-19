@@ -45,7 +45,7 @@ public class CidadeServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao inserir cidade no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -68,7 +68,7 @@ public class CidadeServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao remover cidade no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -91,7 +91,7 @@ public class CidadeServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao alterar cidade no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -109,7 +109,7 @@ public class CidadeServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao consultar cidade no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
             case "consultarLista":
@@ -125,14 +125,14 @@ public class CidadeServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar cidade no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
             default:
                     System.err.println("Tarefa informada é inválida!");
-                    return "Erro.html";
+                    return "erro.html";
         }
-        return "/WEB-INF/Paginas/Cidade.jsp";
+        return "/WEB-INF/Paginas/cidade.jsp";
     }
 
     @Override
