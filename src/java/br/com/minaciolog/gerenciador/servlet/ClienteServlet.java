@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import br.com.minaciolog.gerenciador.beans.Cliente;
 import br.com.minaciolog.gerenciador.dao.ClienteDAO;
+import br.com.minaciolog.gerenciador.dao.ContatoClienteDAO;
+import br.com.minaciolog.gerenciador.dao.EnderecoClienteDAO;
 import java.util.ArrayList;
 
 /**
@@ -63,7 +65,9 @@ public class ClienteServlet implements LogicaDeNegocio {
                     cliente.setCodigoTipoCliente(Integer.parseInt(req.getParameter("tipoCliente")));
 
                     //Exclui cliente no banco de dados
-                    new ClienteDAO().Excluir(Integer.parseInt(req.getParameter("codigo")));
+                    new EnderecoClienteDAO().ExcluirCliente(cliente.getCodigo());
+                    new ContatoClienteDAO().ExcluirCliente(cliente.getCodigo());
+                    new ClienteDAO().Excluir(cliente.getCodigo());
 
                     //Atribui a ultima cliente como Atributo a ser enviado na próxima Requisição 
                     req.setAttribute("excluidoCliente", cliente);
