@@ -32,26 +32,20 @@
 		<!--MENU DIAGONAL NA ESQUERDA -->
 		<!-- This content will be: 3-columns-wide on large screens, 4-columns-wide on medium screens, 12-columns-wide on small screens -->
 		<ul id="slide-out" class="side-nav fixed">
-			<li class="logo">
+			<li class="logo off">
 				<a id="logo-container" href="#!" class="brand-logo">
 					<object id="front-page-logo" type="image/svg+xml" data="res/materialize.svg">
 						Your browser does not support SVG
 					</object>
 				</a>
 			</li>
-			<li>
-				<div class="input-field">
-					<i class="material-icons prefix blue-text text-darken-2">search</i>
-					<input id="icon_prefix" type="text" class="validate">
-		        </div>
-	        </li>
 			<li class="bold"><a href="#" class="waves-effect waves-teal">Sobre</a></li>
 			<li class="bold"><a href="#" class="waves-effect waves-teal">DashBoard</a></li>
 			<li class="bold"><a href="#" class="waves-effect waves-teal">Operação</a></li>
 			<li class="bold"><a href="#" class="waves-effect waves-teal">Clientes</a></li>
 			<li class="no-padding">
 			      <ul class="collapsible collapsible-accordion">
-					<li class="bold active"><a class="collapsible-header waves-effect waves-teal">Cadastros</a>
+					<li class="bold active"><a class="collapsible-header waves-effect waves-teal"><i class="tiny material-icons">face</i>Cadastros</a>
 						<div class="collapsible-body" style="display: block;">
 							<ul>
 								<!--Para deixar algum item ativado, adicionar class="active" -->
