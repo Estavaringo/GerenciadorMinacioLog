@@ -8,7 +8,6 @@ package br.com.minaciolog.gerenciador.servlet;
 import br.com.minaciolog.gerenciador.beans.Usuario;
 import br.com.minaciolog.gerenciador.dao.UsuarioDAO;
 import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import javax.servlet.annotation.WebServlet;
@@ -29,7 +28,7 @@ public class Login implements LogicaDeNegocio {
         String senha = "";
 
         try {
-            senha = this.Digest(req.getParameter("senha"));
+            senha = new Criptografia().Digest(req.getParameter("senha"));
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
             System.err.println("Erro ao criptografar a senha. Detalhes: " + ex.getMessage());
         }
@@ -54,25 +53,10 @@ public class Login implements LogicaDeNegocio {
             return "Erro.html";
         }
     }
-    
 
     @Override
     public boolean verifica() {
         return false;
-    }
-
-    private String Digest(String senha) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-        MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
-
-        byte messageDigest[] = algorithm.digest(senha.getBytes("UTF-8"));
-
-        StringBuilder hexString = new StringBuilder();
-
-        for (byte b : messageDigest) {
-            hexString.append(String.format("%02X", 0xFF & b));
-        }
-
-        return hexString.toString();
     }
 
 }
