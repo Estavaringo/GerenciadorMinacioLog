@@ -118,7 +118,7 @@ public class TipoClienteServlet implements LogicaDeNegocio {
                     listaTipoCliente = new TipoClienteDAO().Consultar();
 
                     //Atribui a ultima tipoCliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaListaTipoCliente", listaTipoCliente);
+                    req.setAttribute("listaTipoCliente", listaTipoCliente);
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
@@ -130,7 +130,7 @@ public class TipoClienteServlet implements LogicaDeNegocio {
                     return "Erro.html";
 
         }
-        return "/WEB-INF/Paginas/TipoCliente.jsp";
+        return "/WEB-INF/Paginas/tipocliente.jsp";
     }
 
     @Override
