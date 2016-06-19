@@ -110,6 +110,26 @@
 							<h5>Section 1</h5>
 							<br><br><br>
 							<p>COLOQUE O CONTEÚDO 1 AQUI</p>
+                                                        
+                                                        <div id="Formulario_teste">
+                                                            
+                                                            <form method="POST" action="Executa">
+                                                                <!--Nome das Classes que deverão ser informadas ocultas-->
+                                                                <input type="hidden" name="logicaDeNegocio" value="TipoClienteServlet">
+                                                                <input type="hidden" name="tarefa" value="incluir">
+                                                                
+                                                                <div class="form-group">
+                                                                    <label>Descrição:</label> 
+                                                                    <input type="text" class="form-control" placeholder="Insira o texto aqui" name="descricao" value="" />
+                                                                </div>
+                                                                
+                                                                <button type="submit" class="btn btn-default" value="Cadastrar">Cadastrar</button>
+                                                                
+                                                                
+                                                                
+                                                            </form>
+                                                        </div>
+                                                        
 							<br><br><br>
 						</div>
 					</div>
