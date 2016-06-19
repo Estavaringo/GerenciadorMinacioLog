@@ -7,17 +7,11 @@ package br.com.minaciolog.gerenciador.servlet;
 
 import br.com.minaciolog.gerenciador.beans.Usuario;
 import br.com.minaciolog.gerenciador.dao.UsuarioDAO;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -27,43 +21,44 @@ import javax.servlet.http.HttpSession;
  * @author flaviosampaioreisdelima
  */
 @WebServlet(urlPatterns = "/login")
-public class Login extends HttpServlet {
+public class Login implements LogicaDeNegocio {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public String executa(HttpServletRequest req, HttpServletResponse response) {
         String email = req.getParameter("email");
         String senha = "";
-        
+
         try {
             senha = this.Digest(req.getParameter("senha"));
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
             System.err.println("Erro ao criptografar a senha. Detalhes: " + ex.getMessage());
         }
-        
+
         Usuario usuario;
-        
+
         try {
             usuario = new UsuarioDAO().Consultar(email);
 
-            PrintWriter writer = resp.getWriter();
-
             if (usuario == null) {
-                writer.println("<html><body>Usuario invalido</body></html>");
-                
-            } else if(senha.equals(usuario.getSenha())){
+                return "UsuarioInvalido.html";
+            } else if (!senha.equals(usuario.getSenha())) {
+                return "SenhaInvalida.html";
+            } else {
                 HttpSession session = req.getSession();
                 session.setAttribute("usuarioLogado", usuario);
-                writer.println("<html><body>Usuario logado: " + email + "</body></html>");
-                
-            }else{
-                writer.println("<html><body>Senha invalida</body></html>");
+                return "index.jsp";
             }
 
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            System.err.println("Erro ao consultar usuário no banco de dados. Detalhes: " + ex.getMessage());
+            return "Erro.html";
         }
+    }
+    
 
+    @Override
+    public boolean verifica() {
+        return false;
     }
 
     private String Digest(String senha) throws NoSuchAlgorithmException, UnsupportedEncodingException {
@@ -79,4 +74,5 @@ public class Login extends HttpServlet {
 
         return hexString.toString();
     }
+
 }
