@@ -52,7 +52,7 @@ public class EnderecoClienteServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao inserir endereco de cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -81,7 +81,7 @@ public class EnderecoClienteServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao remover endereco de cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -110,7 +110,7 @@ public class EnderecoClienteServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao alterar endereco de cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -128,7 +128,7 @@ public class EnderecoClienteServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao consultar endereco de cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
             case "consultarLista":
@@ -140,19 +140,19 @@ public class EnderecoClienteServlet implements LogicaDeNegocio {
                     listaEnderecoCliente = new EnderecoClienteDAO().Consultar();
 
                     //Atribui a ultima enderecoCliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaListaEnderecoCliente", listaEnderecoCliente);
+                    req.setAttribute("listaEnderecoCliente", listaEnderecoCliente);
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar endereco de cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
             default:
                     System.err.println("Erro ao cosultar endereco de cliente no banco de dados. Ação inválida!");
-                    return "Erro.html";
+                    return "erro.html";
 
         }
-        return "/WEB-INF/Paginas/EnderecoCliente.jsp";
+        return "/WEB-INF/Paginas/enderecocliente.jsp";
     }
 
     @Override

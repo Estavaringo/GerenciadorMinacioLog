@@ -21,10 +21,10 @@ public class TipoContatoServlet implements LogicaDeNegocio {
     //Declarações
     private TipoContato tipoContato = null;
     private String tarefa;
-    
+
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse response) {
-    
+
         tarefa = req.getParameter("tarefa");
         switch (tarefa) {
             case "incluir":
@@ -44,7 +44,7 @@ public class TipoContatoServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao inserir tipo de contato no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -66,7 +66,7 @@ public class TipoContatoServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao remover tipo de contato no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -88,7 +88,7 @@ public class TipoContatoServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao alterar tipo de contato no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -106,7 +106,7 @@ public class TipoContatoServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao consultar tipo de contato no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
             case "consultarLista":
@@ -118,19 +118,33 @@ public class TipoContatoServlet implements LogicaDeNegocio {
                     listaTipoContato = new TipoContatoDAO().Consultar();
 
                     //Atribui a ultima tipoContato como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaListaTipoContato", listaTipoContato);
+                    req.setAttribute("listaTipoContato", listaTipoContato);
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar tipo de contato no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
-                break;
+                return "/WEB-INF/Paginas/tipocontato.jsp";
             default:
-                    System.err.println("Erro ao cosultar tipo de contato no banco de dados. Ação inválida!");
-                    return "Erro.html";
+                System.err.println("Erro ao cosultar tipo de contato no banco de dados. Ação inválida!");
+                return "erro.html";
 
         }
-        return "/WEB-INF/Paginas/TipoContato.jsp";
+        try {
+
+            ArrayList<TipoContato> listaTipoContato = new ArrayList<>();
+
+            //Grava um nova tipoContato no banco de dados
+            listaTipoContato = new TipoContatoDAO().Consultar();
+
+            //Atribui a ultima tipoContato como Atributo a ser enviado na próxima Requisição 
+            req.setAttribute("listaTipoContato", listaTipoContato);
+
+        } catch (SQLException ex) {
+            System.err.println("Erro ao cosultar tipo de contato no banco de dados. Detalhes: " + ex.getMessage());
+            return "erro.html";
+        }
+        return "/WEB-INF/Paginas/tipocontato.jsp";
     }
 
     @Override

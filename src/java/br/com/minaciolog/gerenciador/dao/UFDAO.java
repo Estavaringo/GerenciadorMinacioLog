@@ -25,10 +25,11 @@ public class UFDAO implements DAO<UF> {
         try {
             bd.conectar();
             String strSql
-                    = "INSERT INTO JOB (UF_DESC) VALUES (?)";
+                    = "INSERT INTO uf (UF_DESC, UF_ID) VALUES (?,?)";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
             p.setString(1, obj.getDescricao());
+            p.setString(2, obj.getCodigo());
             p.execute();
             p.close();
             bd.desconectar();

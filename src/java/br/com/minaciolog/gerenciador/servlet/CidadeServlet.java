@@ -45,7 +45,7 @@ public class CidadeServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao inserir cidade no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -68,7 +68,7 @@ public class CidadeServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao remover cidade no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -91,7 +91,7 @@ public class CidadeServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao alterar cidade no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -109,7 +109,7 @@ public class CidadeServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao consultar cidade no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
             case "consultarLista":
@@ -121,18 +121,33 @@ public class CidadeServlet implements LogicaDeNegocio {
                     listaCidade = new CidadeDAO().Consultar();
 
                     //Atribui a ultima cidade como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaListaCidade", listaCidade);
+                    req.setAttribute("listaCidade", listaCidade);
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar cidade no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
-                break;
+                return "/WEB-INF/Paginas/cidade.jsp";
             default:
-                    System.err.println("Tarefa informada é inválida!");
-                    return "Erro.html";
+                System.err.println("Tarefa informada é inválida!");
+                return "erro.html";
         }
-        return "/WEB-INF/Paginas/Cidade.jsp";
+
+        try {
+
+            ArrayList<Cidade> listaCidade = new ArrayList<>();
+
+            //Grava um nova cidade no banco de dados
+            listaCidade = new CidadeDAO().Consultar();
+
+            //Atribui a ultima cidade como Atributo a ser enviado na próxima Requisição 
+            req.setAttribute("listaCidade", listaCidade);
+
+        } catch (SQLException ex) {
+            System.err.println("Erro ao cosultar cidade no banco de dados. Detalhes: " + ex.getMessage());
+            return "erro.html";
+        }
+        return "/WEB-INF/Paginas/cidade.jsp";
     }
 
     @Override

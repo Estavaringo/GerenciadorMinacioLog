@@ -50,7 +50,7 @@ public class Login implements LogicaDeNegocio {
 
         } catch (SQLException ex) {
             System.err.println("Erro ao consultar usuário no banco de dados. Detalhes: " + ex.getMessage());
-            return "Erro.html";
+            return "erro.html";
         }
     }
 

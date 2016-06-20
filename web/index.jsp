@@ -67,11 +67,12 @@
                                 <div class="collapsible-body" style="display: block;">
                                     <ul>
                                         <!--Para deixar algum item ativado, adicionar class="active" -->
-                                        <li><a href="/Executa?logicaDeNegocio=TipoClienteServlet&tarefa=consultarLista">Tipo de Cliente</a></li>
-                                        <li><a href="#">Tipo de Contato</a></li>
-                                        <li><a href="#">Tipo de Endereços</a></li>
-                                        <li><a href="#">Cidade</a></li>
-                                        <li><a href="#">UF</a></li>
+                                        <li><a href="Executa?logicaDeNegocio=TipoClienteServlet&tarefa=consultarLista">Tipo de Cliente</a></li>
+                                        <li><a href="Executa?logicaDeNegocio=TipoContatoServlet&tarefa=consultarLista">Tipo de Contato</a></li>
+                                        <li><a href="Executa?logicaDeNegocio=TipoEnderecoServlet&tarefa=consultarLista">Tipo de Endereços</a></li>
+                                        <li><a href="Executa?logicaDeNegocio=TipoFaturamentoServlet&tarefa=consultarLista">Tipo de Faturamento</a></li>
+                                        <li><a href="Executa?logicaDeNegocio=CidadeServlet&tarefa=consultarLista">Cidade</a></li>
+                                        <li><a href="Executa?logicaDeNegocio=UFServlet&tarefa=consultarLista">UF</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -122,26 +123,7 @@
                                 <h5>Section 1</h5>
                                 <br><br><br>
                                 <p>COLOQUE O CONTEÚDO 1 AQUI</p>
-
-                                <div id="Formulario_teste">
-
-                                    <form method="POST" action="Executa">
-                                        <!--Nome das Classes que deverão ser informadas ocultas-->
-                                        <input type="hidden" name="logicaDeNegocio" value="TipoClienteServlet">
-                                        <input type="hidden" name="tarefa" value="incluir">
-
-                                        <div class="form-group">
-                                            <label>Descrição:</label> 
-                                            <input type="text" class="form-control" placeholder="Insira o texto aqui" name="descricao" value="" />
-                                        </div>
-
-                                        <button type="submit" class="btn btn-default" value="Cadastrar">Cadastrar</button>
-
-
-
-                                    </form>
                                 </div>
-
                                 <br><br><br>
                             </div>
                         </div>

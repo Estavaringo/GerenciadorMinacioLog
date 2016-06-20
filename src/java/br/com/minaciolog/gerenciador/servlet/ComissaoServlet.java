@@ -48,7 +48,7 @@ public class ComissaoServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao inserir comissao no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -73,7 +73,7 @@ public class ComissaoServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao remover comissao no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -98,7 +98,7 @@ public class ComissaoServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao alterar comissao no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -116,7 +116,7 @@ public class ComissaoServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao consultar comissao no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
             case "consultarLista":
@@ -128,19 +128,19 @@ public class ComissaoServlet implements LogicaDeNegocio {
                     listaComissao = new ComissaoDAO().Consultar();
 
                     //Atribui a ultima comissao como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaListaComissao", listaComissao);
+                    req.setAttribute("listaComissao", listaComissao);
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar comissao no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
             default:
                     System.err.println("Erro ao cosultar comissao no banco de dados. Ação inválida!");
-                    return "Erro.html";
+                    return "erro.html";
 
         }
-        return "/WEB-INF/Paginas/Comissao.jsp";
+        return "/WEB-INF/Paginas/comissao.jsp";
     }
 
     @Override

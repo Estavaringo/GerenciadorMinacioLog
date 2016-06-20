@@ -44,7 +44,7 @@ public class TipoClienteServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao inserir tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -66,7 +66,7 @@ public class TipoClienteServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao remover tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -88,7 +88,7 @@ public class TipoClienteServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao alterar tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -106,7 +106,7 @@ public class TipoClienteServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao consultar tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
             case "consultarLista":
@@ -122,14 +122,32 @@ public class TipoClienteServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
-                break;
+
+                return "/WEB-INF/Paginas/tipocliente.jsp";
+
             default:
-                    System.err.println("Tarefa informada é inválida!");
-                    return "Erro.html";
+                System.err.println("Tarefa informada é inválida!");
+                return "erro.html";
 
         }
+
+        try {
+
+            ArrayList<TipoCliente> listaTipoCliente = new ArrayList<>();
+
+            //Grava um nova tipoCliente no banco de dados
+            listaTipoCliente = new TipoClienteDAO().Consultar();
+
+            //Atribui a ultima tipoCliente como Atributo a ser enviado na próxima Requisição 
+            req.setAttribute("listaTipoCliente", listaTipoCliente);
+
+        } catch (SQLException ex) {
+            System.err.println("Erro ao cosultar tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());
+            return "erro.html";
+        }
+
         return "/WEB-INF/Paginas/tipocliente.jsp";
     }
 

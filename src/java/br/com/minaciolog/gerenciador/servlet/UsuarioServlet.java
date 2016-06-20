@@ -48,10 +48,10 @@ public class UsuarioServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao inserir usuario no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
                     System.err.println("Erro ao criptografar a senha. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -75,7 +75,7 @@ public class UsuarioServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao remover usuario no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -99,10 +99,10 @@ public class UsuarioServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao alterar usuario no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
                     System.err.println("Erro ao criptografar a senha no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -120,7 +120,7 @@ public class UsuarioServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao consultar usuario no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
             case "consultarLista":
@@ -132,19 +132,19 @@ public class UsuarioServlet implements LogicaDeNegocio {
                     listaUsuario = new UsuarioDAO().Consultar();
 
                     //Atribui a ultima usuario como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaListaUsuario", listaUsuario);
+                    req.setAttribute("listaUsuario", listaUsuario);
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar usuario no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
             default:
                 System.err.println("Erro ao cosultar usuario no banco de dados. Ação inválida!");
-                return "Erro.html";
+                return "erro.html";
 
         }
-        return "/WEB-INF/Paginas/Usuario.jsp";
+        return "/WEB-INF/Paginas/usuario.jsp";
     }
 
     @Override

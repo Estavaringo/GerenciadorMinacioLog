@@ -66,10 +66,10 @@ public class JobServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao inserir job no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 } catch (ParseException ex) {
                     System.err.println("Erro ao formatar a data. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -106,10 +106,10 @@ public class JobServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao remover job no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 } catch (ParseException ex) {
                     System.err.println("Erro ao formatar a data. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -146,10 +146,10 @@ public class JobServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao alterar job no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 } catch (ParseException ex) {
                     System.err.println("Erro ao formatar a data. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -167,7 +167,7 @@ public class JobServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao consultar job no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
             case "consultarLista":
@@ -179,19 +179,19 @@ public class JobServlet implements LogicaDeNegocio {
                     listaJob = new JobDAO().Consultar();
 
                     //Atribui a ultima job como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaListaJob", listaJob);
+                    req.setAttribute("listaJob", listaJob);
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar job no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
             default:
                 System.err.println("Erro ao cosultar job no banco de dados. Ação inválida!");
-                return "Erro.html";
+                return "erro.html";
 
         }
-        return "/WEB-INF/Paginas/Job.jsp";
+        return "/WEB-INF/Paginas/job.jsp";
     }
 
     @Override

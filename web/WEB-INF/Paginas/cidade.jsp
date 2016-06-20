@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="java.util.Collection"%>
-<%@page import="br.com.minaciolog.gerenciador.beans.TipoCliente"%>
+<%@page import="br.com.minaciolog.gerenciador.beans.Cidade"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -52,11 +52,11 @@
                             <div class="collapsible-body" style="display: block;">
                                 <ul>
                                     <!--Para deixar algum item ativado, adicionar class="active" -->
-                                        <li class="active"><a href="Executa?logicaDeNegocio=TipoClienteServlet&tarefa=consultarLista">Tipo de Cliente</a></li>
+                                        <li><a href="Executa?logicaDeNegocio=TipoClienteServlet&tarefa=consultarLista">Tipo de Cliente</a></li>
                                         <li><a href="Executa?logicaDeNegocio=TipoContatoServlet&tarefa=consultarLista">Tipo de Contato</a></li>
                                         <li><a href="Executa?logicaDeNegocio=TipoEnderecoServlet&tarefa=consultarLista">Tipo de Endereços</a></li>
                                         <li><a href="Executa?logicaDeNegocio=TipoFaturamentoServlet&tarefa=consultarLista">Tipo de Faturamento</a></li>
-                                        <li><a href="Executa?logicaDeNegocio=CidadeServlet&tarefa=consultarLista">Cidade</a></li>
+                                        <li class="active"><a href="Executa?logicaDeNegocio=CidadeServlet&tarefa=consultarLista">Cidade</a></li>
                                         <li><a href="Executa?logicaDeNegocio=UFServlet&tarefa=consultarLista">UF</a></li>
                                 </ul>
                             </div>
@@ -70,8 +70,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col s12 m9">
-                            <h1 class="header center-on-small-only">Tipo de Cliente</h1>
-                            <h4 class="light red-text text-lighten-4 center-on-small-only">Cadastro de Tipos de Clientes.</h4>
+                            <h1 class="header center-on-small-only">Cidade</h1>
+                            <h4 class="light red-text text-lighten-4 center-on-small-only">Cadastro de Cidades.</h4>
                         </div>
                     </div>
                 </div>
@@ -90,27 +90,28 @@
                     <div class="col s12 m8 l9">
                         <div id="introduction" class="section scrollspy">
                             <div class="divider"></div>
-                            <h4 class="header">Tipos de Clientes cadastrados</h4>
+                            <h4 class="header">Cidades cadastradas</h4>
                             <div class="section">
                                 <table class="highlight">
                                     <thead>
                                         <tr>
                                             <th data-field="codigo">Código</th>
-                                            <th data-field="descricao">Tipo de Cliente</th>
+                                            <th data-field="descricao">Cidade</th>
                                             <th data-field="descricao">Ação</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:if test="${not empty listaTipoCliente}">
-                                            <c:forEach var="tipoCliente" items="${listaTipoCliente}">
+                                        <c:if test="${not empty listaCidade}">
+                                            <c:forEach var="cidade" items="${listaCidade}">
                                                 <tr>
-                                                    <th scope="row">${tipoCliente.codigo}</th>
-                                                    <td> ${tipoCliente.descricao}</td>
+                                                    <th scope="row">${cidade.codigo}</th>
+                                                    <td> ${cidade.descricao}</td>
+                                                    <td> ${cidade.codigoUF}</td>
                                                     <td>
                                                         <form method="POST" action="Executa">
-                                                            <input type="hidden" name="logicaDeNegocio" value="TipoClienteServlet">
+                                                            <input type="hidden" name="logicaDeNegocio" value="CidadeServlet">
                                                             <input type="hidden" name="tarefa" value="remover">
-                                                            <input type="hidden" name="codigo" value=${tipoCliente.codigo}>
+                                                            <input type="hidden" name="codigo" value=${cidade.codigo}>
                                                             <button type="submit" class="btn btn-default" value="Remover"><i class="material-icons" style="font-size: 24px">delete</i></button>
                                                         </form>
                                                     </td>
@@ -125,17 +126,21 @@
 
                         <div id="structure" class="section scrollspy" style="display: none;">
                             <div class="divider"></div>
-                            <h4>Inclusão de novo tipo de cliente</h4>
+                            <h4>Inclusão de nova cidade</h4>
                             <div class="section">
-                                <h5>Novo Tipo de Cliente</h5>
+                                <h5>Nova Cidade</h5>
                                 <form method="POST" action="Executa">
                                     <!--Nome das Classes que deverão ser informadas ocultas-->
-                                    <input type="hidden" name="logicaDeNegocio" value="TipoClienteServlet">
+                                    <input type="hidden" name="logicaDeNegocio" value="CidadeServlet">
                                     <input type="hidden" name="tarefa" value="incluir">
 
                                     <div class="form-group">
-                                        <label>Descrição:</label> 
+                                        <label>Nome:</label> 
                                         <input type="text" class="form-control" placeholder="Insira o texto aqui" name="descricao" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>UF:</label> 
+                                        <input type="text" class="form-control" placeholder="Insira o texto aqui" name="codigoUF" value="" />
                                     </div>
 
                                     <button type="submit" class="btn btn-default" value="Cadastrar">Cadastrar</button>
@@ -144,17 +149,21 @@
                         </div>
                         <div id="structure" class="section scrollspy ocultarElemento">
                             <div class="divider"></div>
-                            <h4>Alterar Tipo de Cliente</h4>
+                            <h4>Alterar Cidade</h4>
                             <div class="section">
-                                <h5>Novo Tipo de Cliente</h5>
+                                <h5>Nova Cidade</h5>
                                 <form method="POST" action="Executa">
                                     <!--Nome das Classes que deverão ser informadas ocultas-->
-                                    <input type="hidden" name="logicaDeNegocio" value="TipoClienteServlet">
+                                    <input type="hidden" name="logicaDeNegocio" value="CidadeServlet">
                                     <input type="hidden" name="tarefa" value="incluir">
 
                                     <div class="form-group">
-                                        <label>Descrição:</label> 
+                                        <label>Nome:</label> 
                                         <input type="text" class="form-control" placeholder="Insira o texto aqui" name="descricao" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>UF:</label> 
+                                        <input type="text" class="form-control" placeholder="Insira o texto aqui" name="codigoUF" value="" />
                                     </div>
 
                                     <button type="submit" class="btn btn-default" value="Cadastrar">Cadastrar</button>
@@ -166,7 +175,7 @@
                     <div class="col hide-on-small-only m3 l2">
                         <div class="tabs-wrapper" style="top: 0px;">
                             <ul class="section table-of-contents">
-                                <li><a href="#Lista">Tipos de Clientes</a></li>
+                                <li><a href="#Lista">Cidades</a></li>
                                 <li class="ocultarElemento"><a href="#Incluir">Incluir</a></li>
                                 <li class="ocultarElemento"><a href="#Alterar">Alterar</a></li>
                             </ul>

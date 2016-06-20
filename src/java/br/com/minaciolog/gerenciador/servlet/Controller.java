@@ -6,7 +6,6 @@
 package br.com.minaciolog.gerenciador.servlet;
 
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,17 +33,17 @@ public class Controller extends HttpServlet {
             LogicaDeNegocio logicaDeNegocio = (LogicaDeNegocio) classe.newInstance();
 
             //Verifica se o usuario tem acesso a pagina
-            if (!VerificaPermissao.executa(request, response, logicaDeNegocio)) {
-                request.getRequestDispatcher("Negado.html").forward(request, response);
+          //  if (!VerificaPermissao.executa(request, response, logicaDeNegocio)) {
+            //    request.getRequestDispatcher("Negado.html").forward(request, response);
 
-            } else {
+//            } else {
 
                 // Recebe o nome da página que deverá ser renderiza como resposta a solicitação
                 String pagina = logicaDeNegocio.executa(request, response);
 
                 // Dispacha o usuário para página JSP
                 request.getRequestDispatcher(pagina).forward(request, response);
-            }
+  //          }
 
         } catch (ClassNotFoundException ex) {
             throw new ServletException("A classe informada na requisição não foi localizada.");

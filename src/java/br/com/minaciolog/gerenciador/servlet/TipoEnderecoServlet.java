@@ -25,7 +25,7 @@ public class TipoEnderecoServlet implements LogicaDeNegocio {
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse resp) {
 
-        acao = req.getParameter(acao);
+        acao = req.getParameter("tarefa");
         switch (acao) {
             case "incluir":
                 try {
@@ -118,19 +118,35 @@ public class TipoEnderecoServlet implements LogicaDeNegocio {
                     listaTipoEndereco = new TipoEnderecoDAO().Consultar();
 
                     //Atribui a ultima tipoEndereco como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaListaTipoEndereco", listaTipoEndereco);
+                    req.setAttribute("listaTipoEndereco", listaTipoEndereco);
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar tipo de endereco no banco de dados. Detalhes: " + ex.getMessage());
                     return "Erro.html";
                 }
-                break;
+
+                return "/WEB-INF/Paginas/tipoendereco.jsp";
             default:
-                    System.err.println("Erro ao cosultar tipo de endereco no banco de dados. Ação inválida!");
-                    return "Erro.html";
+                System.err.println("Erro ao cosultar tipo de endereco no banco de dados. Ação inválida!");
+                return "Erro.html";
 
         }
-        return "/WEB-INF/Paginas/TipoEndereco.jsp";
+
+        try {
+
+            ArrayList<TipoEndereco> listaTipoEndereco = new ArrayList<>();
+
+            //Grava um nova tipoEndereco no banco de dados
+            listaTipoEndereco = new TipoEnderecoDAO().Consultar();
+
+            //Atribui a ultima tipoEndereco como Atributo a ser enviado na próxima Requisição 
+            req.setAttribute("listaTipoEndereco", listaTipoEndereco);
+
+        } catch (SQLException ex) {
+            System.err.println("Erro ao cosultar tipo de endereco no banco de dados. Detalhes: " + ex.getMessage());
+            return "Erro.html";
+        }
+        return "/WEB-INF/Paginas/tipoendereco.jsp";
     }
 
     @Override

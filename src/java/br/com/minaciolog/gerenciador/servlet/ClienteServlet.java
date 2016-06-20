@@ -48,7 +48,7 @@ public class ClienteServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao inserir cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -74,7 +74,7 @@ public class ClienteServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao remover cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -98,7 +98,7 @@ public class ClienteServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao alterar cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -116,7 +116,7 @@ public class ClienteServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao consultar cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
             case "consultarLista":
@@ -128,19 +128,19 @@ public class ClienteServlet implements LogicaDeNegocio {
                     listaCliente = new ClienteDAO().Consultar();
 
                     //Atribui a ultima cliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaListaCliente", listaCliente);
+                    req.setAttribute("listaCliente", listaCliente);
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
             default:
                     System.err.println("Erro ao cosultar cliente no banco de dados. Ação inválida!");
-                    return "Erro.html";
+                    return "erro.html";
 
         }
-        return "/WEB-INF/Paginas/Cliente.jsp";
+        return "/WEB-INF/Paginas/cliente.jsp";
     }
 
     @Override

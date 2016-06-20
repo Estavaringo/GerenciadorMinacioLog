@@ -59,10 +59,10 @@ public class ProspeccaoServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao inserir prospeccao no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 } catch (ParseException ex) {
                     System.err.println("Erro ao formatar a data. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -90,10 +90,10 @@ public class ProspeccaoServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao remover prospeccao no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 } catch (ParseException ex) {
                     System.err.println("Erro ao formatar a data. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -121,10 +121,10 @@ public class ProspeccaoServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao alterar prospeccao no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 } catch (ParseException ex) {
                     System.err.println("Erro ao formatar a data. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
 
@@ -142,7 +142,7 @@ public class ProspeccaoServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao consultar prospeccao no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
             case "consultarLista":
@@ -154,19 +154,19 @@ public class ProspeccaoServlet implements LogicaDeNegocio {
                     listaProspeccao = new ProspeccaoDAO().Consultar();
 
                     //Atribui a ultima prospeccao como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaListaProspeccao", listaProspeccao);
+                    req.setAttribute("listaProspeccao", listaProspeccao);
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar prospeccao no banco de dados. Detalhes: " + ex.getMessage());
-                    return "Erro.html";
+                    return "erro.html";
                 }
                 break;
             default:
                 System.err.println("Erro ao cosultar prospeccao no banco de dados. Ação inválida!");
-                return "Erro.html";
+                return "erro.html";
 
         }
-        return "/WEB-INF/Paginas/Prospeccao.jsp";
+        return "/WEB-INF/Paginas/prospeccao.jsp";
     }
 
     @Override
