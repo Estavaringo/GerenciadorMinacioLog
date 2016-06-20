@@ -16,7 +16,7 @@ import java.util.ArrayList;
  *
  * @author gabri
  */
-public class TipoEnderecosServlet implements LogicaDeNegocio {
+public class TipoEnderecoServlet implements LogicaDeNegocio {
 
     //Declarações
     private TipoEndereco tipoEndereco = null;
