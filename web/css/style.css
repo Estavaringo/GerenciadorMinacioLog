@@ -22,6 +22,19 @@
     background-color: #fff
 }
 
+#index-banner{
+    background-color: #ee6e73;
+}
+
+#index-banner .header{
+    color: #FFFFFF;
+}
+
+.ocultarElemento{
+    display: none;
+}
+
+
 #logo-container{
     height: 116px;
 }
