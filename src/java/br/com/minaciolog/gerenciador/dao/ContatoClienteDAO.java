@@ -27,7 +27,7 @@ public class ContatoClienteDAO implements DAO<ContatoCliente> {
         try {
             bd.conectar();
             String strSql
-                    = "INSERT INTO CONTATO_CLIENTE(CONT_DESC, "
+                    = "INSERT INTO contato_cliente(CONT_DESC, "
                     + "CONT_NM, TIPO_CONTATO_TICO_ID, CLIENTE_CLIE_ID) VALUES (?,?,?,?)";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
@@ -49,7 +49,7 @@ public class ContatoClienteDAO implements DAO<ContatoCliente> {
         try {
             bd.conectar();
             String strSql
-                    = "DELETE FROM CONTATO_CLIENTE WHERE CONT_ID = ?";
+                    = "DELETE FROM contato_cliente WHERE CONT_ID = ?";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
             p.setInt(1, codigo);
@@ -67,7 +67,7 @@ public class ContatoClienteDAO implements DAO<ContatoCliente> {
         try {
             bd.conectar();
             String strSql
-                    = "UPDATE CONTATO_CLIENTE SET CONT_DESC = ?, "
+                    = "UPDATE contato_cliente SET CONT_DESC = ?, "
                     + "CONT_NM = ?, TIPO_CONTATO_TICO_ID = ?, CLIENTE_CLIE_ID = ? WHERE CONT_ID = ?";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
@@ -92,7 +92,7 @@ public class ContatoClienteDAO implements DAO<ContatoCliente> {
             bd.conectar();
             Statement comando;
             comando = bd.connection.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT CONT_ID, CONT_DESC, CONT_NM, TIPO_CONTATO_TICO_ID, CLIENTE_CLIE_ID FROM CONTATO_CLIENTE");
+            ResultSet rs = comando.executeQuery("SELECT CONT_ID, CONT_DESC, CONT_NM, TIPO_CONTATO_TICO_ID, CLIENTE_CLIE_ID FROM contato_cliente");
             while (rs.next()) {
                 ContatoCliente obj = new ContatoCliente();
                 obj.setCodigo(rs.getInt("CONT_ID"));
@@ -116,7 +116,7 @@ public class ContatoClienteDAO implements DAO<ContatoCliente> {
         try {
             ContatoCliente obj = null;
             bd.conectar();
-            String strSQL = "SELECT CONT_ID, CONT_DESC, CONT_NM, TIPO_CONTATO_TICO_ID, CLIENTE_CLIE_ID FROM CONTATO_CLIENTE WHERE CONT_ID = ?";
+            String strSQL = "SELECT CONT_ID, CONT_DESC, CONT_NM, TIPO_CONTATO_TICO_ID, CLIENTE_CLIE_ID FROM contato_cliente WHERE CONT_ID = ?";
             PreparedStatement p = bd.connection.prepareStatement(strSQL);
             p.setInt(1, codigo);
             ResultSet rs = p.executeQuery();
@@ -146,7 +146,7 @@ public class ContatoClienteDAO implements DAO<ContatoCliente> {
             ArrayList<ContatoCliente> listaContato = new ArrayList<>();
             bd.conectar();
 
-            String strSQL = "SELECT CONT_ID, CONT_DESC, CONT_NM, TIPO_CONTATO_TICO_ID, CLIENTE_CLIE_ID FROM CONTATO_CLIENTE WHERE CLIE_ID = ?";
+            String strSQL = "SELECT CONT_ID, CONT_DESC, CONT_NM, TIPO_CONTATO_TICO_ID, CLIENTE_CLIE_ID FROM contato_cliente WHERE CLIE_ID = ?";
 
             PreparedStatement p = bd.connection.prepareStatement(strSQL);
             p.setInt(1, cliente.getCodigo());
@@ -174,7 +174,7 @@ public class ContatoClienteDAO implements DAO<ContatoCliente> {
         try {
             bd.conectar();
             String strSql
-                    = "DELETE FROM CONTATO_CLIENTE WHERE CLIE_ID = ?";
+                    = "DELETE FROM contato_cliente WHERE CLIE_ID = ?";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
             p.setInt(1, codigo);

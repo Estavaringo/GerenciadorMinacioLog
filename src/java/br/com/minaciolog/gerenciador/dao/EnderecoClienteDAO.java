@@ -22,7 +22,7 @@ public class EnderecoClienteDAO implements DAO<EnderecoCliente> {
         try {
             bd.conectar();
             String strSql
-                    = "INSERT INTO ENDERECO_CLIENTE (ENDE_COMPLEMENTO, ENDE_BAIRRO, "
+                    = "INSERT INTO endereco_cliente (ENDE_COMPLEMENTO, ENDE_BAIRRO, "
                     + "ENDE_CEP, ENDE_NUMERO, ENDE_LOGRADOURO, CLIENTE_CLIE_ID, TIPO_ENDERECO_TIEN_ID,"
                     + "CIDADE_CIDA_ID) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement p

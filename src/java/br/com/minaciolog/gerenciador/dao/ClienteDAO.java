@@ -25,7 +25,7 @@ public class ClienteDAO implements DAO<Cliente> {
         try {
             bd.conectar();
             String strSql
-                    = "INSERT INTO CLIENTE(CLIE_NM, TIPO_FATURAMENTO_TIFA_ID, "
+                    = "INSERT INTO cliente(CLIE_NM, TIPO_FATURAMENTO_TIFA_ID, "
                     + "TIPO_CLIENTE_TICL_ID) VALUES (?,?,?)";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
@@ -47,7 +47,7 @@ public class ClienteDAO implements DAO<Cliente> {
         try {
             bd.conectar();
             String strSql
-                    = "DELETE FROM CLIENTE WHERE CLIE_ID = ?";
+                    = "DELETE FROM cliente WHERE CLIE_ID = ?";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
             p.setInt(1, codigo);
@@ -65,7 +65,7 @@ public class ClienteDAO implements DAO<Cliente> {
         try {
             bd.conectar();
             String strSql
-                    = "UPDATE CLIENTE SET CLIE_NM = ?, TIPO_FATURAMENTO_TIFA_ID = ?, TIPO_CLIENTE_TICL_ID = ? WHERE CLIE_ID = ?";
+                    = "UPDATE cliente SET CLIE_NM = ?, TIPO_FATURAMENTO_TIFA_ID = ?, TIPO_CLIENTE_TICL_ID = ? WHERE CLIE_ID = ?";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
             p.setString(1, obj.getNome());
@@ -88,7 +88,7 @@ public class ClienteDAO implements DAO<Cliente> {
             bd.conectar();
             Statement comando;
             comando = bd.connection.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT CLIE_ID, CLIE_NM, TIPO_FATURAMENTO_TIFA_ID, TIPO_CLIENTE_TICL_ID FROM CLIENTE");
+            ResultSet rs = comando.executeQuery("SELECT CLIE_ID, CLIE_NM, TIPO_FATURAMENTO_TIFA_ID, TIPO_CLIENTE_TICL_ID FROM cliente");
             while (rs.next()) {
                 Cliente obj = new Cliente();
                 obj.setCodigo(rs.getInt("CLIE_ID"));
@@ -111,7 +111,7 @@ public class ClienteDAO implements DAO<Cliente> {
         try {
             Cliente obj = null;
             bd.conectar();
-            String strSQL = "SELECT CLIE_ID, CLIE_NM, TIPO_FATURAMENTO_TIFA_ID, TIPO_CLIENTE_TICL_ID FROM CLIENTE WHERE CLIE_ID = ?";
+            String strSQL = "SELECT CLIE_ID, CLIE_NM, TIPO_FATURAMENTO_TIFA_ID, TIPO_CLIENTE_TICL_ID FROM cliente WHERE CLIE_ID = ?";
             PreparedStatement p = bd.connection.prepareStatement(strSQL);
             p.setInt(1, codigo);
             ResultSet rs = p.executeQuery();
@@ -137,7 +137,7 @@ public class ClienteDAO implements DAO<Cliente> {
         try {
             ArrayList<Cliente> lista = new ArrayList<>();
             bd.conectar();
-            String strSQL = "SELECT CLIE_ID, CLIE_NM, TIPO_FATURAMENTO_TIFA_ID, TIPO_CLIENTE_TICL_ID FROM CLIENTE WHERE CLIE_NM LIKE ? ";
+            String strSQL = "SELECT CLIE_ID, CLIE_NM, TIPO_FATURAMENTO_TIFA_ID, TIPO_CLIENTE_TICL_ID FROM cliente WHERE CLIE_NM LIKE ? ";
             PreparedStatement p = bd.connection.prepareStatement(strSQL);
             p.setString(1, "%" + nome + "%");
             ResultSet rs = p.executeQuery();
