@@ -25,7 +25,7 @@ public class TipoFaturamentoServlet implements LogicaDeNegocio {
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse resp) {
 
-        acao = req.getParameter(acao);
+        acao = req.getParameter("tarefa");
         switch (acao) {
             case "incluir":
                 try {
@@ -124,17 +124,31 @@ public class TipoFaturamentoServlet implements LogicaDeNegocio {
                     listaTipoFaturamento = new TipoFaturamentoDAO().Consultar();
 
                     //Atribui a ultima tipoFaturamento como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaListaTipoFaturamento", listaTipoFaturamento);
+                    req.setAttribute("listaTipoFaturamento", listaTipoFaturamento);
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar tipo de faturamento no banco de dados. Detalhes: " + ex.getMessage());
                     return "erro.html";
                 }
-                break;
+                return "/WEB-INF/Paginas/tipofaturamento.jsp";
             default:
-                    System.err.println("Erro ao cosultar tipo de faturamento no banco de dados. Ação inválida!");
-                    return "erro.html";
+                System.err.println("Erro ao cosultar tipo de faturamento no banco de dados. Ação inválida!");
+                return "erro.html";
 
+        }
+        try {
+
+            ArrayList<TipoFaturamento> listaTipoFaturamento = new ArrayList<>();
+
+            //consulta um nova tipoFaturamento no banco de dados
+            listaTipoFaturamento = new TipoFaturamentoDAO().Consultar();
+
+            //Atribui a ultima tipoFaturamento como Atributo a ser enviado na próxima Requisição 
+            req.setAttribute("listaTipoFaturamento", listaTipoFaturamento);
+
+        } catch (SQLException ex) {
+            System.err.println("Erro ao cosultar tipo de faturamento no banco de dados. Detalhes: " + ex.getMessage());
+            return "erro.html";
         }
         return "/WEB-INF/Paginas/tipofaturamento.jsp";
     }

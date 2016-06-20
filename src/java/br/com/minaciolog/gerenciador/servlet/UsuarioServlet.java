@@ -132,7 +132,7 @@ public class UsuarioServlet implements LogicaDeNegocio {
                     listaUsuario = new UsuarioDAO().Consultar();
 
                     //Atribui a ultima usuario como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaListaUsuario", listaUsuario);
+                    req.setAttribute("listaUsuario", listaUsuario);
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar usuario no banco de dados. Detalhes: " + ex.getMessage());

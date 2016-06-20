@@ -124,7 +124,7 @@ public class ContatoClienteServlet implements LogicaDeNegocio {
                     listaContatoCliente = new ContatoClienteDAO().Consultar();
 
                     //Atribui a ultima contatoCliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaListaContatoCliente", listaContatoCliente);
+                    req.setAttribute("listaContatoCliente", listaContatoCliente);
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar tipo de cliente no banco de dados. Detalhes: " + ex.getMessage());

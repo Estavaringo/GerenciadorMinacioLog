@@ -154,7 +154,7 @@ public class ProspeccaoServlet implements LogicaDeNegocio {
                     listaProspeccao = new ProspeccaoDAO().Consultar();
 
                     //Atribui a ultima prospeccao como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaListaProspeccao", listaProspeccao);
+                    req.setAttribute("listaProspeccao", listaProspeccao);
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar prospeccao no banco de dados. Detalhes: " + ex.getMessage());

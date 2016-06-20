@@ -21,10 +21,10 @@ public class TipoContatoServlet implements LogicaDeNegocio {
     //Declarações
     private TipoContato tipoContato = null;
     private String tarefa;
-    
+
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse response) {
-    
+
         tarefa = req.getParameter("tarefa");
         switch (tarefa) {
             case "incluir":
@@ -118,17 +118,31 @@ public class TipoContatoServlet implements LogicaDeNegocio {
                     listaTipoContato = new TipoContatoDAO().Consultar();
 
                     //Atribui a ultima tipoContato como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaListaTipoContato", listaTipoContato);
+                    req.setAttribute("listaTipoContato", listaTipoContato);
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar tipo de contato no banco de dados. Detalhes: " + ex.getMessage());
                     return "erro.html";
                 }
-                break;
+                return "/WEB-INF/Paginas/tipocontato.jsp";
             default:
-                    System.err.println("Erro ao cosultar tipo de contato no banco de dados. Ação inválida!");
-                    return "erro.html";
+                System.err.println("Erro ao cosultar tipo de contato no banco de dados. Ação inválida!");
+                return "erro.html";
 
+        }
+        try {
+
+            ArrayList<TipoContato> listaTipoContato = new ArrayList<>();
+
+            //Grava um nova tipoContato no banco de dados
+            listaTipoContato = new TipoContatoDAO().Consultar();
+
+            //Atribui a ultima tipoContato como Atributo a ser enviado na próxima Requisição 
+            req.setAttribute("listaTipoContato", listaTipoContato);
+
+        } catch (SQLException ex) {
+            System.err.println("Erro ao cosultar tipo de contato no banco de dados. Detalhes: " + ex.getMessage());
+            return "erro.html";
         }
         return "/WEB-INF/Paginas/tipocontato.jsp";
     }

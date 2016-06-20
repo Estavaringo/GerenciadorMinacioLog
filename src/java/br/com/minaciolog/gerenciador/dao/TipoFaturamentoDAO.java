@@ -25,7 +25,7 @@ public class TipoFaturamentoDAO implements DAO<TipoFaturamento> {
         try {
             bd.conectar();
             String strSql
-                    = "INSERT INTO JOB (TIFA_PRIMEIRA, TIFA_SEGUNDA, TIFA_TERCEIRA) VALUES (?,?,?)";
+                    = "INSERT INTO tipo_faturamento (TIFA_PRIMEIRA, TIFA_SEGUNDA, TIFA_TERCEIRA) VALUES (?,?,?)";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
             p.setString(1, obj.getPrimeira());
@@ -45,7 +45,7 @@ public class TipoFaturamentoDAO implements DAO<TipoFaturamento> {
         try {
             bd.conectar();
             String strSql
-                    = "DELETE FROM TIPO_FATURAMENTO WHERE TIFA_ID = ?";
+                    = "DELETE FROM tipo_faturamento WHERE TIFA_ID = ?";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
             p.setInt(1, codigo);
@@ -63,7 +63,7 @@ public class TipoFaturamentoDAO implements DAO<TipoFaturamento> {
         try {
             bd.conectar();
             String strSql
-                    = "UPDATE TIPO_FATURAMENTO SET TIFA_PRIMEIRA = ?, TIFA_SEGUNDA = ?, TIFA_TERCEIRA = ? WHERE TIFA_ID = ?";
+                    = "UPDATE tipo_faturamento SET TIFA_PRIMEIRA = ?, TIFA_SEGUNDA = ?, TIFA_TERCEIRA = ? WHERE TIFA_ID = ?";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
             p.setString(1, obj.getPrimeira());
@@ -86,7 +86,7 @@ public class TipoFaturamentoDAO implements DAO<TipoFaturamento> {
             bd.conectar();
             Statement comando;
             comando = bd.connection.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT TIFA_ID, TIFA_PRIMEIRA, TIFA_SEGUNDA, TIFA_TERCEIRA FROM TIPO_FATURAMENTO");
+            ResultSet rs = comando.executeQuery("SELECT TIFA_ID, TIFA_PRIMEIRA, TIFA_SEGUNDA, TIFA_TERCEIRA FROM tipo_faturamento");
             while (rs.next()) {
                 TipoFaturamento obj = new TipoFaturamento();
                 obj.setCodigo(rs.getInt("TIFA_ID"));
@@ -109,7 +109,7 @@ public class TipoFaturamentoDAO implements DAO<TipoFaturamento> {
         try {
             TipoFaturamento obj = null;
             bd.conectar();
-            String strSQL = "SELECT TIFA_ID, TIFA_PRIMEIRA, TIFA_SEGUNDA, TIFA_TERCEIRA FROM TIPO_FATURAMENTO WHERE TIFA_ID = ?";
+            String strSQL = "SELECT TIFA_ID, TIFA_PRIMEIRA, TIFA_SEGUNDA, TIFA_TERCEIRA FROM tipo_faturamento WHERE TIFA_ID = ?";
             PreparedStatement p = bd.connection.prepareStatement(strSQL);
             p.setInt(1, codigo);
             ResultSet rs = p.executeQuery();

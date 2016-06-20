@@ -140,7 +140,7 @@ public class EnderecoClienteServlet implements LogicaDeNegocio {
                     listaEnderecoCliente = new EnderecoClienteDAO().Consultar();
 
                     //Atribui a ultima enderecoCliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaListaEnderecoCliente", listaEnderecoCliente);
+                    req.setAttribute("listaEnderecoCliente", listaEnderecoCliente);
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar endereco de cliente no banco de dados. Detalhes: " + ex.getMessage());

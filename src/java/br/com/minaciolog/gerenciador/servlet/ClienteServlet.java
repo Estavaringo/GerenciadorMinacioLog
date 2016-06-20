@@ -128,7 +128,7 @@ public class ClienteServlet implements LogicaDeNegocio {
                     listaCliente = new ClienteDAO().Consultar();
 
                     //Atribui a ultima cliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaListaCliente", listaCliente);
+                    req.setAttribute("listaCliente", listaCliente);
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar cliente no banco de dados. Detalhes: " + ex.getMessage());

@@ -179,7 +179,7 @@ public class JobServlet implements LogicaDeNegocio {
                     listaJob = new JobDAO().Consultar();
 
                     //Atribui a ultima job como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaListaJob", listaJob);
+                    req.setAttribute("listaJob", listaJob);
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar job no banco de dados. Detalhes: " + ex.getMessage());

@@ -128,7 +128,7 @@ public class ComissaoServlet implements LogicaDeNegocio {
                     listaComissao = new ComissaoDAO().Consultar();
 
                     //Atribui a ultima comissao como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaListaComissao", listaComissao);
+                    req.setAttribute("listaComissao", listaComissao);
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar comissao no banco de dados. Detalhes: " + ex.getMessage());

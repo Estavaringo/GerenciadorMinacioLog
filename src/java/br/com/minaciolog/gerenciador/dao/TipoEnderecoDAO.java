@@ -25,7 +25,7 @@ public class TipoEnderecoDAO implements DAO<TipoEndereco> {
         try {
             bd.conectar();
             String strSql
-                    = "INSERT INTO JOB (TIEN_DESC) VALUES (?)";
+                    = "INSERT INTO tipo_endereco (TIEN_DESC) VALUES (?)";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
             p.setString(1, obj.getDescricao());
@@ -43,7 +43,7 @@ public class TipoEnderecoDAO implements DAO<TipoEndereco> {
         try {
             bd.conectar();
             String strSql
-                    = "DELETE FROM TIPO_ENDERECO WHERE TIEN_ID = ?";
+                    = "DELETE FROM tipo_endereco WHERE TIEN_ID = ?";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
             p.setInt(1, codigo);
@@ -61,7 +61,7 @@ public class TipoEnderecoDAO implements DAO<TipoEndereco> {
         try {
             bd.conectar();
             String strSql
-                    = "UPDATE TIPO_ENDERECO SET TIEN_DESC = ? WHERE TIEN_ID = ?";
+                    = "UPDATE tipo_endereco SET TIEN_DESC = ? WHERE TIEN_ID = ?";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
             p.setString(1, obj.getDescricao());
@@ -82,7 +82,7 @@ public class TipoEnderecoDAO implements DAO<TipoEndereco> {
             bd.conectar();
             Statement comando;
             comando = bd.connection.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT TIEN_ID, TIEN_DESC FROM TIPO_ENDERECO");
+            ResultSet rs = comando.executeQuery("SELECT TIEN_ID, TIEN_DESC FROM tipo_endereco");
             while (rs.next()) {
                 TipoEndereco obj = new TipoEndereco();
                 obj.setCodigo(rs.getInt("TIEN_ID"));
@@ -103,7 +103,7 @@ public class TipoEnderecoDAO implements DAO<TipoEndereco> {
         try {
             TipoEndereco obj = null;
             bd.conectar();
-            String strSQL = "SELECT TIEN_ID, TIEN_DESC FROM TIPO_ENDERECO WHERE TIEN_ID = ?";
+            String strSQL = "SELECT TIEN_ID, TIEN_DESC FROM tipo_endereco WHERE TIEN_ID = ?";
             PreparedStatement p = bd.connection.prepareStatement(strSQL);
             p.setInt(1, codigo);
             ResultSet rs = p.executeQuery();
