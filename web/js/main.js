@@ -4,6 +4,12 @@
  * and open the template in the editor.
  */
 
+$(document).ready(function(){
+    $("#BotaoAdicionar").click(function(){
+        $("#SessaoIncluir").show();
+    });
+});
+
 
 
 
