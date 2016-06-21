@@ -8,10 +8,8 @@ package br.com.minaciolog.gerenciador.servlet;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import br.com.minaciolog.gerenciador.beans.Cliente;
-import br.com.minaciolog.gerenciador.dao.ClienteDAO;
-import br.com.minaciolog.gerenciador.dao.ContatoClienteDAO;
-import br.com.minaciolog.gerenciador.dao.EnderecoClienteDAO;
+import br.com.minaciolog.gerenciador.beans.*;
+import br.com.minaciolog.gerenciador.dao.*;
 import java.util.ArrayList;
 
 /**
@@ -23,7 +21,7 @@ public class ClienteServlet implements LogicaDeNegocio {
     //Declarações
     private Cliente cliente = null;
     private String tarefa;
-    
+
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse resp) {
 
@@ -135,9 +133,35 @@ public class ClienteServlet implements LogicaDeNegocio {
                     return "erro.html";
                 }
                 break;
-            default:
-                    System.err.println("Erro ao cosultar cliente no banco de dados. Ação inválida!");
+            case "cadastrarCliente":
+                try {
+
+                    ArrayList<Cliente> listaCliente = new ArrayList<>();
+
+                    //Grava um nova cliente no banco de dados
+                    listaCliente = new ClienteDAO().Consultar();
+                    ArrayList<TipoCliente> listaTipoCliente = new TipoClienteDAO().Consultar();
+                    ArrayList<TipoFaturamento> listaTipoFaturamento = new TipoFaturamentoDAO().Consultar();
+                    ArrayList<TipoEndereco> listaTipoEndereco = new TipoEnderecoDAO().Consultar();
+                    ArrayList<Cidade> listaCidade = new CidadeDAO().Consultar();
+                    ArrayList<TipoContato> listaContato = new TipoContatoDAO().Consultar();
+
+                    //Atribui a ultima cliente como Atributo a ser enviado na próxima Requisição 
+                    req.setAttribute("listaCliente", listaCliente);
+                    req.setAttribute("listaTipoCliente", listaTipoCliente);
+                    req.setAttribute("listaTipoFaturamento", listaTipoFaturamento);
+                    req.setAttribute("listaTipoEndereco", listaTipoEndereco);
+                    req.setAttribute("listaCidade", listaCidade);
+                    req.setAttribute("listaContato", listaContato);
+
+                } catch (SQLException ex) {
+                    System.err.println("Erro ao cosultar cliente no banco de dados. Detalhes: " + ex.getMessage());
                     return "erro.html";
+                }
+                return "/WEB-INF/Paginas/cadastrocliente.jsp";
+            default:
+                System.err.println("Erro ao cosultar cliente no banco de dados. Ação inválida!");
+                return "erro.html";
 
         }
         return "/WEB-INF/Paginas/cliente.jsp";
