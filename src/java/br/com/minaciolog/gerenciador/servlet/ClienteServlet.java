@@ -32,10 +32,14 @@ public class ClienteServlet implements LogicaDeNegocio {
 
                     //instancia uma nova cliente
                     cliente = new Cliente();
+                    
+                    System.out.println(req.getParameter("tipoFaturamento"));
+                    System.out.println(req.getParameter("descricao"));
+                    System.out.println(req.getParameter("tipoCliente"));
 
                     //Atribui as informações da cliente no objeto
-                    cliente.setNome(req.getParameter("nome"));
-                    cliente.setCodigoFaturamento(Integer.parseInt(req.getParameter("codigoFaturamento")));
+                    cliente.setNome(req.getParameter("descricao"));
+                    cliente.setCodigoFaturamento(Integer.parseInt(req.getParameter("tipoFaturamento")));
                     cliente.setCodigoTipoCliente(Integer.parseInt(req.getParameter("tipoCliente")));
 
                     //Grava um nova cliente no banco de dados
@@ -59,7 +63,7 @@ public class ClienteServlet implements LogicaDeNegocio {
                     //Atribui as informações da cliente no objeto
                     cliente.setNome(req.getParameter("descricao"));
                     cliente.setCodigo(Integer.parseInt(req.getParameter("codigo")));
-                    cliente.setCodigoFaturamento(Integer.parseInt(req.getParameter("codigoFaturamento")));
+                    cliente.setCodigoFaturamento(Integer.parseInt(req.getParameter("tipoFaturamento")));
                     cliente.setCodigoTipoCliente(Integer.parseInt(req.getParameter("tipoCliente")));
 
                     //Exclui cliente no banco de dados
@@ -85,7 +89,7 @@ public class ClienteServlet implements LogicaDeNegocio {
                     //Atribui as informações da cliente no objeto
                     cliente.setNome(req.getParameter("descricao"));
                     cliente.setCodigo(Integer.parseInt(req.getParameter("codigo")));
-                    cliente.setCodigoFaturamento(Integer.parseInt(req.getParameter("codigoFaturamento")));
+                    cliente.setCodigoFaturamento(Integer.parseInt(req.getParameter("tipoFaturamento")));
                     cliente.setCodigoTipoCliente(Integer.parseInt(req.getParameter("tipoCliente")));
 
                     //altera cliente no banco de dados
@@ -164,7 +168,7 @@ public class ClienteServlet implements LogicaDeNegocio {
                 return "erro.html";
 
         }
-        return "/WEB-INF/Paginas/cliente.jsp";
+        return "/WEB-INF/Paginas/cadastrocliente.jsp";
     }
 
     @Override
