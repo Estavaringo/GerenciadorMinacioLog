@@ -107,12 +107,17 @@
                                                     <th scope="row">${tipoCliente.codigo}</th>
                                                     <td> ${tipoCliente.descricao}</td>
                                                     <td>
-                                                        <form method="POST" action="Executa">
-                                                            <input type="hidden" name="logicaDeNegocio" value="TipoClienteServlet">
-                                                            <input type="hidden" name="tarefa" value="remover">
-                                                            <input type="hidden" name="codigo" value=${tipoCliente.codigo}>
-                                                            <button type="submit" class="btn btn-default" value="Remover"><i class="material-icons" style="font-size: 24px">delete</i></button>
-                                                        </form>
+                                                        <div style="display: inline">
+                                                            <a class="btn-floating btn-large orange">
+                                                                <i class="large material-icons" onclick="abrirFormularioEdicao(${tipoCliente.codigo})">mode_edit</i>
+                                                            </a>
+                                                            <form method="POST" action="Executa">
+                                                                <input type="hidden" name="logicaDeNegocio" value="TipoClienteServlet">
+                                                                <input type="hidden" name="tarefa" value="remover">
+                                                                <input type="hidden" name="codigo" value=${tipoCliente.codigo}>
+                                                                <button type="submit" class="btn-floating btn-large waves-effect waves-light red" value="Remover"><i class="material-icons" style="font-size: 24px">delete</i></button>
+                                                            </form>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             </c:forEach>
@@ -123,7 +128,7 @@
                             </div>
                         </div>
 
-                        <div id="structure" class="section scrollspy" style="display: none;">
+                        <div id="SessaoIncluir" class="section scrollspy ocultarElemento">
                             <div class="divider"></div>
                             <h4>Inclusão de novo tipo de cliente</h4>
                             <div class="section">
@@ -142,7 +147,7 @@
                                 </form>
                             </div>
                         </div>
-                        <div id="structure" class="section scrollspy ocultarElemento">
+                        <div id="SessaoAlterar" class="section scrollspy ocultarElemento">
                             <div class="divider"></div>
                             <h4>Alterar Tipo de Cliente</h4>
                             <div class="section">
@@ -150,10 +155,10 @@
                                 <form method="POST" action="Executa">
                                     <!--Nome das Classes que deverão ser informadas ocultas-->
                                     <input type="hidden" name="logicaDeNegocio" value="TipoClienteServlet">
-                                    <input type="hidden" name="tarefa" value="incluir">
+                                    <input type="hidden" name="tarefa" value="alterar">
 
                                     <div class="form-group">
-                                        <label>Descrição:</label> 
+                                        <label>Descrição:</label>
                                         <input type="text" class="form-control" placeholder="Insira o texto aqui" name="descricao" value="" />
                                     </div>
 
@@ -161,12 +166,17 @@
                                 </form>
                             </div>
                         </div>
+                        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+                            <a id="BotaoAdicionar" class="btn-floating btn-large red">
+                                <i class="large material-icons">add</i>
+                            </a>
+                        </div>
                     </div>
                     <!-- ATALHOS DAS SESSÕES DA PÁGINA -->
                     <div class="col hide-on-small-only m3 l2">
                         <div class="tabs-wrapper" style="top: 0px;">
                             <ul class="section table-of-contents">
-                                <li><a href="#Lista">Tipos de Clientes</a></li>
+                                <li><a href="#Lista">Todos os cadastros</a></li>
                                 <li class="ocultarElemento"><a href="#Incluir">Incluir</a></li>
                                 <li class="ocultarElemento"><a href="#Alterar">Alterar</a></li>
                             </ul>
@@ -206,6 +216,7 @@
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="js/materialize.js"></script>
         <script src="js/init.js"></script>
+        <script src="js/main.js"></script>
 
     </body>
 </html>
