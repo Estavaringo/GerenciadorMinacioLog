@@ -67,6 +67,7 @@
                                 <div class="collapsible-body" style="display: block;">
                                     <ul>
                                         <!--Para deixar algum item ativado, adicionar class="active" -->
+                                        <li><a href="Executa?logicaDeNegocio=ClienteServlet&tarefa=cadastrarCliente">Clientes</a></li>
                                         <li><a href="Executa?logicaDeNegocio=TipoClienteServlet&tarefa=consultarLista">Tipo de Cliente</a></li>
                                         <li><a href="Executa?logicaDeNegocio=TipoContatoServlet&tarefa=consultarLista">Tipo de Contato</a></li>
                                         <li><a href="Executa?logicaDeNegocio=TipoEnderecoServlet&tarefa=consultarLista">Tipo de Endereços</a></li>

@@ -21,7 +21,7 @@ public class JobDAO implements DAO<Job> {
         try {
             bd.conectar();
             String strSql
-                    = "INSERT INTO JOB (JOB_CODIGO, JOB_TITU, JOB_OS, JOB_DT_ENTR, JOB_DT_SAIDA, JOB_VALOR,"
+                    = "INSERT INTO job (JOB_CODIGO, JOB_TITU, JOB_OS, JOB_DT_ENTR, JOB_DT_SAIDA, JOB_VALOR,"
                     + "JOB_OBS, JOB_QTDE_PARC, CLIENTE_CLIE_ID, TIPO_FATURAMENTO_TIFA_ID) VALUES (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
@@ -49,7 +49,7 @@ public class JobDAO implements DAO<Job> {
         try {
             bd.conectar();
             String strSql
-                    = "DELETE FROM JOB WHERE JOB_ID = ?";
+                    = "DELETE FROM job WHERE JOB_ID = ?";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
             p.setInt(1, codigo);
@@ -67,7 +67,7 @@ public class JobDAO implements DAO<Job> {
         try {
             bd.conectar();
             String strSql
-                    = "UPDATE JOB SET JOB_CODIGO = ?, JOB_TITU = ?, JOB_OS = ?, JOB_DT_ENTR = ?, JOB_DT_SAIDA = ?, JOB_VALOR = ?,"
+                    = "UPDATE job SET JOB_CODIGO = ?, JOB_TITU = ?, JOB_OS = ?, JOB_DT_ENTR = ?, JOB_DT_SAIDA = ?, JOB_VALOR = ?,"
                     + "JOB_OBS = ?, JOB_QTDE_PARC = ?, CLIENTE_CLIE_ID = ?, TIPO_FATURAMENTO_TIFA_ID = ? WHERE JOB_ID = ?";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
@@ -99,7 +99,7 @@ public class JobDAO implements DAO<Job> {
             Statement comando;
             comando = bd.connection.createStatement();
             ResultSet rs = comando.executeQuery("SELECT JOB_ID, JOB_CODIGO, JOB_TITU, JOB_OS, JOB_DT_ENTR, JOB_DT_SAIDA, JOB_VALOR, "
-                    + "JOB_OBS, JOB_QTDE_PARC, CLIENTE_CLIE_ID, TIPO_FATURAMENTO_TIFA_ID FROM JOB");
+                    + "JOB_OBS, JOB_QTDE_PARC, CLIENTE_CLIE_ID, TIPO_FATURAMENTO_TIFA_ID FROM job");
             while (rs.next()) {
                 Job obj = new Job();
                 obj.setCodigo(rs.getInt("JOB_ID"));
@@ -130,7 +130,7 @@ public class JobDAO implements DAO<Job> {
             Job obj = null;
             bd.conectar();
             String strSQL = "SELECT JOB_ID, JOB_CODIGO, JOB_TITU, JOB_OS, JOB_DT_ENTR, JOB_DT_SAIDA, JOB_VALOR, "
-                    + "JOB_OBS, JOB_QTDE_PARC, CLIENTE_CLIE_ID, TIPO_FATURAMENTO_TIFA_ID FROM JOB WHERE JOB_ID = ?";
+                    + "JOB_OBS, JOB_QTDE_PARC, CLIENTE_CLIE_ID, TIPO_FATURAMENTO_TIFA_ID FROM job WHERE JOB_ID = ?";
             PreparedStatement p = bd.connection.prepareStatement(strSQL);
             p.setInt(1, codigo);
             ResultSet rs = p.executeQuery();

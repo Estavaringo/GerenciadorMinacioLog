@@ -25,7 +25,7 @@ public class ComissaoDAO implements DAO<Comissao> {
         try {
             bd.conectar();
             String strSql
-                    = "INSERT INTO COMISSAO(COMI_BV, "
+                    = "INSERT INTO comissao(COMI_BV, "
                     + "COMI_BV_AGEN, COMI_BV_PROD, JOB_JOB_ID) VALUES (?,?,?,?)";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
@@ -47,7 +47,7 @@ public class ComissaoDAO implements DAO<Comissao> {
         try {
             bd.conectar();
             String strSql
-                    = "DELETE FROM COMISSAO WHERE COMI_ID = ?";
+                    = "DELETE FROM comissao WHERE COMI_ID = ?";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
             p.setInt(1, codigo);
@@ -65,7 +65,7 @@ public class ComissaoDAO implements DAO<Comissao> {
         try {
             bd.conectar();
             String strSql
-                    = "UPDATE COMISSAO SET COMI_BV = ?, "
+                    = "UPDATE comissao SET COMI_BV = ?, "
                     + "COMI_BV_AGEN = ?, COMI_BV_PROD = ?, JOB_JOB_ID = ? WHERE COMI_ID = ?";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
@@ -90,7 +90,7 @@ public class ComissaoDAO implements DAO<Comissao> {
             bd.conectar();
             Statement comando;
             comando = bd.connection.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT COMI_ID, COMI_BV, COMI_BV_AGEN, COMI_BV_PROD, JOB_JOB_ID FROM COMISSAO");
+            ResultSet rs = comando.executeQuery("SELECT COMI_ID, COMI_BV, COMI_BV_AGEN, COMI_BV_PROD, JOB_JOB_ID FROM comissao");
             while (rs.next()) {
                 Comissao obj = new Comissao();
                 obj.setCodigo(rs.getInt("CLIE_ID"));
@@ -114,7 +114,7 @@ public class ComissaoDAO implements DAO<Comissao> {
         try {
             Comissao obj = null;
             bd.conectar();
-            String strSQL = "SELECT COMI_ID, COMI_BV, COMI_BV_AGEN, COMI_BV_PROD, JOB_JOB_ID FROM COMISSAO WHERE COMI_ID = ?";
+            String strSQL = "SELECT COMI_ID, COMI_BV, COMI_BV_AGEN, COMI_BV_PROD, JOB_JOB_ID FROM comissao WHERE COMI_ID = ?";
             PreparedStatement p = bd.connection.prepareStatement(strSQL);
             p.setInt(1, codigo);
             ResultSet rs = p.executeQuery();

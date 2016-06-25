@@ -39,9 +39,9 @@ public class EnderecoClienteServlet implements LogicaDeNegocio {
                     enderecoCliente.setCep(req.getParameter("cep"));
                     enderecoCliente.setBairro(req.getParameter("bairro"));
                     enderecoCliente.setComplemento(req.getParameter("complemento"));
-                    enderecoCliente.setCodigoCidade(Integer.parseInt(req.getParameter("cep")));
-                    enderecoCliente.setCodigoTipo(Integer.parseInt(req.getParameter("cep")));
-                    enderecoCliente.setCodigoCliente(Integer.parseInt(req.getParameter("cep")));
+                    enderecoCliente.setCodigoCidade(Integer.parseInt(req.getParameter("codigoCidade")));
+                    enderecoCliente.setCodigoTipo(Integer.parseInt(req.getParameter("codigoTipo")));
+                    enderecoCliente.setCodigoCliente(Integer.parseInt(req.getParameter("codigoCliente")));
                     
 
                     //Grava um nova enderecoCliente no banco de dados
