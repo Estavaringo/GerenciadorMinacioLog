@@ -103,8 +103,8 @@
                                         <i class="material-icons prefix">account_circle</i>
                                         <label for="icon_prefix">Nome</label>
                                         <input id="icon_prefix" type="text" class="validate" name="descricao" value="" />
-                                    </div>  
-
+                                    </div>
+                                    
                                     <div class="input-field">
                                         <select name="tipoCliente">
                                             <option value="" disabled selected>Escolha o Tipo de Cliente</option>
@@ -113,7 +113,7 @@
                                             </c:forEach>
                                         </select>
                                     </div>
-
+                                    
                                     <div class="form-group">
                                         <select name="tipoFaturamento">
                                             <option value="" disabled selected>Escolha o Tipo de Faturamento</option>
@@ -123,59 +123,8 @@
                                         </select>
                                     </div>
 
-                                    <!-- Modal Trigger -->
-                                    <button data-target="modal1" class="btn modal-trigger">Incluir Endereço</button>
-
-
-
-                                    <div id="modal1" class="modal">
-                                        <div class="modal-content">
-                                            <h4>Endereço</h4>
-
-                                            <div class="input-field">
-                                                <i class="material-icons prefix">account_circle</i>
-                                                <label for="icon_prefix">Nome</label>
-                                                <input id="icon_prefix" type="text" class="validate" name="logradouro" value="" />
-                                            </div>
-                                            <div class="input-field">
-                                                <i class="material-icons prefix">account_circle</i>
-                                                <label for="icon_prefix">Nome</label>
-                                                <input id="icon_prefix" type="text" class="validate" name="numero" value="" />
-                                            </div>
-                                            <div class="input-field">
-                                                <i class="material-icons prefix">account_circle</i>
-                                                <label for="icon_prefix">Nome</label>
-                                                <input id="icon_prefix" type="text" class="validate" name="cep" value="" />
-                                            </div>
-                                            <div class="input-field">
-                                                <i class="material-icons prefix">account_circle</i>
-                                                <label for="icon_prefix">Nome</label>
-                                                <input id="icon_prefix" type="text" class="validate" name="bairro" value="" />
-                                            </div>
-                                            <div class="input-field">
-                                                <i class="material-icons prefix">account_circle</i>
-                                                <label for="icon_prefix">Nome</label>
-                                                <input id="icon_prefix" type="text" class="validate" name="complemento" value="" />
-                                            </div>
-                                            <select name="codigoCidade">
-                                                <option value="" disabled selected>Escolha o Tipo de Faturamento</option>
-                                                <c:forEach var="tipoCidade" items="${listaCidade}">
-                                                    <option value="${tipoCidade.codigo}" >${tipoCidade.descricao}</option>
-                                                </c:forEach>
-                                            </select>
-                                            <select name="codigoTipo">
-                                                <option value="" disabled selected>Escolha o Tipo de Faturamento</option>
-                                                <c:forEach var="tipoEndereco" items="${listaTipoFaturamento}">
-                                                    <option value="${tipoEndereco.codigo}" >${tipoEndereco.descricao}</option>
-                                                </c:forEach>
-                                            </select>
-
-                                            <div class="modal-footer">
-                                                <button type="submit" class="btn btn-default" value="Cadastrar">Cadastrar</button>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                    <button type="submit" class="btn btn-default" value="Cadastrar">Cadastrar</button>
+                                    
                                 </form>
 
                             </div>
