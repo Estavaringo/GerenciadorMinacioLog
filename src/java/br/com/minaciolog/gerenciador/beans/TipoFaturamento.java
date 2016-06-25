@@ -5,17 +5,13 @@
  */
 package br.com.minaciolog.gerenciador.beans;
 
-import java.sql.Date;
-
 /**
  *
  * @author gabri
  */
 public class TipoFaturamento {
     private int codigo;
-    private String primeira;
-    private String segunda;
-    private String terceira;
+    private String descricao;
 
     /**
      * @return the codigo
@@ -32,45 +28,16 @@ public class TipoFaturamento {
     }
 
     /**
-     * @return the primeira
+     * @return the descricao
      */
-    public String getPrimeira() {
-        return primeira;
+    public String getDescricao() {
+        return descricao;
     }
 
     /**
-     * @param primeira the primeira to set
+     * @param descricao the descricao to set
      */
-    public void setPrimeira(String primeira) {
-        this.primeira = primeira;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
-
-    /**
-     * @return the segunda
-     */
-    public String getSegunda() {
-        return segunda;
-    }
-
-    /**
-     * @param segunda the segunda to set
-     */
-    public void setSegunda(String segunda) {
-        this.segunda = segunda;
-    }
-
-    /**
-     * @return the terceira
-     */
-    public String getTerceira() {
-        return terceira;
-    }
-
-    /**
-     * @param terceira the terceira to set
-     */
-    public void setTerceira(String terceira) {
-        this.terceira = terceira;
-    }
-
 }
