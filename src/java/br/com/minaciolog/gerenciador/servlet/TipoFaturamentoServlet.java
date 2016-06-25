@@ -34,9 +34,7 @@ public class TipoFaturamentoServlet implements LogicaDeNegocio {
                     tipoFaturamento = new TipoFaturamento();
 
                     //Atribui as informações da tipoFaturamento no objeto
-                    tipoFaturamento.setPrimeira(req.getParameter("primeira"));
-                    tipoFaturamento.setSegunda(req.getParameter("segunda"));
-                    tipoFaturamento.setTerceira(req.getParameter("terceira"));
+                    tipoFaturamento.setDescricao(req.getParameter("descricao"));
 
                     //Grava um nova tipoFaturamento no banco de dados
                     new TipoFaturamentoDAO().Incluir(tipoFaturamento);
@@ -57,9 +55,7 @@ public class TipoFaturamentoServlet implements LogicaDeNegocio {
                     tipoFaturamento = new TipoFaturamento();
 
                     //Atribui as informações da tipoFaturamento no objeto
-                    tipoFaturamento.setPrimeira(req.getParameter("primeira"));
-                    tipoFaturamento.setSegunda(req.getParameter("segunda"));
-                    tipoFaturamento.setTerceira(req.getParameter("terceira"));
+                    tipoFaturamento.setDescricao(req.getParameter("primeira"));
                     tipoFaturamento.setCodigo(Integer.parseInt(req.getParameter("codigo")));
 
                     //Exclui tipoFaturamento no banco de dados
@@ -81,9 +77,7 @@ public class TipoFaturamentoServlet implements LogicaDeNegocio {
                     tipoFaturamento = new TipoFaturamento();
 
                     //Atribui as informações da tipoFaturamento no objeto
-                    tipoFaturamento.setPrimeira(req.getParameter("primeira"));
-                    tipoFaturamento.setSegunda(req.getParameter("segunda"));
-                    tipoFaturamento.setTerceira(req.getParameter("terceira"));
+                    tipoFaturamento.setDescricao(req.getParameter("primeira"));
                     tipoFaturamento.setCodigo(Integer.parseInt(req.getParameter("codigo")));
 
                     //altera tipoFaturamento no banco de dados

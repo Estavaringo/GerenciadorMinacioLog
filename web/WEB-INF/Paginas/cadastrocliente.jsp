@@ -118,7 +118,7 @@
                                         <select name="tipoFaturamento">
                                             <option value="" disabled selected>Escolha o Tipo de Faturamento</option>
                                             <c:forEach var="tipoFaturamento" items="${listaTipoFaturamento}">
-                                                <option value="${tipoFaturamento.codigo}" >${tipoFaturamento.primeira}</option>
+                                                <option value="${tipoFaturamento.codigo}" >${tipoFaturamento.descricao}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
