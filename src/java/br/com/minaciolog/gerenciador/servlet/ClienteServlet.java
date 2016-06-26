@@ -137,7 +137,7 @@ public class ClienteServlet implements LogicaDeNegocio {
                     return "erro.html";
                 }
                 break;
-            case "cadastrarCliente":
+            case "abrircliente":
                 try {
 
                     ArrayList<Cliente> listaCliente = new ArrayList<>();
@@ -162,13 +162,13 @@ public class ClienteServlet implements LogicaDeNegocio {
                     System.err.println("Erro ao cosultar cliente no banco de dados. Detalhes: " + ex.getMessage());
                     return "erro.html";
                 }
-                return "/WEB-INF/Paginas/cadastrocliente.jsp";
+                return "/WEB-INF/Paginas/cliente.jsp";
             default:
                 System.err.println("Erro ao cosultar cliente no banco de dados. Ação inválida!");
                 return "erro.html";
 
         }
-        return "/WEB-INF/Paginas/cadastrocliente.jsp";
+        return "/WEB-INF/Paginas/cliente.jsp";
     }
 
     @Override
