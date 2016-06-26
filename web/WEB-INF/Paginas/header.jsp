@@ -66,7 +66,7 @@
                                         <!--Para deixar algum item ativado, adicionar class="active" -->
                                         <li><a href="Executa?logicaDeNegocio=TipoClienteServlet&tarefa=consultarLista">Tipo de Cliente</a></li>
                                         <li><a href="Executa?logicaDeNegocio=TipoContatoServlet&tarefa=consultarLista">Tipo de Contato</a></li>
-                                        <li><a href="Executa?logicaDeNegocio=TipoEnderecoServlet&tarefa=consultarLista">Tipo de Endereços</a></li>
+                                        <li><a href="Executa?logicaDeNegocio=TipoEnderecoServlet&tarefa=consultarLista">Tipo de Endereço</a></li>
                                         <li><a href="Executa?logicaDeNegocio=TipoFaturamentoServlet&tarefa=consultarLista">Tipo de Faturamento</a></li>
                                         <li><a href="Executa?logicaDeNegocio=CidadeServlet&tarefa=consultarLista">Cidade</a></li>
                                         <li><a href="Executa?logicaDeNegocio=UFServlet&tarefa=consultarLista">UF</a></li>
