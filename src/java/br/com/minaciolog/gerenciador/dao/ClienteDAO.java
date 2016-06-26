@@ -88,13 +88,27 @@ public class ClienteDAO implements DAO<Cliente> {
             bd.conectar();
             Statement comando;
             comando = bd.connection.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT CLIE_ID, CLIE_NM, TIPO_FATURAMENTO_TIFA_ID, TIPO_CLIENTE_TICL_ID FROM cliente");
+            ResultSet rs = comando.executeQuery("SELECT "
+                    + "A.CLIE_ID, "
+                    + "A.CLIE_NM, "
+                    + "A.TIPO_FATURAMENTO_TIFA_ID, "
+                    + "A.TIPO_CLIENTE_TICL_ID, "
+                    + "B.TICL_DESC, "
+                    + "C.TIFA_DESC "
+                    + "FROM cliente A "
+                    + "JOIN tipo_cliente B "
+                    + "ON A.TIPO_CLIENTE_TICL_ID = B.TICL_ID "
+                    + "JOIN tipo_faturamento C "
+                    + "ON A.TIPO_FATURAMENTO_TIFA_ID = C.TIFA_ID ");
+            
             while (rs.next()) {
                 Cliente obj = new Cliente();
                 obj.setCodigo(rs.getInt("CLIE_ID"));
                 obj.setNome(rs.getString("CLIE_NM"));
                 obj.setCodigoFaturamento(rs.getInt("TIPO_FATURAMENTO_TIFA_ID"));
                 obj.setCodigoTipoCliente(rs.getInt("TIPO_CLIENTE_TICL_ID"));
+                obj.setDescricaoFaturamento("TIFA_DESC");
+                obj.setDescricaoTipoCliente("TICL_DESC");
                 lista.add(obj);
             }
             comando.close();

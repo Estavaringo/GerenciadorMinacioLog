@@ -32,10 +32,6 @@ public class ClienteServlet implements LogicaDeNegocio {
 
                     //instancia uma nova cliente
                     cliente = new Cliente();
-                    
-                    System.out.println(req.getParameter("tipoFaturamento"));
-                    System.out.println(req.getParameter("descricao"));
-                    System.out.println(req.getParameter("tipoCliente"));
 
                     //Atribui as informações da cliente no objeto
                     cliente.setNome(req.getParameter("descricao"));
@@ -128,35 +124,13 @@ public class ClienteServlet implements LogicaDeNegocio {
 
                     //Grava um nova cliente no banco de dados
                     listaCliente = new ClienteDAO().Consultar();
-
-                    //Atribui a ultima cliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("listaCliente", listaCliente);
-
-                } catch (SQLException ex) {
-                    System.err.println("Erro ao cosultar cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "erro.html";
-                }
-                break;
-            case "abrircliente":
-                try {
-
-                    ArrayList<Cliente> listaCliente = new ArrayList<>();
-
-                    //Grava um nova cliente no banco de dados
-                    listaCliente = new ClienteDAO().Consultar();
                     ArrayList<TipoCliente> listaTipoCliente = new TipoClienteDAO().Consultar();
                     ArrayList<TipoFaturamento> listaTipoFaturamento = new TipoFaturamentoDAO().Consultar();
-                    ArrayList<TipoEndereco> listaTipoEndereco = new TipoEnderecoDAO().Consultar();
-                    ArrayList<Cidade> listaCidade = new CidadeDAO().Consultar();
-                    ArrayList<TipoContato> listaContato = new TipoContatoDAO().Consultar();
 
                     //Atribui a ultima cliente como Atributo a ser enviado na próxima Requisição 
                     req.setAttribute("listaCliente", listaCliente);
                     req.setAttribute("listaTipoCliente", listaTipoCliente);
                     req.setAttribute("listaTipoFaturamento", listaTipoFaturamento);
-                    req.setAttribute("listaTipoEndereco", listaTipoEndereco);
-                    req.setAttribute("listaCidade", listaCidade);
-                    req.setAttribute("listaContato", listaContato);
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar cliente no banco de dados. Detalhes: " + ex.getMessage());

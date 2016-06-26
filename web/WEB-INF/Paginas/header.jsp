@@ -20,17 +20,18 @@
     <body>
         <header>
             <!-- BARRA SUPERIOR-->
-            <nav class="light-blue lighten-1" role="navigation">
+            <nav class="grey darken-3" role="navigation">
+                <!-- BARRA SUPERIOR-->
                 <div class="nav-wrapper container">
                     <!-- Botão de Menu que irá aparecer quando a tela for pequena, para abrir o Menu que estará oculto -->
                     <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-                    <a id="logo-container" href="#" class="brand-logo">Minacio Log</a>
+                    <a id="logo-container" href="/gerenciadorMinacioLog" class="brand-logo"><img src="img/minaciolog_texto.png" alt="Logotipo Minacio Log"></a>
                 </div>
                 <!--MENU DIAGONAL NA ESQUERDA -->
                 <!-- This content will be: 3-columns-wide on large screens, 4-columns-wide on medium screens, 12-columns-wide on small screens -->
                 <ul id="slide-out" class="side-nav fixed">
                     <li class="logo off">
-                        <a id="logo-container" href="#!" class="brand-logo">
+                        <a id="logo-container" href="/gerenciadorMinacioLog" class="brand-logo">
                             <img src="img/minaciolog.png" alt="Logotipo Minacio Log">
                         </a>
                     </li>
@@ -50,7 +51,7 @@
                         </a>
                     </li>
                     <li class="bold">
-                        <a href="Executa?logicaDeNegocio=ClienteServlet&tarefa=abrircliente" class="waves-effect waves-teal">
+                        <a href="Executa?logicaDeNegocio=ClienteServlet&tarefa=consultarLista" class="waves-effect waves-teal">
                             Clientes
                         </a>
                     </li>
@@ -58,13 +59,11 @@
                         <ul class="collapsible collapsible-accordion">
                             <li class="no-padding bold active">
                                 <a class="collapsible-header waves-effect waves-teal">
-                                    <i class="material-icons" style="font-size: 24px">add</i>
                                     Cadastros
                                 </a>
                                 <div class="collapsible-body" style="display: block;">
                                     <ul>
                                         <!--Para deixar algum item ativado, adicionar class="active" -->
-                                        <li><a href="Executa?logicaDeNegocio=ClienteServlet&tarefa=cadastrarCliente">Clientes</a></li>
                                         <li><a href="Executa?logicaDeNegocio=TipoClienteServlet&tarefa=consultarLista">Tipo de Cliente</a></li>
                                         <li><a href="Executa?logicaDeNegocio=TipoContatoServlet&tarefa=consultarLista">Tipo de Contato</a></li>
                                         <li><a href="Executa?logicaDeNegocio=TipoEnderecoServlet&tarefa=consultarLista">Tipo de Endereços</a></li>
