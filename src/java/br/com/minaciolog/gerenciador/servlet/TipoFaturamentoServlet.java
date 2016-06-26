@@ -55,11 +55,10 @@ public class TipoFaturamentoServlet implements LogicaDeNegocio {
                     tipoFaturamento = new TipoFaturamento();
 
                     //Atribui as informações da tipoFaturamento no objeto
-                    tipoFaturamento.setDescricao(req.getParameter("primeira"));
                     tipoFaturamento.setCodigo(Integer.parseInt(req.getParameter("codigo")));
 
                     //Exclui tipoFaturamento no banco de dados
-                    new TipoFaturamentoDAO().Excluir(Integer.parseInt(req.getParameter("codigo")));
+                    new TipoFaturamentoDAO().Excluir(tipoFaturamento.getCodigo());
 
                     //Atribui a ultima tipoFaturamento como Atributo a ser enviado na próxima Requisição 
                     req.setAttribute("excluidoTipoFaturamento", tipoFaturamento);
@@ -77,7 +76,7 @@ public class TipoFaturamentoServlet implements LogicaDeNegocio {
                     tipoFaturamento = new TipoFaturamento();
 
                     //Atribui as informações da tipoFaturamento no objeto
-                    tipoFaturamento.setDescricao(req.getParameter("primeira"));
+                    tipoFaturamento.setDescricao(req.getParameter("descricao"));
                     tipoFaturamento.setCodigo(Integer.parseInt(req.getParameter("codigo")));
 
                     //altera tipoFaturamento no banco de dados
@@ -121,7 +120,7 @@ public class TipoFaturamentoServlet implements LogicaDeNegocio {
                     req.setAttribute("listaTipoFaturamento", listaTipoFaturamento);
 
                 } catch (SQLException ex) {
-                    System.err.println("Erro ao cosultar tipo de faturamento no banco de dados. Detalhes: " + ex.getMessage());
+                    System.err.println("Erro ao consultar tipo de faturamento no banco de dados. Detalhes: " + ex.getMessage());
                     return "erro.html";
                 }
                 return "/WEB-INF/Paginas/tipofaturamento.jsp";
@@ -141,7 +140,7 @@ public class TipoFaturamentoServlet implements LogicaDeNegocio {
             req.setAttribute("listaTipoFaturamento", listaTipoFaturamento);
 
         } catch (SQLException ex) {
-            System.err.println("Erro ao cosultar tipo de faturamento no banco de dados. Detalhes: " + ex.getMessage());
+            System.err.println("Erro ao consultar tipo de faturamento no banco de dados. Detalhes: " + ex.getMessage());
             return "erro.html";
         }
         return "/WEB-INF/Paginas/tipofaturamento.jsp";

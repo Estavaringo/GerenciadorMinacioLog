@@ -6,6 +6,8 @@ public class Cliente {
     private String nome = "";
     private int codigoFaturamento = 0;
     private int codigoTipoCliente = 0;
+    private String descricaoFaturamento = "";
+    private String descricaoTipoCliente = "";
 
     /**
      * @return the codigo
@@ -61,6 +63,22 @@ public class Cliente {
      */
     public void setCodigoTipoCliente(int codigoTipoCliente) {
         this.codigoTipoCliente = codigoTipoCliente;
+    }
+
+    public String getDescricaoFaturamento() {
+        return descricaoFaturamento;
+    }
+
+    public void setDescricaoFaturamento(String descricaoFaturamento) {
+        this.descricaoFaturamento = descricaoFaturamento;
+    }
+
+    public String getDescricaoTipoCliente() {
+        return descricaoTipoCliente;
+    }
+
+    public void setDescricaoTipoCliente(String descricaoTipoCliente) {
+        this.descricaoTipoCliente = descricaoTipoCliente;
     }
     
 

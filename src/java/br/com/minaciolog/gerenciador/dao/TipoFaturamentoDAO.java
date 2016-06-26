@@ -25,7 +25,7 @@ public class TipoFaturamentoDAO implements DAO<TipoFaturamento> {
         try {
             bd.conectar();
             String strSql
-                    = "INSERT INTO tipo_faturamento (TIFA_DESC) VALUES (?,?,?)";
+                    = "INSERT INTO tipo_faturamento (TIFA_DESC) VALUES (?)";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
             p.setString(1, obj.getDescricao());
