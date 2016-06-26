@@ -52,12 +52,12 @@
                             <div class="collapsible-body" style="display: block;">
                                 <ul>
                                     <!--Para deixar algum item ativado, adicionar class="active" -->
-                                        <li><a href="Executa?logicaDeNegocio=TipoClienteServlet&tarefa=consultarLista">Tipo de Cliente</a></li>
-                                        <li><a href="Executa?logicaDeNegocio=TipoContatoServlet&tarefa=consultarLista">Tipo de Contato</a></li>
-                                        <li><a href="Executa?logicaDeNegocio=TipoEnderecoServlet&tarefa=consultarLista">Tipo de Endereço</a></li>
-                                        <li class="active"><a href="Executa?logicaDeNegocio=TipoFaturamentoServlet&tarefa=consultarLista">Tipo de Faturamento</a></li>
-                                        <li><a href="Executa?logicaDeNegocio=CidadeServlet&tarefa=consultarLista">Cidade</a></li>
-                                        <li><a href="Executa?logicaDeNegocio=UFServlet&tarefa=consultarLista">UF</a></li>
+                                    <li><a href="Executa?logicaDeNegocio=TipoClienteServlet&tarefa=consultarLista">Tipo de Cliente</a></li>
+                                    <li><a href="Executa?logicaDeNegocio=TipoContatoServlet&tarefa=consultarLista">Tipo de Contato</a></li>
+                                    <li><a href="Executa?logicaDeNegocio=TipoEnderecoServlet&tarefa=consultarLista">Tipo de Endereço</a></li>
+                                    <li class="active"><a href="Executa?logicaDeNegocio=TipoFaturamentoServlet&tarefa=consultarLista">Tipo de Faturamento</a></li>
+                                    <li><a href="Executa?logicaDeNegocio=CidadeServlet&tarefa=consultarLista">Cidade</a></li>
+                                    <li><a href="Executa?logicaDeNegocio=UFServlet&tarefa=consultarLista">UF</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -96,9 +96,7 @@
                                     <thead>
                                         <tr>
                                             <th data-field="codigo">Código</th>
-                                            <th data-field="descricao">Primeira</th>
-                                            <th data-field="descricao">Segunda</th>
-                                            <th data-field="descricao">Terceira</th>
+                                            <th data-field="descricao">Descrição</th>
                                             <th data-field="descricao">Ação</th>
                                         </tr>
                                     </thead>
@@ -107,16 +105,18 @@
                                             <c:forEach var="tipoFaturamento" items="${listaTipoFaturamento}">
                                                 <tr>
                                                     <th scope="row">${tipoFaturamento.codigo}</th>
-                                                    <td> ${tipoFaturamento.primeira}</td>
-                                                    <td> ${tipoFaturamento.segunda}</td>
-                                                    <td> ${tipoFaturamento.terceira}</td>
+                                                    <td> ${tipoFaturamento.descricao}</td>
                                                     <td>
-                                                        <form method="POST" action="Executa">
-                                                            <input type="hidden" name="logicaDeNegocio" value="TipoFaturamentoServlet">
-                                                            <input type="hidden" name="tarefa" value="remover">
-                                                            <input type="hidden" name="codigo" value=${tipoFaturamento.codigo}>
-                                                            <button type="submit" class="btn btn-default" value="Remover"><i class="material-icons" style="font-size: 24px">delete</i></button>
-                                                        </form>
+                                                        <div style="display: inline">
+                                                            <a class="btn-floating btn-large orange">
+                                                                <i class="large material-icons" onclick="abrirFormularioEdicao(${tipoCliente.codigo})">mode_edit</i>
+                                                            </a>
+                                                            <form method="POST" action="Executa">
+                                                                <input type="hidden" name="logicaDeNegocio" value="TipoFaturamentoServlet">
+                                                                <input type="hidden" name="tarefa" value="remover">
+                                                                <input type="hidden" name="codigo" value=${tipoFaturamento.codigo}>
+                                                                <button type="submit" class="btn-floating btn-large waves-effect waves-light red" value="Remover"><i class="material-icons" style="font-size: 24px">delete</i></button>
+                                                            </form>
                                                     </td>
                                                 </tr>
                                             </c:forEach>
@@ -127,7 +127,7 @@
                             </div>
                         </div>
 
-                        <div id="structure" class="section scrollspy" style="display: none;">
+                        <div id="SessaoIncluir" class="section scrollspy" style="display: none;">
                             <div class="divider"></div>
                             <h4>Inclusão de novo tipo de cliente</h4>
                             <div class="section">
@@ -138,48 +138,29 @@
                                     <input type="hidden" name="tarefa" value="incluir">
 
                                     <div class="form-group">
-                                        <label>Primeira:</label> 
-                                        <input type="text" class="form-control" placeholder="Insira a quantidade de dias para primeira parcela" name="primeira" value="" />
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label>Segunda:</label> 
-                                        <input type="text" class="form-control" placeholder="Insira a quantidade de dias para segunda parcela" name="segunda" value="" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Terceira:</label> 
-                                        <input type="text" class="form-control" placeholder="Insira a quantidade de dias para terceira parcela" name="terceira" value="" />
+                                        <label>Descricao:</label> 
+                                        <input type="text" class="form-control"  name="descricao" value="" />
                                     </div>
 
                                     <button type="submit" class="btn btn-default" value="Cadastrar">Cadastrar</button>
                                 </form>
                             </div>
                         </div>
-                        <div id="structure" class="section scrollspy ocultarElemento">
+                        <div id="SessaoAlterar" class="section scrollspy ocultarElemento">
                             <div class="divider"></div>
                             <h4>Alterar Tipo de Faturamento</h4>
                             <div class="section">
-                                <h5>Novo Tipo de Faturamento</h5>
+                                <h5>Alterar Tipo de Faturamento</h5>
                                 <form method="POST" action="Executa">
                                     <!--Nome das Classes que deverão ser informadas ocultas-->
                                     <input type="hidden" name="logicaDeNegocio" value="TipoFaturamentoServlet">
                                     <input type="hidden" name="tarefa" value="incluir">
 
                                     <div class="form-group">
-                                        <label>Primeira:</label> 
-                                        <input type="text" class="form-control" placeholder="Insira a quantidade de dias para primeira parcela" name="primeira" value="" />
+                                        <label>Descricao:</label> 
+                                        <input type="text" class="form-control" name="descricao" value="" />
                                     </div>
-                                    
-                                    <div class="form-group">
-                                        <label>Segunda:</label> 
-                                        <input type="text" class="form-control" placeholder="Insira a quantidade de dias para segunda parcela" name="segunda" value="" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Terceira:</label> 
-                                        <input type="text" class="form-control" placeholder="Insira a quantidade de dias para terceira parcela" name="terceira" value="" />
-                                    </div>
-
-                                    <button type="submit" class="btn btn-default" value="Cadastrar">Cadastrar</button>
+                                    <button type="submit" class="btn btn-default" value="Cadastrar">Alterar</button>
                                 </form>
                             </div>
                         </div>
@@ -194,41 +175,48 @@
                             </ul>
                         </div>
                     </div>		
-                </div>
-
+                </div>>
             </div>
-        </main>
-        <!-- RODAPÉ DA PÁGINA -->
-        <footer class="page-footer orange">
+            <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+                <a id="BotaoAdicionar" class="btn-floating btn-large red">
+                    <i class="large material-icons">add</i>
+                </a>
+            </div>
+
+        </div>
+    </main>
+    <!-- RODAPÉ DA PÁGINA -->
+    <footer class="page-footer orange">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Company Bio</h5>
+                    <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+                </div>
+                <div class="col l3 s12">
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Connect</h5>
+                    <ul>
+                        <li><a class="white-text" href="#!">Link 1</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
             <div class="container">
-                <div class="row">
-                    <div class="col l6 s12">
-                        <h5 class="white-text">Company Bio</h5>
-                        <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-                    </div>
-                    <div class="col l3 s12">
-                    </div>
-                    <div class="col l3 s12">
-                        <h5 class="white-text">Connect</h5>
-                        <ul>
-                            <li><a class="white-text" href="#!">Link 1</a></li>
-                        </ul>
-                    </div>
-                </div>
+                Elaborado por <a class="orange-text text-lighten-3" href="#">Flávio Sampaio</a> e <a class="orange-text text-lighten-3" href="#">Gabriel Estavaringo</a>
             </div>
-            <div class="footer-copyright">
-                <div class="container">
-                    Elaborado por <a class="orange-text text-lighten-3" href="#">Flávio Sampaio</a> e <a class="orange-text text-lighten-3" href="#">Gabriel Estavaringo</a>
-                </div>
-            </div>
-        </footer>
+        </div>
+    </footer>
 
 
-        <!--  Scripts-->
-        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="js/materialize.js"></script>
-        <script src="js/init.js"></script>
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>  
+    <script src="js/main.js"></script>  
 
-    </body>
+</body>
 </html>
 
