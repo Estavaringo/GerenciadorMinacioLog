@@ -65,8 +65,6 @@ public class JobServlet implements LogicaDeNegocio {
                     sql = new Date(date.getTime());
                     job.setDataSaida(sql);
                     
-                    System.out.println(sql);
-
                     //Atribui informações de comissao ao objeto comissao
                     comissao.setBv(Float.parseFloat(req.getParameter("bv")));
                     comissao.setBvAgencia(Float.parseFloat(req.getParameter("bvAgencia")));
@@ -78,7 +76,7 @@ public class JobServlet implements LogicaDeNegocio {
                     //recupera codigo do job gravado no banco
                     job = new JobDAO().ConsultarCodigo(Integer.parseInt(req.getParameter("codigoECalc")));
 
-                    //atribui o codigo do job ao objeto comiss      ao
+                    //atribui o codigo do job ao objeto comissao
                     comissao.setCodigoJob(job.getCodigo());
 
                     //grava uma nova comissao no banco de dados
@@ -124,6 +122,7 @@ public class JobServlet implements LogicaDeNegocio {
 
                     //instancia uma nova job
                     job = new Job();
+                    Comissao comissao = new Comissao();
 
                     //Atribui as informações da job no objeto
                     job.setCodigo(Integer.parseInt(req.getParameter("codigo")));
@@ -146,6 +145,21 @@ public class JobServlet implements LogicaDeNegocio {
 
                     //altera job no banco de dados
                     new JobDAO().Alterar(job);
+                    
+                    //Atribui informações de comissao ao objeto comissao
+
+                    //recupera codigo do job gravado no banco
+                    job = new JobDAO().ConsultarCodigo(Integer.parseInt(req.getParameter("codigoECalc")));
+
+                    comissao = new ComissaoDAO().ConsultarCodigo(job.getCodigo());
+                    
+                    comissao.setBv(Float.parseFloat(req.getParameter("bv")));
+                    comissao.setBvAgencia(Float.parseFloat(req.getParameter("bvAgencia")));
+                    comissao.setBvProdutor(Float.parseFloat(req.getParameter("bvProdutor")));
+                    
+                    //grava uma nova comissao no banco de dados
+                    new ComissaoDAO().Alterar(comissao);
+
 
                     //Atribui a ultima job como Atributo a ser enviado na próxima Requisição 
                     req.setAttribute("alteradoJob", job);

@@ -75,6 +75,14 @@
                             </li>
                         </ul>
                     </li>
+
+                    <c:if test="${not empty usuarioLogado}">
+                        <li id="li-clientes" class="bold">
+                            <a href="Executa?logicaDeNegocio=Logout" class="waves-effect waves-light">
+                                Sair
+                            </a>
+                        </li>
+                    </c:if>
                 </ul>
             </nav>
         </header>

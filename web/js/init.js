@@ -25,6 +25,32 @@ $(document).ready(function () {
 
         $('#modal-alterar').openModal('');
     });
+    
+    $(".botao-alterar-job").click(function () {
+
+        var codigo = this.id;
+
+        var descricao = $('#descricao-' + codigo).text();
+        var ecalc = $('#ecalc-' + codigo).text();
+        var os = $('#os-' + codigo).text();
+        var valor = $('#valor-' + codigo).text();
+        var bv = $('#bv-' + codigo).text();
+        var bvAgencia = $('#bv-agencia-' + codigo).text();
+        var bvProdutor = $('#bv-produtor-' + codigo).text();
+        var observacao = $('#observacao-' + codigo).text();
+
+        $('#codigo-alterar').val(codigo);
+        $('#descricao-alterar').val(descricao);
+        $('#ecalc-alterar').val(ecalc);
+        $('#os-alterar').val(os);
+        $('#valor-alterar').val(valor);
+        $('#bv-alterar').val(bv);
+        $('#bv-agencia-alterar').val(bvAgencia);
+        $('#bv-produtor-alterar').val(bvProdutor);
+        $('#observacao-alterar').val(observacao);
+
+        $('#modal-alterar').openModal('');
+    });
 
     $(".botao-excluir").click(function () {
 
@@ -51,7 +77,7 @@ $(document).ready(function () {
     $('.button-collapse').sideNav();
 
     $('select').material_select();
-    
+
 
     $('#select-cliente').on('change', function () {
 
