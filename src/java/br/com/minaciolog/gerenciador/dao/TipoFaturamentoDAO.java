@@ -65,7 +65,7 @@ public class TipoFaturamentoDAO implements DAO<TipoFaturamento> {
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
             p.setString(1, obj.getDescricao());
-            p.setInt(4, obj.getCodigo());
+            p.setInt(2, obj.getCodigo());
             p.execute();
             p.close();
             bd.desconectar();

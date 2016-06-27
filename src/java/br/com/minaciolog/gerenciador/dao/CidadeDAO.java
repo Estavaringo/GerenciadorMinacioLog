@@ -61,12 +61,11 @@ public class CidadeDAO implements DAO<Cidade> {
         try {
             bd.conectar();
             String strSql
-                    = "UPDATE cidade SET CIDA_DESC = ?, UF_UF_ID = ?  WHERE CIDA_ID = ?";
+                    = "UPDATE cidade SET CIDA_DESC = ? WHERE CIDA_ID = ?";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
             p.setString(1, obj.getDescricao());
-            p.setString(2, obj.getCodigoUF());
-            p.setInt(3, obj.getCodigo());
+            p.setInt(2, obj.getCodigo());
             p.execute();
             p.close();
             bd.desconectar();

@@ -8,214 +8,150 @@
 <%@page import="br.com.minaciolog.gerenciador.beans.UF"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-        <title>App Minacio Log</title>
+<%@ include file="header.jsp" %>
+<main>
+    <div class="section" id="index-banner">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m9">
+                    <h1 class="header center-on-small-only">UF</h1>
+                    <h4 class="light red-text text-lighten-4 center-on-small-only">Cadastro de UFs</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!-- ARMAZENAR TODAS AS DIVS DE CONTEÚDO DO SITE -->
+        <div class="col s9 m8 l9">
+            <!-- CONTEÚDO DE CADA PÁGINA -->
+            <div class="col s12 m8 l9">
+                <div id="introduction" class="section scrollspy">
+                    <div class="divider"></div>
+                    <h4 class="header">UFs cadastradas</h4>
+                    <div class="section">
+                        <table class="highlight">
+                            <thead>
+                                <tr>
+                                    <th data-field="codigo">Código</th>
+                                    <th data-field="descricao">UF</th>
+                                    <th data-field="descricao">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:if test="${not empty listaUF}">
+                                    <c:forEach var="uf" items="${listaUF}">
+                                        <tr>
+                                            <th scope="row">${uf.codigo}</th>
+                                            <td id="descricao-${uf.codigo}"> ${uf.descricao}</td>
+                                            <td>
+                                                <!-- Dropdown Trigger -->
+                                                <a class='dropdown-button btn-floating grey darken-2' href='#' data-constrainwidth="false" data-activates='dropdown${uf.codigo}'><i class="material-icons">menu</i></a>
 
-        <!-- CSS  -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-        <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    </head>
-    <body>
-        <header>
-            <!-- BARRA SUPERIOR-->
-            <div class="container">
-                <a href="#" data-activates="nav-mobile" class="button-collapse top-nav waves-effect waves-light circle hide-on-large-only">
-                    <i class="material-icons">menu</i>
+                                                <!-- Dropdown Structure -->
+                                                <ul id='dropdown${uf.codigo}' class='dropdown-content'>
+                                                    <li class="divider"></li>
+                                                    <li><a class="botao-alterar grey-text text-darken-4" id="${uf.codigo}"><i class="material-icons yellow-text text-darken-4">edit</i>Alterar</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a class="botao-excluir grey-text text-darken-4" id="${uf.codigo}"><i class="material-icons red-text">delete</i>Excluir</a></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </c:if>
+                            </tbody>
+                        </table>
+                        <br><br><br>
+                    </div>
+                </div>
+            </div>
+            <!-- ESTRUTURA DA MODAL ALTERAR -->
+            <div id="modal-alterar" class="modal modal-fixed-footer">
+                <form method="POST" action="Executa">
+                    <div class="modal-content">
+                        <h4>Alterar UF</h4>
+                        <p>Altere a UF selecionada:</p>
+
+                        <!--Nome das Classes que deverão ser informadas na requisição-->
+                        <input type="hidden" name="logicaDeNegocio" value="UFServlet">
+                        <input type="hidden" name="tarefa" value="alterar">
+                        <input type="hidden" name="codigo" id="codigo-alterar">
+
+                        <div class="input-field">
+                            <i class="material-icons prefix">description</i>
+                            <input id="descricao-alterar" type="text" name="descricao" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default" value="Alterar">Alterar</button>
+                        <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+            <!-- ESTRUTURA DA MODAL EXCLUIR -->
+            <div id="modal-excluir" class="modal modal-fixed-footer">
+                <form method="POST" action="Executa">
+                    <div class="modal-content">
+                        <h4>Excluir UF</h4>
+                        <p>Confirme a exclusão da UF selecionado:</p>
+
+                        <!--Nome das Classes que deverão ser informadas na requisição-->
+                        <input type="hidden" name="logicaDeNegocio" value="UFServlet">
+                        <input type="hidden" name="tarefa" value="remover">
+                        <input type="hidden" name="codigo" id="codigo-excluir">
+
+                        <div class="input-field">
+                            <i class="material-icons prefix">description</i>
+                            <input disabled class="grey-text text-darken-4" id="descricao-excluir" type="text" name="descricao" value="" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default" value="Alterar">Confirmar Exclusão</button>
+                        <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+            <!-- ABRE MODAL INCLUIR -->
+            <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+                <a class="modal-trigger btn-floating btn-large red" href="#modal-incluir">
+                    <i class="large material-icons">add</i>
                 </a>
             </div>
-            <!--MENU DIAGONAL NA ESQUERDA -->
-            <!-- This content will be: 3-columns-wide on large screens, 4-columns-wide on medium screens, 12-columns-wide on small screens -->
-            <ul id="slide-out" class="side-nav fixed">
-                <li class="logo off">
-                    <a id="logo-container" href="#!" class="brand-logo"><img src="img/minaciolog.png" alt="Logotipo Minacio Log"></a>
-                </li>
-                <li class="bold">
-                    <a href="#" class="waves-effect waves-teal">Sobre</a>
-                </li>
-                <li class="bold">
-                    <a href="#" class="waves-effect waves-teal">DashBoard</a>
-                </li>
-                <li class="bold">
-                    <a href="#" class="waves-effect waves-teal">Operação</a>
-                </li>
-                <li class="bold"><a href="#" class="waves-effect waves-teal">Clientes</a>
-                </li>
-                <li class="no-padding">
-                    <ul class="collapsible collapsible-accordion">
-                        <li class="no-padding bold active">
-                            <a class="collapsible-header waves-effect waves-teal"><i class="material-icons" style="font-size: 24px">add</i>Cadastros</a>
-                            <div class="collapsible-body" style="display: block;">
-                                <ul>
-                                    <!--Para deixar algum item ativado, adicionar class="active" -->
-                                        <li><a href="Executa?logicaDeNegocio=TipoClienteServlet&tarefa=consultarLista">Tipo de Cliente</a></li>
-                                        <li><a href="Executa?logicaDeNegocio=TipoContatoServlet&tarefa=consultarLista">Tipo de Contato</a></li>
-                                        <li><a href="Executa?logicaDeNegocio=TipoEnderecoServlet&tarefa=consultarLista">Tipo de Endereços</a></li>
-                                        <li><a href="Executa?logicaDeNegocio=TipoFaturamentoServlet&tarefa=consultarLista">Tipo de Faturamento</a></li>
-                                        <li><a href="Executa?logicaDeNegocio=CidadeServlet&tarefa=consultarLista">Cidade</a></li>
-                                        <li class="active"><a href="Executa?logicaDeNegocio=UFServlet&tarefa=consultarLista">UF</a></li>
-                                </ul>
-                            </div>
-                        </li>
+            <!-- ESTRUTURA DA MODAL INCLUIR -->
+            <div id="modal-incluir" class="modal modal-fixed-footer">
+                <form method="POST" action="Executa">
+                    <div class="modal-content">
+                        <h4>Incluir UF</h4>
+                        <p>Insira abaixo o novo UF:</p>
+
+                        <!--Nome das Classes que deverão ser informadas na requisição-->
+                        <input type="hidden" name="logicaDeNegocio" value="UFServlet">
+                        <input type="hidden" name="tarefa" value="incluir">
+
+                        <div class="input-field">
+                            <i class="material-icons prefix">description</i>
+                            <input id="descricao-incluir" placeholder="Insira a sigla da UF" type="text" name="codigo" value="" />
+                        </div>
+                        <div class="input-field">
+                            <i class="material-icons prefix">description</i>
+                            <input id="descricao-incluir" placeholder="Insira o nome da UF" type="text" name="descricao" value="" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default" value="Incluir">Incluir</button>
+                        <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+            <!-- ATALHOS DAS SESSÕES DA PÁGINA -->
+            <div class="col hide-on-small-only m3 l2">
+                <div class="tabs-wrapper" style="top: 0px;">
+                    <ul class="section table-of-contents">
+                        <li><a href="#introduction">Topo da Página</a></li>
                     </ul>
-                </li>
-            </ul>
-        </header>
-        <main>
-            <div class="section" id="index-banner">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s12 m9">
-                            <h1 class="header center-on-small-only">UF</h1>
-                            <h4 class="light cyan-text text-lighten-4 center-on-small-only">Cadastro de UF</h4>
-                        </div>
-                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <!-- ARMAZENAR TODAS AS DIVS DE CONTEÚDO DO SITE -->
-                <div class="col s9 m8 l9"> <!-- Note a soma das colunas sempre serão 12 -->
-                    <!-- Teal page content
-                    
-                          This content will be:
-                      9-columns-wide on large screens,
-                      8-columns-wide on medium screens,
-                      12-columns-wide on small screens  -->
+            </div>		
+        </div>
 
-                    <!-- CONTEÚDO DE CADA PÁGINA -->
-                    <div class="col s12 m8 l9">
-                        <div id="introduction" class="section scrollspy">
-                            <div class="divider"></div>
-                            <h4 class="header">UF cadastrados</h4>
-                            <div class="section">
-                                <table class="highlight">
-                                    <thead>
-                                        <tr>
-                                            <th data-field="codigo">Código</th>
-                                            <th data-field="descricao">UF</th>
-                                            <th data-field="descricao">Ação</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:if test="${not empty listaUF}">
-                                            <c:forEach var="UF" items="${listaUF}">
-                                                <tr>
-                                                    <th scope="row">${UF.codigo}</th>
-                                                    <td> ${UF.descricao}</td>
-                                                    <td>
-                                                        <form method="POST" action="Executa">
-                                                            <input type="hidden" name="logicaDeNegocio" value="UFServlet">
-                                                            <input type="hidden" name="tarefa" value="remover">
-                                                            <input type="hidden" name="codigo" value=${UF.codigo}>
-                                                            <button type="submit" class="btn btn-default" value="Remover"><i class="material-icons" style="font-size: 24px">delete</i></button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                            </c:forEach>
-                                        </c:if>
-                                    </tbody>
-                                </table>
-                                <br><br><br>
-                            </div>
-                        </div>
-
-                        <div id="structure" class="section scrollspy" style="display: none;">
-                            <div class="divider"></div>
-                            <h4>Inclusão de novo UF</h4>
-                            <div class="section">
-                                <h5>Novo UF</h5>
-                                <form method="POST" action="Executa">
-                                    <!--Nome das Classes que deverão ser informadas ocultas-->
-                                    <input type="hidden" name="logicaDeNegocio" value="UFServlet">
-                                    <input type="hidden" name="tarefa" value="incluir">
-
-                                    <div class="form-group">
-                                        <label>Sigla:</label> 
-                                        <input type="text" class="form-control" placeholder="Insira o texto aqui" name="codigo" value="" />
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label>Estado:</label> 
-                                        <input type="text" class="form-control" placeholder="Insira o texto aqui" name="descricao" value="" />
-                                    </div>
-
-                                    <button type="submit" class="btn btn-default" value="Cadastrar">Cadastrar</button>
-                                </form>
-                            </div>
-                        </div>
-                        <div id="structure" class="section scrollspy ocultarElemento">
-                            <div class="divider"></div>
-                            <h4>Alterar UF</h4>
-                            <div class="section">
-                                <h5>Novo UF</h5>
-                                <form method="POST" action="Executa">
-                                    <!--Nome das Classes que deverão ser informadas ocultas-->
-                                    <input type="hidden" name="logicaDeNegocio" value="UFServlet">
-                                    <input type="hidden" name="tarefa" value="incluir">
-
-                                    <div class="form-group">
-                                        <label>Sigla:</label> 
-                                        <input type="text" class="form-control" placeholder="Insira o texto aqui" name="codigo" value="" />
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label>Estado:</label> 
-                                        <input type="text" class="form-control" placeholder="Insira o texto aqui" name="descricao" value="" />
-                                    </div>
-                                    <button type="submit" class="btn btn-default" value="Cadastrar">Cadastrar</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ATALHOS DAS SESSÕES DA PÁGINA -->
-                    <div class="col hide-on-small-only m3 l2">
-                        <div class="tabs-wrapper" style="top: 0px;">
-                            <ul class="section table-of-contents">
-                                <li><a href="#Lista">UF</a></li>
-                                <li class="ocultarElemento"><a href="#Incluir">Incluir</a></li>
-                                <li class="ocultarElemento"><a href="#Alterar">Alterar</a></li>
-                            </ul>
-                        </div>
-                    </div>		
-                </div>
-
-            </div>
-        </main>
-        <!-- RODAPÉ DA PÁGINA -->
-        <footer class="page-footer orange">
-            <div class="container">
-                <div class="row">
-                    <div class="col l6 s12">
-                        <h5 class="white-text">Company Bio</h5>
-                        <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-                    </div>
-                    <div class="col l3 s12">
-                    </div>
-                    <div class="col l3 s12">
-                        <h5 class="white-text">Connect</h5>
-                        <ul>
-                            <li><a class="white-text" href="#!">Link 1</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-copyright">
-                <div class="container">
-                    Elaborado por <a class="orange-text text-lighten-3" href="#">Flávio Sampaio</a> e <a class="orange-text text-lighten-3" href="#">Gabriel Estavaringo</a>
-                </div>
-            </div>
-        </footer>
-
-
-        <!--  Scripts-->
-        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="js/materialize.js"></script>
-        <script src="js/init.js"></script>
-
-    </body>
-</html>
-
+    </div>
+</main>
+<%@ include file="footer.jsp" %>
