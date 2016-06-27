@@ -87,11 +87,21 @@ padding-right: 15px;
 }
 .widget-item b
 {
-display: block;
-margin-bottom: 15px;
+    display: block;
+    margin-bottom: 15px;
 }
 
 nav
 {
-margin-bottom: 0px;
+    margin-bottom: 0px;
 }
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }

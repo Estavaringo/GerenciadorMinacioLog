@@ -13,40 +13,42 @@
         <div class="container">
             <div class="row">
                 <div class="col s12 m9">
-                    <h1 class="header center-on-small-only">${Cliente.nome}</h1>
-                </div>
+                    <h1 class="header center-on-small-only">
+                        <i class="large material-icons" style="position: relative;top: 15px;">store</i>${Cliente.nome}</div>
+                </h1>
             </div>
-            <div class="row">
-                <div class="col s12 m3">
-                    <h5 class="light cyan-text text-lighten-4 center-on-small-only">
-                        <i class="small material-icons ">stars</i>${Cliente.descricaoTipoCliente}
-                    </h5>
-                </div>
-                <div class="col s12 m3">
-                    <h5 class="light cyan-text text-lighten-4 center-on-small-only">
-                        <i class="small material-icons ">shopping_cart</i>${Cliente.descricaoFaturamento}
-                    </h5>
-                </div>
-                <div class="col s12 m3">
-                    <h5 class="light cyan-text text-lighten-4 center-on-small-only">
-                        <i class="small material-icons ">today</i>${Cliente.dataInclusao}
-                    </h5>
-                </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m3">
+                <h5 class="light cyan-text text-lighten-4 center-on-small-only">
+                    <i class="small material-icons left" style="position: relative;bottom: 4px;">stars</i>${Cliente.descricaoTipoCliente}
+                </h5>
+            </div>
+            <div class="col s12 m3">
+                <h5 class="light cyan-text text-lighten-4 center-on-small-only">
+                    <i class="small material-icons left" style="position: relative;bottom: 4px;">shopping_cart</i>${Cliente.descricaoFaturamento}
+                </h5>
+            </div>
+            <div class="col s12 m3">
+                <h5 class="light cyan-text text-lighten-4 center-on-small-only">
+                    <i class="small material-icons left" style="position: relative;bottom: 4px;">today</i>${Cliente.dataInclusao}
+                </h5>
             </div>
         </div>
     </div>
+    <div class="row" style="margin: 10px;">
+        <div class="col s12 m12 l12 center-on-small-only">
+            <a class="waves-effect waves-light btn-large red" style="width: 222px"><i class="material-icons left">contact_phone</i>Agenda</a>
+            <a class="waves-effect waves-light btn-large cyan darken-2" style="width: 222px"><i class="material-icons left">settings_phone</i>Registrar</a>
+            <a class="waves-effect waves-light btn-large cyan darken-2" style="width: 222px"><i class="material-icons left">restore</i>Últ. Trabalhos</a>
+            <a class="waves-effect waves-light btn-large cyan darken-2" style="width: 222px"><i class="material-icons left">location_on</i>Endereços</a>
+        </div>
+    </div>           
     <div class="row">
         <!-- ARMAZENAR TODAS AS DIVS DE CONTEÚDO DO SITE -->
         <div class="col s9 m8 l9">
             <!-- CONTEÚDO DE CADA PÁGINA -->
-            <div class="col s12 m8 l9">
-                
-                
-                
-                
-                
-                
-                
+            <div class="col s12 m10 l10">
                 <div id="introduction" class="section scrollspy">
                     <h4 class="header">Clientes cadastrados</h4>
                     <div class="section">
@@ -151,13 +153,13 @@
                         <!--Nome das Classes que deverão ser informadas na requisição-->
                         <input type="hidden" name="logicaDeNegocio" value="ClienteServlet">
                         <input type="hidden" name="tarefa" value="incluir">
-                        
+
                         <div class="input-field">
                             <i class="material-icons prefix">account_circle</i>
                             <label for="descricao-incluir">Nome</label>
                             <input id="descricao-incluir" type="text" class="validate" name="descricao" value="" />
                         </div>
-                        
+
                         <div class="input-field">
                             <select name="tipoCliente">
                                 <option value="" disabled selected>Escolha o Tipo de Cliente</option>
