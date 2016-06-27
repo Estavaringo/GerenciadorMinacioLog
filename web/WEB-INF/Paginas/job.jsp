@@ -9,6 +9,7 @@
 <%@page import="br.com.minaciolog.gerenciador.beans.TipoFaturamento"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="header.jsp" %>
 <main>
     <div class="section" id="index-banner">
@@ -30,22 +31,21 @@
                     <div class="divider"></div>
                     <h4 class="header">Jobs cadastrados</h4>
                     <div class="section">
-                        <table class="highlight">
+                        <table class="responsive-table">
                             <thead>
                                 <tr>
-                                    <th data-field="codigo">Cliente</th>
-                                    <th data-field="codigo">JOB</th>
-                                    <th data-field="descricao">O.S.</th>
-                                    <th data-field="descricao">Titulo</th>
-                                    <th data-field="descricao">Entrada</th>
-                                    <th data-field="descricao">Saida</th>
-                                    <th data-field="descricao">Vencimento 1</th>
-                                    <th data-field="descricao">Vencimento 2</th>
-                                    <th data-field="descricao">Vencimento 3</th>
-                                    <th data-field="descricao">Comissão à Receber</th>
-                                    <th data-field="descricao">Pagar Agência</th>
-                                    <th data-field="descricao">Pagar Produtor</th>
-                                    <th data-field="descricao">Observações</th>
+                                    <th data-field="cliente">Cliente</th>
+                                    <th data-field="ecalc">JOB</th>
+                                    <th data-field="os">O.S.</th>
+                                    <th data-field="titulo">Titulo</th>
+                                    <th data-field="dataEntrada">Entrada</th>
+                                    <th data-field="dataSaida">Saida</th>
+                                    <th data-field="valor">Valor</th>
+                                    <th data-field="comissao">Comissão à Receber</th>
+                                    <th data-field="comissaoAgencia">Comissão à Pagar Agência</th>
+                                    <th data-field="comissaoProdutor">Comissão à Pagar Produtor</th>
+                                    <th data-field="observacao">Observações</th>
+                                    <th data-field="acoes">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -53,18 +53,16 @@
                                     <c:forEach var="job" items="${listaJob}">
                                         <tr>
                                             <th id="cliente-${job.codigo}">${job.cliente}</th>
-                                            <th id="codigo-ecalc-${job.codigo}">${job.codigoECalc}</th>
-                                            <th id="codigo-os-${job.codigo}">${job.codigoOS}</th>
-                                            <td id="titulo-${job.codigo}"> ${job.titulo}</td>
-                                            <td id="data-entrada-${job.codigo}"> ${job.dataEntrada}</td>
-                                            <td id="data-saida-${job.codigo}"> ${job.dataSaida}</td>
-                                            <td id="vencimento-1-${job.codigo}">  </td>
-                                            <td id="vencimento-2-${job.codigo}">  </td>
-                                            <td id="vencimento-3-${job.codigo}">  </td>
-                                            <td id="comissao-${job.codigo}"> ${job.valor * job.bv}</td>
-                                            <td id="comissao-agencia-${job.codigo}"> ${job.valor * job.bvAgencia}</td>
-                                            <td id="comissao-produtor-${job.codigo}"> ${job.valor * job.bvProdutor}</td>
-                                            <td id="observacao-${job.codigo}"> ${job.observacao}</td>
+                                            <th id="ecalc-${job.codigo}">${job.codigoECalc}</th>
+                                            <th id="os-${job.codigo}">${job.codigoOS}</th>
+                                            <td id="descricao-${job.codigo}"> ${job.titulo}</td>
+                                            <td id="data-entrada-${job.codigo}"><fmt:formatDate value="${job.dataEntrada}" pattern="dd/MM/yyyy"/></td>
+                                            <td id="data-saida-${job.codigo}"><fmt:formatDate value="${job.dataSaida}" pattern="dd/MM/yyyy"/></td>
+                                            <td id="valor-${job.codigo}"> <fmt:formatNumber pattern="R$ #0.00" value="${job.valor}"/> </td>
+                                            <td id="bv-${job.codigo}"> <fmt:formatNumber pattern="R$ #0.00" value="${job.valor * job.bv / 100}"/></td>
+                                            <td id="bv-agencia-${job.codigo}"> <fmt:formatNumber pattern="R$ #0.00" value="${job.valor * job.bvAgencia / 100}"/></td>
+                                            <td id="bv-produtor-${job.codigo}"> <fmt:formatNumber pattern="R$ #0.00" value="${job.valor * job.bvProdutor / 100}"/></td>
+                                            <td id="observacao-${job.codigo}" > ${job.observacao}</td>
                                             <td>
                                                 <!-- Dropdown Trigger -->
                                                 <a class='dropdown-button btn-floating grey darken-2' href='#' data-constrainwidth="false" data-activates='dropdown${job.codigo}'><i class="material-icons">menu</i></a>
@@ -72,7 +70,7 @@
                                                 <!-- Dropdown Structure -->
                                                 <ul id='dropdown${job.codigo}' class='dropdown-content'>
                                                     <li class="divider"></li>
-                                                    <li><a class="botao-alterar grey-text text-darken-4" id="${job.codigo}"><i class="material-icons yellow-text text-darken-4">edit</i>Alterar</a></li>
+                                                    <li><a class="botao-alterar-job grey-text text-darken-4" id="${job.codigo}"><i class="material-icons yellow-text text-darken-4">edit</i>Alterar</a></li>
                                                     <li class="divider"></li>
                                                     <li><a class="botao-excluir grey-text text-darken-4" id="${job.codigo}"><i class="material-icons red-text">delete</i>Excluir</a></li>
                                                 </ul>
@@ -99,9 +97,84 @@
                         <input type="hidden" name="codigo" id="codigo-alterar">
 
                         <div class="input-field">
-                            <i class="material-icons prefix">description</i>
-                            <input id="descricao-alterar" type="text" name="descricao" />
+                            <i class="material-icons prefix">note_add</i>
+                            <label for="descricao-alterar">Titulo</label>
+                            <input placeholder="" id="descricao-alterar" type="text" class="validate" name="titulo" value="" />
                         </div>
+
+                        <div class="input-field">
+                            <select id="select-cliente" name="codigoCliente">
+                                <option value="" disabled selected>Escolha o Cliente</option>
+                                <c:forEach var="cliente" items="${listaCliente}">
+                                    <option value="${cliente.codigo}" id="${cliente.codigoFaturamento}" class="form-control" >${cliente.nome}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+
+                        <div class="input-field">
+                            <select id="select-faturamento" name="tipoFaturamento">
+                                <option value="" disabled selected>Escolha o Tipo de Faturamento</option>
+                                <c:forEach var="tipoFaturamento" items="${listaTipoFaturamento}">
+                                    <option value="${tipoFaturamento.codigo}"> ${tipoFaturamento.descricao}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+
+                        <div class="input-field">
+                            <select id="select-parcelas" name="qtdParcelas">
+                                <option value="" disabled selected>Escolha a Quantidade de Parcelas</option>
+                                <option value="1" >1</option>
+                                <option value="1" >2</option>
+                                <option value="1" >3</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="ecalc-alterar">Código E-Calc</label>
+                            <input placeholder="" id="ecalc-alterar" type="text" class="validate" name="codigoECalc" value="" />
+                        </div>
+
+                        <div class="input-field">
+                            <label for="os-alterar">Código OS</label>
+                            <input placeholder="" id="os-alterar" type="text" class="validate" name="codigoOS" value="" />
+                        </div>
+
+                        <div class="input-field">
+                            <label for="datepicker">Data de Entrada</label>
+                            <input type="date" class="datepicker" id="datepicker" name="dataEntrada">
+                        </div>
+
+                        <div class="input-field">
+                            <label for="datepicker">Data de Saida</label>
+                            <input type="date" id="datepicker" class="datepicker" name="dataSaida">
+                        </div>
+
+
+                        <div class="input-field">
+                            <label for="valor-alterar">Valor</label>
+                            <input placeholder="" id="valor-alterar" type="text" class="validate" name="valor" value="" />
+                        </div>
+
+                        <div class="input-field">
+                            <label for="bv-alterar">BV</label>
+                            <input placeholder="" id="bv-alterar" type="text" class="validate" name="bv" value="" />
+                        </div>
+
+                        <div class="input-field">
+                            <label for="bv-agencia-alterar">BV Agência</label>
+                            <input placeholder="" id="bv-agencia-alterar" type="text" class="validate" name="bvAgencia" value="" />
+                        </div>
+
+                        <div class="input-field">
+                            <label for="bv-produtor-alterar">BV Produtor</label>
+                            <input placeholder="" id="bv-produtor-alterar" type="text" class="validate" name="bvProdutor" value="" />
+                        </div>
+
+                        <div class="input-field">
+                            <label for="observacao-alterar">Observações</label>
+                            <textarea placeholder="" id="observacao-alterar" class="materialize-textarea" name="observacao"></textarea>
+                        </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="modal-action waves-effect waves-green btn btn-default" value="Alterar">Alterar</button>
@@ -123,7 +196,7 @@
 
                         <div class="input-field">
                             <i class="material-icons prefix">description</i>
-                            <input disabled class="grey-text text-darken-4" id="descricao-excluir" type="text" name="descricao" value="" />
+                            <input disabled class="grey-text text-darken-4" id="descricao-excluir" type="text" name="titulo" value="" />
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -16,7 +16,7 @@ public class Logout implements LogicaDeNegocio {
 
     public String executa(HttpServletRequest req, HttpServletResponse response) {
         req.getSession().removeAttribute("usuarioLogado");
-        return "/WEB-INF/paginas/logout.html";
+        return "index.jsp";
     }
 
     @Override

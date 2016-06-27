@@ -81,7 +81,7 @@ public class JobDAO implements DAO<Job> {
             p.setInt(8, obj.getQtdParcelas());
             p.setInt(9, obj.getCodigoCliente());
             p.setInt(10, obj.getTipoFaturamento());
-            p.setInt(10, obj.getCodigo());
+            p.setInt(11, obj.getCodigo());
             p.execute();
             p.close();
             bd.desconectar();
