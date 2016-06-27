@@ -33,17 +33,38 @@
                         <table class="highlight">
                             <thead>
                                 <tr>
-                                    <th data-field="codigo">Código</th>
+                                    <th data-field="codigo">Cliente</th>
+                                    <th data-field="codigo">JOB</th>
+                                    <th data-field="descricao">O.S.</th>
                                     <th data-field="descricao">Titulo</th>
-                                    <th data-field="descricao">Ação</th>
+                                    <th data-field="descricao">Entrada</th>
+                                    <th data-field="descricao">Saida</th>
+                                    <th data-field="descricao">Vencimento 1</th>
+                                    <th data-field="descricao">Vencimento 2</th>
+                                    <th data-field="descricao">Vencimento 3</th>
+                                    <th data-field="descricao">Comissão à Receber</th>
+                                    <th data-field="descricao">Pagar Agência</th>
+                                    <th data-field="descricao">Pagar Produtor</th>
+                                    <th data-field="descricao">Observações</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <c:if test="${not empty listaJob}">
                                     <c:forEach var="job" items="${listaJob}">
                                         <tr>
-                                            <th scope="row">${job.codigo}</th>
-                                            <td id="descricao-${job.codigo}"> ${job.titulo}</td>
+                                            <th id="cliente-${job.codigo}">${job.cliente}</th>
+                                            <th id="codigo-ecalc-${job.codigo}">${job.codigoECalc}</th>
+                                            <th id="codigo-os-${job.codigo}">${job.codigoOS}</th>
+                                            <td id="titulo-${job.codigo}"> ${job.titulo}</td>
+                                            <td id="data-entrada-${job.codigo}"> ${job.dataEntrada}</td>
+                                            <td id="data-saida-${job.codigo}"> ${job.dataSaida}</td>
+                                            <td id="vencimento-1-${job.codigo}">  </td>
+                                            <td id="vencimento-2-${job.codigo}">  </td>
+                                            <td id="vencimento-3-${job.codigo}">  </td>
+                                            <td id="comissao-${job.codigo}"> ${job.valor * job.bv}</td>
+                                            <td id="comissao-agencia-${job.codigo}"> ${job.valor * job.bvAgencia}</td>
+                                            <td id="comissao-produtor-${job.codigo}"> ${job.valor * job.bvProdutor}</td>
+                                            <td id="observacao-${job.codigo}"> ${job.observacao}</td>
                                             <td>
                                                 <!-- Dropdown Trigger -->
                                                 <a class='dropdown-button btn-floating grey darken-2' href='#' data-constrainwidth="false" data-activates='dropdown${job.codigo}'><i class="material-icons">menu</i></a>
@@ -147,7 +168,7 @@
                             <select id="select-faturamento" name="tipoFaturamento">
                                 <option value="" disabled selected>Escolha o Tipo de Faturamento</option>
                                 <c:forEach var="tipoFaturamento" items="${listaTipoFaturamento}">
-                                    <option value="${tipoFaturamento.codigo}" >${tipoFaturamento.descricao}</option>
+                                    <option value="${tipoFaturamento.codigo}"> ${tipoFaturamento.descricao}</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -155,9 +176,9 @@
                         <div class="input-field">
                             <select id="select-parcelas" name="qtdParcelas">
                                 <option value="" disabled selected>Escolha a Quantidade de Parcelas</option>
-                                    <option value="1" >1</option>
-                                    <option value="1" >2</option>
-                                    <option value="1" >3</option>
+                                <option value="1" >1</option>
+                                <option value="1" >2</option>
+                                <option value="1" >3</option>
                             </select>
                         </div>
 

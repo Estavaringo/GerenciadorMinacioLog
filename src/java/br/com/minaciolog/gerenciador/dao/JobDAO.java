@@ -98,8 +98,11 @@ public class JobDAO implements DAO<Job> {
             bd.conectar();
             Statement comando;
             comando = bd.connection.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT JOB_ID, JOB_CODIGO, JOB_TITU, JOB_OS, JOB_DT_ENTR, JOB_DT_SAIDA, JOB_VALOR, "
-                    + "JOB_OBS, JOB_QTDE_PARC, CLIENTE_CLIE_ID, TIPO_FATURAMENTO_TIFA_ID FROM job");
+            ResultSet rs = comando.executeQuery("SELECT A.JOB_ID, A.JOB_CODIGO, A.JOB_TITU, A.JOB_OS, A.JOB_DT_ENTR, A.JOB_DT_SAIDA, A.JOB_VALOR, "
+                    + "A.JOB_OBS, A.JOB_QTDE_PARC, A.CLIENTE_CLIE_ID, A.TIPO_FATURAMENTO_TIFA_ID, B.COMI_BV, B.COMI_BV_AGEN, B.COMI_BV_PROD, "
+                    + "C.CLIE_NM FROM job A "
+                    + "JOIN comissao B ON A.JOB_ID = B.JOB_JOB_ID "
+                    + "JOIN cliente C ON A.CLIENTE_CLIE_ID = C.CLIE_ID");
             while (rs.next()) {
                 Job obj = new Job();
                 obj.setCodigo(rs.getInt("JOB_ID"));
@@ -113,6 +116,10 @@ public class JobDAO implements DAO<Job> {
                 obj.setQtdParcelas(rs.getInt("JOB_QTDE_PARC"));
                 obj.setCodigoCliente(rs.getInt("CLIENTE_CLIE_ID"));
                 obj.setTipoFaturamento(rs.getInt("TIPO_FATURAMENTO_TIFA_ID"));
+                obj.setBv(rs.getFloat("COMI_BV"));
+                obj.setBvAgencia(rs.getFloat("COMI_BV_AGEN"));
+                obj.setBvProdutor(rs.getFloat("COMI_BV_PROD"));
+                obj.setCliente(rs.getString("CLIE_NM"));
                 lista.add(obj);
             }
             comando.close();
