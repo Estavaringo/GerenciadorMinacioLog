@@ -107,8 +107,8 @@ public class ClienteDAO implements DAO<Cliente> {
                 obj.setNome(rs.getString("CLIE_NM"));
                 obj.setCodigoFaturamento(rs.getInt("TIPO_FATURAMENTO_TIFA_ID"));
                 obj.setCodigoTipoCliente(rs.getInt("TIPO_CLIENTE_TICL_ID"));
-                obj.setDescricaoFaturamento("TIFA_DESC");
-                obj.setDescricaoTipoCliente("TICL_DESC");
+                obj.setDescricaoFaturamento(rs.getString("TIFA_DESC"));
+                obj.setDescricaoTipoCliente(rs.getString("TICL_DESC"));
                 lista.add(obj);
             }
             comando.close();
@@ -125,7 +125,21 @@ public class ClienteDAO implements DAO<Cliente> {
         try {
             Cliente obj = null;
             bd.conectar();
-            String strSQL = "SELECT CLIE_ID, CLIE_NM, TIPO_FATURAMENTO_TIFA_ID, TIPO_CLIENTE_TICL_ID FROM cliente WHERE CLIE_ID = ?";
+            String strSQL = "SELECT "
+                    + "A.CLIE_ID, "
+                    + "A.CLIE_NM, "
+                    + "A.TIPO_FATURAMENTO_TIFA_ID, "
+                    + "A.TIPO_CLIENTE_TICL_ID, "
+                    + "A.CLIE_DT, "
+                    + "B.TICL_DESC, "
+                    + "C.TIFA_DESC "
+                    + "FROM cliente A "
+                    + "JOIN tipo_cliente B "
+                    + "ON A.TIPO_CLIENTE_TICL_ID = B.TICL_ID "
+                    + "JOIN tipo_faturamento C "
+                    + "ON A.TIPO_FATURAMENTO_TIFA_ID = C.TIFA_ID "
+                    + "WHERE A.CLIE_ID = ?";
+            
             PreparedStatement p = bd.connection.prepareStatement(strSQL);
             p.setInt(1, codigo);
             ResultSet rs = p.executeQuery();
@@ -135,6 +149,9 @@ public class ClienteDAO implements DAO<Cliente> {
                 obj.setNome(rs.getString("CLIE_NM"));
                 obj.setCodigoFaturamento(rs.getInt("TIPO_FATURAMENTO_TIFA_ID"));
                 obj.setCodigoTipoCliente(rs.getInt("TIPO_CLIENTE_TICL_ID"));
+                obj.setDescricaoFaturamento(rs.getString("TIFA_DESC"));
+                obj.setDescricaoTipoCliente(rs.getString("TICL_DESC"));
+                obj.setDataInclusao(rs.getDate("CLIE_DT"));
                 p.close();
                 bd.desconectar();
                 return obj;

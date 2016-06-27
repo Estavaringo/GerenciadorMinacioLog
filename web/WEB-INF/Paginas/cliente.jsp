@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col s12 m9">
                     <h1 class="header center-on-small-only">Cliente</h1>
-                    <h4 class="light red-text text-lighten-4 center-on-small-only">Gerenciador de Clientes</h4>
+                    <h4 class="light cyan-text text-lighten-4 center-on-small-only">Gerenciador de Clientes</h4>
                 </div>
             </div>
         </div>
@@ -43,7 +43,12 @@
                                     <c:forEach var="cliente" items="${listaCliente}">
                                         <tr>
                                             <th scope="row">${cliente.codigo}</th>
-                                            <td id="nome-${cliente.codigo}"> ${cliente.nome}</td>
+                                            <td id="nome-${cliente.codigo}"> 
+                                                <a href="Executa?logicaDeNegocio=RegistrarContatoServlet&tarefa=consultar&codigo=${cliente.codigo}" class="waves-effect waves-light">
+                                                    ${cliente.nome}
+                                                    <i class="tiny material-icons">open_in_new</i>
+                                                </a>
+                                            </td>
                                             <td id="tipo-cliente${cliente.codigo}"> ${cliente.descricaoTipoCliente}</td>
                                             <td id="tipo-faturamento-${cliente.codigo}"> ${cliente.descricaoFaturamento}</td>
                                             <td>

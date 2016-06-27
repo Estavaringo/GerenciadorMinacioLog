@@ -10,13 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import br.com.minaciolog.gerenciador.beans.*;
 import br.com.minaciolog.gerenciador.dao.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
  *
  * @author gabri
  */
-public class ClienteServlet implements LogicaDeNegocio {
+public class RegistrarContatoServlet implements LogicaDeNegocio {
 
     //Declarações
     private Cliente cliente = null;
@@ -24,7 +25,9 @@ public class ClienteServlet implements LogicaDeNegocio {
 
     @Override
     public String executa(HttpServletRequest req, HttpServletResponse resp) {
-
+        
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        
         tarefa = req.getParameter("tarefa");
         switch (tarefa) {
             case "incluir":
@@ -103,64 +106,61 @@ public class ClienteServlet implements LogicaDeNegocio {
             case "consultar":
                 try {
 
-                    //instancia uma nova cliente
+                    //Instancia uma nova cliente
                     cliente = new Cliente();
 
                     //Grava um nova cliente no banco de dados
                     cliente = new ClienteDAO().Consultar(Integer.parseInt(req.getParameter("codigo")));
 
+                    ArrayList<ContatoCliente> listaContatos = new ContatoClienteDAO().Consultar(cliente);
+
+                    ArrayList<TipoContato> listaTiposDeContatos = new TipoContatoDAO().Consultar();
+
                     //Atribui a ultima cliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaCliente", cliente);
+                    req.setAttribute("Cliente", cliente);
+
+                    //Atribui a lista de Contatos deste cliente
+                    req.setAttribute("listaContatos", listaContatos);
+
+                    //Atribui a lista de Tipos de Contatos
+                    req.setAttribute("listaTiposDeContatos", listaTiposDeContatos);
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao consultar cliente no banco de dados. Detalhes: " + ex.getMessage());
                     return "erro.html";
                 }
-                break;
-            case "consultarLista":
-                try {
-
-                    ArrayList<Cliente> listaCliente = new ArrayList<>();
-
-                    //Grava um nova cliente no banco de dados
-                    listaCliente = new ClienteDAO().Consultar();
-                    ArrayList<TipoCliente> listaTipoCliente = new TipoClienteDAO().Consultar();
-                    ArrayList<TipoFaturamento> listaTipoFaturamento = new TipoFaturamentoDAO().Consultar();
-
-                    //Atribui a ultima cliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("listaCliente", listaCliente);
-                    req.setAttribute("listaTipoCliente", listaTipoCliente);
-                    req.setAttribute("listaTipoFaturamento", listaTipoFaturamento);
-
-                } catch (SQLException ex) {
-                    System.err.println("Erro ao cosultar cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "erro.html";
-                }
-                return "/WEB-INF/Paginas/cliente.jsp";
+                return "/WEB-INF/Paginas/registrarcontato.jsp";
             default:
-                System.err.println("Erro ao cosultar cliente no banco de dados. Ação inválida!");
+                System.err.println("Erro ao consultar cliente no banco de dados. Ação inválida!");
                 return "erro.html";
 
         }
         try {
 
-            ArrayList<Cliente> listaCliente = new ArrayList<>();
+            //Instancia uma nova cliente
+            cliente = new Cliente();
 
             //Grava um nova cliente no banco de dados
-            listaCliente = new ClienteDAO().Consultar();
-            ArrayList<TipoCliente> listaTipoCliente = new TipoClienteDAO().Consultar();
-            ArrayList<TipoFaturamento> listaTipoFaturamento = new TipoFaturamentoDAO().Consultar();
+            cliente = new ClienteDAO().Consultar(Integer.parseInt(req.getParameter("codigo")));
+
+            ArrayList<ContatoCliente> listaContatos = new ContatoClienteDAO().Consultar(cliente);
+
+            ArrayList<TipoContato> listaTiposDeContatos = new TipoContatoDAO().Consultar();
 
             //Atribui a ultima cliente como Atributo a ser enviado na próxima Requisição 
-            req.setAttribute("listaCliente", listaCliente);
-            req.setAttribute("listaTipoCliente", listaTipoCliente);
-            req.setAttribute("listaTipoFaturamento", listaTipoFaturamento);
+            req.setAttribute("Cliente", cliente);
+
+            //Atribui a lista de Contatos deste cliente
+            req.setAttribute("listaContatos", listaContatos);
+
+            //Atribui a lista de Tipos de Contatos
+            req.setAttribute("listaTiposDeContatos", listaTiposDeContatos);
 
         } catch (SQLException ex) {
-            System.err.println("Erro ao cosultar cliente no banco de dados. Detalhes: " + ex.getMessage());
+            System.err.println("Erro ao consultar cliente no banco de dados. Detalhes: " + ex.getMessage());
             return "erro.html";
         }
-        return "/WEB-INF/Paginas/cliente.jsp";
+        return "/WEB-INF/Paginas/registrarcontato.jsp";
     }
 
     @Override

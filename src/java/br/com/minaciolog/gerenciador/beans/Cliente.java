@@ -1,5 +1,8 @@
 package br.com.minaciolog.gerenciador.beans;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
 public class Cliente {
 
     private int codigo = 0;
@@ -8,6 +11,20 @@ public class Cliente {
     private int codigoTipoCliente = 0;
     private String descricaoFaturamento = "";
     private String descricaoTipoCliente = "";
+    private String dataInclusao;
+    
+    
+
+    public String getDataInclusao() {
+        return dataInclusao;
+    }
+
+    public void setDataInclusao(Date dataInclusao) {
+        
+        String dataFormatada = new SimpleDateFormat("dd/MM/yyyy").format(dataInclusao);
+        
+        this.dataInclusao = dataFormatada;
+    }
 
     /**
      * @return the codigo

@@ -35,13 +35,13 @@
                             <img src="img/minaciolog.png" alt="Logotipo Minacio Log">
                         </a>
                     </li>
-                    <li class="bold">
-                        <a href="#" class="waves-effect waves-teal">
+                    <li id="li-sobre" class="bold">
+                        <a href="#" class="waves-effect waves-light">
                             Sobre
                         </a>
                     </li>
-                    <li class="bold">
-                        <a href="#" class="waves-effect waves-teal">
+                    <li id="li-dashboard" class="bold">
+                        <a href="#" class="waves-effect waves-light">
                             DashBoard
                         </a>
                     </li>
@@ -50,15 +50,15 @@
                             Operação
                         </a>
                     </li>
-                    <li class="bold">
-                        <a href="Executa?logicaDeNegocio=ClienteServlet&tarefa=consultarLista" class="waves-effect waves-teal">
+                    <li id="li-clientes" class="bold">
+                        <a href="Executa?logicaDeNegocio=ClienteServlet&tarefa=consultarLista" class="waves-effect waves-light">
                             Clientes
                         </a>
                     </li>
                     <li class="no-padding">
                         <ul class="collapsible collapsible-accordion">
                             <li class="no-padding bold active">
-                                <a class="collapsible-header waves-effect waves-teal">
+                                <a class="collapsible-header waves-effect waves-light">
                                     Cadastros
                                 </a>
                                 <div class="collapsible-body" style="display: block;">
