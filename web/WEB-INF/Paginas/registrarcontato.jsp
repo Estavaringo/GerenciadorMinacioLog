@@ -3,9 +3,8 @@
     Created on : 09/04/2016, 19:00:03
     Author     : flaviosampaioreisdelima
 --%>
-
 <%@page import="java.util.Collection"%>
-<%@page import="br.com.minaciolog.gerenciador.beans.TipoCliente"%>
+<%@page import="br.com.minaciolog.gerenciador.beans.Cliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="header.jsp" %>
@@ -14,8 +13,24 @@
         <div class="container">
             <div class="row">
                 <div class="col s12 m9">
-                    <h1 class="header center-on-small-only">Tipo de Cliente</h1>
-                    <h4 class="light cyan-text text-lighten-4 center-on-small-only">Cadastro de Tipos de Clientes.</h4>
+                    <h1 class="header center-on-small-only">${Cliente.nome}</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m3">
+                    <h5 class="light cyan-text text-lighten-4 center-on-small-only">
+                        <i class="small material-icons ">stars</i>${Cliente.descricaoTipoCliente}
+                    </h5>
+                </div>
+                <div class="col s12 m3">
+                    <h5 class="light cyan-text text-lighten-4 center-on-small-only">
+                        <i class="small material-icons ">shopping_cart</i>${Cliente.descricaoFaturamento}
+                    </h5>
+                </div>
+                <div class="col s12 m3">
+                    <h5 class="light cyan-text text-lighten-4 center-on-small-only">
+                        <i class="small material-icons ">today</i>${Cliente.dataInclusao}
+                    </h5>
                 </div>
             </div>
         </div>
@@ -25,34 +40,44 @@
         <div class="col s9 m8 l9">
             <!-- CONTEÚDO DE CADA PÁGINA -->
             <div class="col s12 m8 l9">
+                
+                
+                
+                
+                
+                
+                
                 <div id="introduction" class="section scrollspy">
-                    <div class="divider"></div>
-                    <h4 class="header">Tipos de Clientes cadastrados</h4>
+                    <h4 class="header">Clientes cadastrados</h4>
                     <div class="section">
                         <table class="highlight">
                             <thead>
                                 <tr>
                                     <th data-field="codigo">Código</th>
-                                    <th data-field="descricao">Tipo de Cliente</th>
-                                    <th data-field="descricao">Ação</th>
+                                    <th data-field="descricao">Nome do Cliente</th>
+                                    <th data-field="tipo-cliente">Tipo de Faturamento</th>
+                                    <th data-field="tipo-faturamento">Tipo de Faturamento</th>
+                                    <th data-field="acao">Ação</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:if test="${not empty listaTipoCliente}">
-                                    <c:forEach var="tipoCliente" items="${listaTipoCliente}">
+                                <c:if test="${not empty listaCliente}">
+                                    <c:forEach var="cliente" items="${listaCliente}">
                                         <tr>
-                                            <th scope="row">${tipoCliente.codigo}</th>
-                                            <td id="descricao-${tipoCliente.codigo}"> ${tipoCliente.descricao}</td>
+                                            <th scope="row">${cliente.codigo}</th>
+                                            <td id="nome-${cliente.codigo}"> ${cliente.nome}</td>
+                                            <td id="tipo-cliente${cliente.codigo}"> ${cliente.descricaoTipoCliente}</td>
+                                            <td id="tipo-faturamento-${cliente.codigo}"> ${cliente.descricaoFaturamento}</td>
                                             <td>
                                                 <!-- Dropdown Trigger -->
-                                                <a class='dropdown-button btn-floating grey darken-2' href='#' data-constrainwidth="false" data-activates='dropdown${tipoCliente.codigo}'><i class="material-icons">menu</i></a>
+                                                <a class='dropdown-button btn-floating grey darken-2' href='#' data-constrainwidth="false" data-activates='dropdown${cliente.codigo}'><i class="material-icons">menu</i></a>
 
                                                 <!-- Dropdown Structure -->
-                                                <ul id='dropdown${tipoCliente.codigo}' class='dropdown-content'>
+                                                <ul id='dropdown${cliente.codigo}' class='dropdown-content'>
                                                     <li class="divider"></li>
-                                                    <li><a class="botao-alterar grey-text text-darken-4" id="${tipoCliente.codigo}"><i class="material-icons yellow-text text-darken-4">edit</i>Alterar</a></li>
+                                                    <li><a class="botao-alterar grey-text text-darken-4" id="${cliente.codigo}"><i class="material-icons yellow-text text-darken-4">edit</i>Alterar</a></li>
                                                     <li class="divider"></li>
-                                                    <li><a class="botao-excluir grey-text text-darken-4" id="${tipoCliente.codigo}"><i class="material-icons red-text">delete</i>Excluir</a></li>
+                                                    <li><a class="botao-excluir grey-text text-darken-4" id="${cliente.codigo}"><i class="material-icons red-text">delete</i>Excluir</a></li>
                                                 </ul>
                                             </td>
                                         </tr>
@@ -68,8 +93,8 @@
             <div id="modal-alterar" class="modal modal-fixed-footer">
                 <form method="POST" action="Executa">
                     <div class="modal-content">
-                        <h4>Alterar Tipo de Cliente</h4>
-                        <p>Altere o Tipo de Cliente selecionado:</p>
+                        <h4>Alterar Cliente</h4>
+                        <p>Altere o Cliente selecionado:</p>
 
                         <!--Nome das Classes que deverão ser informadas na requisição-->
                         <input type="hidden" name="logicaDeNegocio" value="TipoClienteServlet">
@@ -91,8 +116,8 @@
             <div id="modal-excluir" class="modal modal-fixed-footer">
                 <form method="POST" action="Executa">
                     <div class="modal-content">
-                        <h4>Excluir Tipo de Cliente</h4>
-                        <p>Confirme a exclusão do Tipo de Cliente selecionado:</p>
+                        <h4>Excluir Cliente</h4>
+                        <p>Confirme a exclusão do Cliente selecionado:</p>
 
                         <!--Nome das Classes que deverão ser informadas na requisição-->
                         <input type="hidden" name="logicaDeNegocio" value="TipoClienteServlet">
@@ -120,20 +145,39 @@
             <div id="modal-incluir" class="modal modal-fixed-footer">
                 <form method="POST" action="Executa">
                     <div class="modal-content">
-                        <h4>Incluir Tipo de Cliente</h4>
-                        <p>Insira abaixo o novo Tipo de Cliente:</p>
+                        <h4>Incluir Cliente</h4>
+                        <p>Insira os dados do novo Cliente:</p>
 
                         <!--Nome das Classes que deverão ser informadas na requisição-->
-                        <input type="hidden" name="logicaDeNegocio" value="TipoClienteServlet">
+                        <input type="hidden" name="logicaDeNegocio" value="ClienteServlet">
                         <input type="hidden" name="tarefa" value="incluir">
-
+                        
                         <div class="input-field">
-                            <i class="material-icons prefix">description</i>
-                            <input id="descricao-incluir" placeholder="Insira o texto aqui" type="text" name="descricao" value="" />
+                            <i class="material-icons prefix">account_circle</i>
+                            <label for="descricao-incluir">Nome</label>
+                            <input id="descricao-incluir" type="text" class="validate" name="descricao" value="" />
+                        </div>
+                        
+                        <div class="input-field">
+                            <select name="tipoCliente">
+                                <option value="" disabled selected>Escolha o Tipo de Cliente</option>
+                                <c:forEach var="tipoCliente" items="${listaTipoCliente}">
+                                    <option value="${tipoCliente.codigo}" class="form-control" >${tipoCliente.descricao}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <select name="tipoFaturamento">
+                                <option value="" disabled selected>Escolha o Tipo de Faturamento</option>
+                                <c:forEach var="tipoFaturamento" items="${listaTipoFaturamento}">
+                                    <option value="${tipoFaturamento.codigo}" >${tipoFaturamento.descricao}</option>
+                                </c:forEach>
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default" value="Incluir">Incluir</button>
+                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default" value="Cadastrar">Cadastrar</button>
                         <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
                     </div>
                 </form>

@@ -8,6 +8,10 @@
  * Made By MaterializeCSS.com
  */
 
+a.waves-effect.waves-teal{
+    width: 240px;
+}
+
 #slide-out li.search {
     position: absolute;
     left: 0;
@@ -23,7 +27,7 @@
 }
 
 #index-banner{
-    background-color: #ee6e73;
+    background-color: #00acc1;
 }
 
 #index-banner .header{

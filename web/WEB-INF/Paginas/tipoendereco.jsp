@@ -71,7 +71,7 @@
                     <div class="row">
                         <div class="col s12 m9">
                             <h1 class="header center-on-small-only">Tipo de Endereco</h1>
-                            <h4 class="light red-text text-lighten-4 center-on-small-only">Cadastro de Tipos de Enderecos.</h4>
+                            <h4 class="light cyan-text text-lighten-4 center-on-small-only">Cadastro de Tipos de Enderecos.</h4>
                         </div>
                     </div>
                 </div>

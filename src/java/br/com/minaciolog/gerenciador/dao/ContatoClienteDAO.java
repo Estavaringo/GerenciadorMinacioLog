@@ -146,7 +146,7 @@ public class ContatoClienteDAO implements DAO<ContatoCliente> {
             ArrayList<ContatoCliente> listaContato = new ArrayList<>();
             bd.conectar();
 
-            String strSQL = "SELECT CONT_ID, CONT_DESC, CONT_NM, TIPO_CONTATO_TICO_ID, CLIENTE_CLIE_ID FROM contato_cliente WHERE CLIE_ID = ?";
+            String strSQL = "SELECT CONT_ID, CONT_DESC, CONT_NM, TIPO_CONTATO_TICO_ID, CLIENTE_CLIE_ID FROM contato_cliente WHERE CLIENTE_CLIE_ID = ?";
 
             PreparedStatement p = bd.connection.prepareStatement(strSQL);
             p.setInt(1, cliente.getCodigo());
