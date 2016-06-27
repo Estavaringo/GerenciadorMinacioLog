@@ -11,7 +11,7 @@ public class Job {
     private Date dataEntrada;
     private Date dataSaida;
     private double valor;
-    private String qtdParcelas;
+    private int qtdParcelas;
     private String Observacao;
     private int codigoCliente;
     private int tipoFaturamento;
@@ -103,14 +103,14 @@ public class Job {
     /**
      * @return the qtdParcelas
      */
-    public String getQtdParcelas() {
+    public int getQtdParcelas() {
         return qtdParcelas;
     }
 
     /**
      * @param qtdParcelas the qtdParcelas to set
      */
-    public void setQtdParcelas(String qtdParcelas) {
+    public void setQtdParcelas(int qtdParcelas) {
         this.qtdParcelas = qtdParcelas;
     }
 

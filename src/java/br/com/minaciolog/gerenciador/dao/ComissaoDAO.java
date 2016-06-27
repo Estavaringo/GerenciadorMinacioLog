@@ -138,5 +138,22 @@ public class ComissaoDAO implements DAO<Comissao> {
         }
     }
 
+    public void ExcluirJOB(int codigo) throws SQLException {
+        try {
+            bd.conectar();
+            String strSql
+                    = "DELETE FROM comissao WHERE JOB_JOB_ID = ?";
+            PreparedStatement p
+                    = bd.connection.prepareStatement(strSql);
+            p.setInt(1, codigo);
+            p.execute();
+            p.close();
+            bd.desconectar();
+        } catch (SQLException ex) {
+            bd.desconectar();
+            throw ex;
+        }
+    }
+
 
 }

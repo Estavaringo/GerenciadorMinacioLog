@@ -5,17 +5,21 @@
  */
 package br.com.minaciolog.gerenciador.servlet;
 
+import br.com.minaciolog.gerenciador.beans.Cliente;
+import br.com.minaciolog.gerenciador.beans.Comissao;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import br.com.minaciolog.gerenciador.beans.Job;
+import br.com.minaciolog.gerenciador.beans.TipoFaturamento;
+import br.com.minaciolog.gerenciador.dao.ClienteDAO;
+import br.com.minaciolog.gerenciador.dao.ComissaoDAO;
 import br.com.minaciolog.gerenciador.dao.JobDAO;
+import br.com.minaciolog.gerenciador.dao.TipoFaturamentoDAO;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -39,13 +43,14 @@ public class JobServlet implements LogicaDeNegocio {
 
                     //instancia uma nova job
                     job = new Job();
+                    Comissao comissao = new Comissao();
 
                     //Atribui as informações da job no objeto
                     job.setCodigoECalc(Integer.parseInt(req.getParameter("codigoECalc")));
                     job.setTitulo(req.getParameter("titulo"));
                     job.setCodigoOS(Integer.parseInt(req.getParameter("codigoOS")));
                     job.setValor(Double.parseDouble(req.getParameter("valor")));
-                    job.setQtdParcelas(req.getParameter("qtdParcelas"));
+                    job.setQtdParcelas(Integer.parseInt(req.getParameter("qtdParcelas")));
                     job.setObservacao(req.getParameter("observacao"));
                     job.setCodigoCliente(Integer.parseInt(req.getParameter("codigoCliente")));
                     job.setTipoFaturamento(Integer.parseInt(req.getParameter("tipoFaturamento")));
@@ -54,12 +59,30 @@ public class JobServlet implements LogicaDeNegocio {
                     Date sql = new Date(date.getTime());
                     job.setDataEntrada(sql);
 
+                    System.out.println(sql);
+                    
                     date = formato.parse(req.getParameter("dataSaida"));
                     sql = new Date(date.getTime());
                     job.setDataSaida(sql);
+                    
+                    System.out.println(sql);
+
+                    //Atribui informações de comissao ao objeto comissao
+                    comissao.setBv(Float.parseFloat(req.getParameter("bv")));
+                    comissao.setBvAgencia(Float.parseFloat(req.getParameter("bvAgencia")));
+                    comissao.setBvProdutor(Float.parseFloat(req.getParameter("bvProdutor")));
 
                     //Grava um nova job no banco de dados
                     new JobDAO().Incluir(job);
+
+                    //recupera codigo do job gravado no banco
+                    job = new JobDAO().ConsultarCodigo(Integer.parseInt(req.getParameter("codigoECalc")));
+
+                    //atribui o codigo do job ao objeto comiss      ao
+                    comissao.setCodigoJob(job.getCodigo());
+
+                    //grava uma nova comissao no banco de dados
+                    new ComissaoDAO().Incluir(comissao);
 
                     //Atribui a ultima job como Atributo a ser enviado na próxima Requisição 
                     req.setAttribute("incluidoJob", job);
@@ -81,24 +104,10 @@ public class JobServlet implements LogicaDeNegocio {
 
                     //Atribui as informações da job no objeto
                     job.setCodigo(Integer.parseInt(req.getParameter("codigo")));
-                    job.setCodigoECalc(Integer.parseInt(req.getParameter("codigoECalc")));
-                    job.setTitulo(req.getParameter("titulo"));
-                    job.setCodigoOS(Integer.parseInt(req.getParameter("codigoOS")));
-                    job.setValor(Double.parseDouble(req.getParameter("valor")));
-                    job.setQtdParcelas(req.getParameter("qtdParcelas"));
-                    job.setObservacao(req.getParameter("observacao"));
-                    job.setCodigoCliente(Integer.parseInt(req.getParameter("codigoCliente")));
-                    job.setTipoFaturamento(Integer.parseInt(req.getParameter("tipoFaturamento")));
 
-                    java.util.Date date = formato.parse(req.getParameter("dataEntrada"));
-                    Date sql = new Date(date.getTime());
-                    job.setDataEntrada(sql);
-
-                    date = formato.parse(req.getParameter("dataSaida"));
-                    sql = new Date(date.getTime());
-                    job.setDataSaida(sql);
 
                     //Exclui job no banco de dados
+                    new ComissaoDAO().ExcluirJOB(job.getCodigo());
                     new JobDAO().Excluir(Integer.parseInt(req.getParameter("codigo")));
 
                     //Atribui a ultima job como Atributo a ser enviado na próxima Requisição 
@@ -106,9 +115,6 @@ public class JobServlet implements LogicaDeNegocio {
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao remover job no banco de dados. Detalhes: " + ex.getMessage());
-                    return "erro.html";
-                } catch (ParseException ex) {
-                    System.err.println("Erro ao formatar a data. Detalhes: " + ex.getMessage());
                     return "erro.html";
                 }
                 break;
@@ -125,7 +131,7 @@ public class JobServlet implements LogicaDeNegocio {
                     job.setTitulo(req.getParameter("titulo"));
                     job.setCodigoOS(Integer.parseInt(req.getParameter("codigoOS")));
                     job.setValor(Double.parseDouble(req.getParameter("valor")));
-                    job.setQtdParcelas(req.getParameter("qtdParcelas"));
+                    job.setQtdParcelas(Integer.parseInt(req.getParameter("qtdParcelas")));
                     job.setObservacao(req.getParameter("observacao"));
                     job.setCodigoCliente(Integer.parseInt(req.getParameter("codigoCliente")));
                     job.setTipoFaturamento(Integer.parseInt(req.getParameter("tipoFaturamento")));
@@ -173,24 +179,45 @@ public class JobServlet implements LogicaDeNegocio {
             case "consultarLista":
                 try {
 
-                    ArrayList<Job> listaJob = new ArrayList<>();
-
                     //Grava um nova job no banco de dados
-                    listaJob = new JobDAO().Consultar();
+                    ArrayList<Job> listaJob = new JobDAO().Consultar();
+                    ArrayList<Cliente> listaCliente = new ClienteDAO().Consultar();
+                    ArrayList<TipoFaturamento> listaTipoFaturamento = new TipoFaturamentoDAO().Consultar();
 
                     //Atribui a ultima job como Atributo a ser enviado na próxima Requisição 
                     req.setAttribute("listaJob", listaJob);
+                    req.setAttribute("listaCliente", listaCliente);
+                    req.setAttribute("listaTipoFaturamento", listaTipoFaturamento);
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao cosultar job no banco de dados. Detalhes: " + ex.getMessage());
                     return "erro.html";
                 }
-                break;
+                return "/WEB-INF/Paginas/job.jsp";
             default:
                 System.err.println("Erro ao cosultar job no banco de dados. Ação inválida!");
                 return "erro.html";
 
         }
+        try {
+
+            ArrayList<Job> listaJob = new ArrayList<>();
+
+            //Grava um nova job no banco de dados
+            listaJob = new JobDAO().Consultar();
+            ArrayList<Cliente> listaCliente = new ClienteDAO().Consultar();
+            ArrayList<TipoFaturamento> listaTipoFaturamento = new TipoFaturamentoDAO().Consultar();
+
+            //Atribui a ultima job como Atributo a ser enviado na próxima Requisição 
+            req.setAttribute("listaJob", listaJob);
+            req.setAttribute("listaCliente", listaCliente);
+            req.setAttribute("listaTipoFaturamento", listaTipoFaturamento);
+
+        } catch (SQLException ex) {
+            System.err.println("Erro ao cosultar job no banco de dados. Detalhes: " + ex.getMessage());
+            return "erro.html";
+        }
+
         return "/WEB-INF/Paginas/job.jsp";
     }
 

@@ -46,7 +46,7 @@
                         </a>
                     </li>
                     <li class="bold">
-                        <a href="#" class="waves-effect waves-teal">
+                        <a href="Executa?logicaDeNegocio=JobServlet&tarefa=consultarLista" class="waves-effect waves-teal">
                             Operação
                         </a>
                     </li>
