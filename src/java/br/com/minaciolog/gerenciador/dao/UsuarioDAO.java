@@ -29,7 +29,7 @@ public class UsuarioDAO implements DAO<Usuario> {
             }
 
             bd.conectar();
-            String strSQL = "SELECT LOGI_USER, LOGI_PASS, LOGI_PERF FROM login WHERE LOGI_USER = ? AND LOGI_PASS = ?";
+            String strSQL = "SELECT LOGI_USER, LOGI_PASS, LOGI_PERF, LOGI_NM FROM login WHERE LOGI_USER = ? AND LOGI_PASS = ?";
             PreparedStatement p = bd.connection.prepareStatement(strSQL);
             p.setString(1, email);
             p.setString(2, senha);
@@ -38,6 +38,7 @@ public class UsuarioDAO implements DAO<Usuario> {
                 usuario = new Usuario();
                 usuario.setEmail(rs.getString("LOGI_USER"));
                 usuario.setSenha(rs.getString("LOGI_PASS"));
+                usuario.setNome(rs.getString("LOGI_NM"));
                 usuario.setPerfil(rs.getString("LOGI_PERF"));
                 p.close();
                 bd.desconectar();
@@ -57,12 +58,13 @@ public class UsuarioDAO implements DAO<Usuario> {
         try {
             bd.conectar();
             String strSql
-                    = "INSERT INTO login (LOGI_USER, LOGI_PASS, LOGI_PERF) VALUES (?,?,?)";
+                    = "INSERT INTO login (LOGI_USER, LOGI_PASS, LOGI_PERF, LOGI_NM) VALUES (?,?,?,?)";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
             p.setString(1, usuario.getEmail());
             p.setString(2, usuario.getSenha());
             p.setString(3, usuario.getPerfil());
+            p.setString(4, usuario.getNome());
             p.execute();
             p.close();
             bd.desconectar();
@@ -116,12 +118,14 @@ public class UsuarioDAO implements DAO<Usuario> {
             bd.conectar();
             Statement comando;
             comando = bd.connection.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT LOGI_USER, LOGI_PASS, LOGI_PERF FROM login");
+            ResultSet rs = comando.executeQuery("SELECT LOGI_USER, LOGI_PASS, LOGI_PERF, LOGI_NM FROM login");
             while (rs.next()) {
                 Usuario obj = new Usuario();
                 obj.setEmail(rs.getString("LOGI_USER"));
                 obj.setSenha(rs.getString("LOGI_PASS"));
                 obj.setPerfil(rs.getString("LOGI_PERF"));
+                obj.setNome(rs.getString("LOGI_NM"));
+                
                 lista.add(obj);
             }
             bd.desconectar();
@@ -151,7 +155,7 @@ public class UsuarioDAO implements DAO<Usuario> {
             }
 
             bd.conectar();
-            String strSQL = "SELECT LOGI_USER, LOGI_PASS, LOGI_PERF FROM login WHERE LOGI_USER = ?";
+            String strSQL = "SELECT LOGI_USER, LOGI_PASS, LOGI_PERF, LOGI_NM FROM login WHERE LOGI_USER = ?";
             PreparedStatement p = bd.connection.prepareStatement(strSQL);
             p.setString(1, email);
             ResultSet rs = p.executeQuery();
@@ -160,6 +164,7 @@ public class UsuarioDAO implements DAO<Usuario> {
                 usuario.setEmail(rs.getString("LOGI_USER"));
                 usuario.setSenha(rs.getString("LOGI_PASS"));
                 usuario.setPerfil(rs.getString("LOGI_PERF"));
+                usuario.setNome(rs.getString("LOGI_NM"));
                 p.close();
                 bd.desconectar();
                 return usuario;
