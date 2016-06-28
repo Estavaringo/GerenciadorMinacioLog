@@ -29,7 +29,7 @@
                     <div class="divider"></div>
                     <h4 class="header">Tipos de Faturamentos cadastrados</h4>
                     <div class="section">
-                        <table class="highlight">
+                        <table class="responsive-table">
                             <thead>
                                 <tr>
                                     <th data-field="codigo">Código</th>
@@ -100,7 +100,7 @@
                         <input type="hidden" name="codigo" id="codigo-excluir">
 
                         <div class="input-field">
-                            <i class="material-icons prefix">description</i>
+                            <i class="material-icons prefix">delete</i>
                             <input disabled class="grey-text text-darken-4" id="descricao-excluir" type="text" name="descricao" value="" />
                         </div>
                     </div>

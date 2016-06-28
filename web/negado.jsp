@@ -23,7 +23,7 @@
             <div class="col s12 m8 l9">
                 <div id="introduction" class="section scrollspy">
                     <div class="divider"></div>
-                        <h4 class="header">Faça login para ter acesso aos conteúdos!</h4>
+                        <h4 class="header">Faça login para ter acesso ao sistema!</h4>
                         <a href="index.jsp" class="btn btn-default">
                             Fazer Login
                         </a>

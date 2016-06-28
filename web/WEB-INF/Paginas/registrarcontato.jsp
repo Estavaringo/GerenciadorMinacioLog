@@ -52,7 +52,7 @@
                 <div id="introduction" class="section scrollspy">
                     <h4 class="header">Clientes cadastrados</h4>
                     <div class="section">
-                        <table class="highlight">
+                        <table class="responsive-table">
                             <thead>
                                 <tr>
                                     <th data-field="codigo">Código</th>
