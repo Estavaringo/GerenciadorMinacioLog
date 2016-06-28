@@ -29,7 +29,7 @@
                     <div class="divider"></div>
                     <h4 class="header">Cidades cadastradas</h4>
                     <div class="section">
-                        <table id="table" class="highlight">
+                        <table id="table" class="responsive-table">
                             <thead>
                                 <tr>
                                     <th data-field="codigo">Código</th>

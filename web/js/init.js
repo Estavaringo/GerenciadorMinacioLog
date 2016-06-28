@@ -25,7 +25,7 @@ $(document).ready(function () {
 
         $('#modal-alterar').openModal('');
     });
-    
+
     $(".botao-alterar-job").click(function () {
 
         var codigo = this.id;
@@ -33,21 +33,32 @@ $(document).ready(function () {
         var descricao = $('#descricao-' + codigo).text();
         var ecalc = $('#ecalc-' + codigo).text();
         var os = $('#os-' + codigo).text();
-        var valor = $('#valor-' + codigo).text();
-        var bv = $('#bv-' + codigo).text();
-        var bvAgencia = $('#bv-agencia-' + codigo).text();
-        var bvProdutor = $('#bv-produtor-' + codigo).text();
+        var valor = $('#valor-' + codigo);
+        var bv = $('#bv-' + codigo);
+        var bvAgencia = $('#bv-agencia-' + codigo);
+        var bvProdutor = $('#bv-produtor-' + codigo);
         var observacao = $('#observacao-' + codigo).text();
+        var dataEntrada = $('#data-entrada-' + codigo).text();
+        var dataSaida = $('#data-saida-' + codigo).text();
 
         $('#codigo-alterar').val(codigo);
         $('#descricao-alterar').val(descricao);
         $('#ecalc-alterar').val(ecalc);
         $('#os-alterar').val(os);
-        $('#valor-alterar').val(valor);
-        $('#bv-alterar').val(bv);
-        $('#bv-agencia-alterar').val(bvAgencia);
-        $('#bv-produtor-alterar').val(bvProdutor);
+        $('#valor-alterar').val(valor).text();
+        $('#bv-alterar').val(bv*100/valor).text();
+        $('#bv-agencia-alterar').val(bvAgencia*100/valor).text();
+        $('#bv-produtor-alterar').val(bvProdutor*100/valor).text();
         $('#observacao-alterar').val(observacao);
+/*
+        $(".data-entrada-alterar").datepicker({}).on("show", function () {
+            $(this).val(dataEntrada).datepicker('update');
+        });
+        
+        $(".data-saida-alterar").datepicker({}).on("show", function () {
+            $(this).val(dataSaida).datepicker('update');
+        });
+        */
 
         $('#modal-alterar').openModal('');
     });

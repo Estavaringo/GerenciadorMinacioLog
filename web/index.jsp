@@ -33,11 +33,37 @@
                         <form method="POST" action="Executa">
                             <input type="hidden" name="logicaDeNegocio" value="Login">
 
+                            <br><br>
+
+                            <c:if test="${not empty usuarioInvalido}">    
+                                <div class="row">
+                                    <div class="col s12 m12 l12">
+                                        <div class="card-panel red darken-1">
+                                            <span class="white-text">
+                                                <i class="material-icons left">report_problem</i>E-mail informado é inválido. Por favor, verifique e tente novamente.
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:if>
                             <div class="input-field">
                                 <i class="material-icons prefix">perm_identity</i>
                                 <label for="descricao-incluir">E-Mail</label>
-                                <input id="descricao-incluir" type="email" class="validate" name="email" value="" />
+                                <input id="descricao-incluir" type="email" data-error="e-mail inválido" class="validate" name="email" value="" />
                             </div>
+
+
+                            <c:if test="${not empty senhaInvalida}">
+                                <div class="row">
+                                    <div class="col s12 m12 l12">
+                                        <div class="card-panel red darken-1">
+                                            <span class="white-text">
+                                                <i class="material-icons left">report_problem</i>Senha informada está incorreta. Por favor, verifique e tente novamente.
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                </c:if>
                             <div class="input-field">
                                 <i class="material-icons prefix">lock</i>
                                 <label for="descricao-incluir">Senha</label>

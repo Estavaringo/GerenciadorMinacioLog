@@ -26,7 +26,7 @@
         <!-- ARMAZENAR TODAS AS DIVS DE CONTEÚDO DO SITE -->
         <div class="col s9 m8 l9">
             <!-- CONTEÚDO DE CADA PÁGINA -->
-            <div class="col s12 m8 l9">
+            <div class="col s12 m8 l11">
                 <div id="introduction" class="section scrollspy">
                     <div class="divider"></div>
                     <h4 class="header">Jobs cadastrados</h4>
@@ -141,12 +141,12 @@
 
                         <div class="input-field">
                             <label for="datepicker">Data de Entrada</label>
-                            <input type="date" class="datepicker" id="datepicker" name="dataEntrada">
+                            <input type="date" class="datepicker" id="data-entrada-alterar" name="dataEntrada">
                         </div>
 
                         <div class="input-field">
                             <label for="datepicker">Data de Saida</label>
-                            <input type="date" id="datepicker" class="datepicker" name="dataSaida">
+                            <input type="date" id="data-saida-alterar" class="datepicker" name="dataSaida">
                         </div>
 
 
@@ -334,7 +334,7 @@
             </div>
 
             <!-- ATALHOS DAS SESSÕES DA PÁGINA -->
-            <div class="col hide-on-small-only m3 l2">
+            <div class="col hide-on-small-only m3 l1">
                 <div class="tabs-wrapper" style="top: 0px;">
                     <ul class="section table-of-contents">
                         <li><a href="#introduction">Topo da Página</a></li>

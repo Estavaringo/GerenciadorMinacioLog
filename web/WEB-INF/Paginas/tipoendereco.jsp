@@ -29,7 +29,7 @@
                     <div class="divider"></div>
                     <h4 class="header">Tipos de Enderecos cadastrados</h4>
                     <div class="section">
-                        <table class="highlight">
+                        <table class="responsive-table">
                             <thead>
                                 <tr>
                                     <th data-field="codigo">Código</th>

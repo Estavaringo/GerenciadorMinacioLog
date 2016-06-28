@@ -29,7 +29,7 @@
                     <div class="divider"></div>
                     <h4 class="header">Tipos de Contatos Cadastrados</h4>
                     <div class="section">
-                        <table id="example" class="highlight">
+                        <table id="example" class="responsive-table">
                             <thead>
                                 <tr>
                                     <th data-field="codigo">Código</th>

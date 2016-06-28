@@ -39,11 +39,17 @@ public class Login implements LogicaDeNegocio {
             usuario = new UsuarioDAO().Consultar(email);
 
             if (usuario == null) {
-                return "UsuarioInvalido.html";
+                HttpSession session = req.getSession();
+                session.setAttribute("usuarioInvalido", true);
+                return "index.jsp";
             } else if (!senha.equals(usuario.getSenha())) {
-                return "SenhaInvalida.html";
+                HttpSession session = req.getSession();
+                session.setAttribute("senhaInvalida", true);
+                return "index.jsp";
             } else {
                 HttpSession session = req.getSession();
+                session.removeAttribute("senhaInvalida");
+                session.removeAttribute("usuarioInvalido");
                 session.setAttribute("usuarioLogado", usuario);
                 return "index.jsp";
             }
