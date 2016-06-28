@@ -7,7 +7,7 @@
 <%@ include file="/WEB-INF/Paginas/header.jsp" %>
 
 <main>
-    <div class="section" id="index-banner">
+    <div class="section <c:if test="${not empty usuarioLogado}">no-padding</c:if>" id="index-banner">
         <div class="container">
             <div class="row">
                 <div class="col s12 m9">
@@ -27,7 +27,6 @@
             <!-- CONTEÚDO DE CADA PÁGINA -->
             <div class="col s12 m8 l9">
                 <div id="introduction" class="section scrollspy">
-                    <div class="divider"></div>
                     <c:if test="${empty usuarioLogado}">
                         <h4 class="header">Login</h4>
                         <form method="POST" action="Executa">
@@ -48,18 +47,6 @@
 
                         </form>
                     </c:if>
-
-                    <c:if test="${not empty usuarioLogado}">
-                        <h4 class="header">Bem-vindo ${usuarioLogado.email}</h4>
-                    </c:if>
-                </div>
-            </div>
-            <!-- ATALHOS DAS SESSÕES DA PÁGINA -->
-            <div class="col hide-on-small-only m3 l2">
-                <div class="tabs-wrapper" style="top: 0px;">
-                    <ul class="section table-of-contents">
-                        <li><a href="#introduction">Topo da Página</a></li>
-                    </ul>
                 </div>
             </div>		
         </div>
