@@ -12,6 +12,10 @@ a.waves-effect.waves-teal{
     width: 240px;
 }
 
+li.menu-lateral{
+    padding: 0px;
+}
+
 #slide-out li.search {
     position: absolute;
     left: 0;
@@ -21,6 +25,8 @@ a.waves-effect.waves-teal{
     padding: 1px 0 0 0;
     z-index: 2
 }
+
+
 
 #slide-out li.search:hover {
     background-color: #fff
@@ -58,10 +64,6 @@ ul.side-nav.fixed li.logo:hover {
 
 header, main, footer {
 	padding-left: 240px;
-}
-
-.container{
-    margin-left: 20px;
 }
 
 @media only screen and (max-width : 992px) {

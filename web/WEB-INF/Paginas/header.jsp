@@ -20,7 +20,7 @@
     <body>
         <header>
             <!-- ÁREA DO USUÁRIO -->
-            <ul id="dropdown1" class="dropdown-content">
+            <ul id="dropdown-user" class="dropdown-content">
                 <li class="divider"></li>
                 <li><a href="Executa?logicaDeNegocio=Logout"><i class="material-icons left">close</i>Sair</a></li>
             </ul>
@@ -35,7 +35,7 @@
                         <ul class="right">
                             <!-- Dropdown Trigger -->
                             <li>
-                                <a class="dropdown-button" href="#!" data-activates="dropdown1">
+                                <a class="dropdown-button" href="#!" data-activates="dropdown-user">
                                     <b class="hide-on-med-and-down">Olá ${usuarioLogado.nome}</b><i class="material-icons right">account_circle</i><i class="material-icons right hide-on-med-and-down">arrow_drop_down</i>
                                 </a>
                             </li>
@@ -50,41 +50,41 @@
                             <img src="img/minaciolog.png" alt="Logotipo Minacio Log">
                         </a>
                     </li>
-                    <li id="li-sobre" class="bold">
+                    <li id="li-sobre" class="menu-lateral bold">
                         <a href="#" class="waves-effect waves-light">
                             <b>Sobre</b>
                         </a>
                     </li>
-                    <li id="li-dashboard" class="bold">
-                        <a href="#" class="waves-effect waves-light">
+                    <li id="li-dashboard" class="menu-lateral bold">
+                        <a href="#" class="menu-lateral waves-effect waves-light">
                             <b>DashBoard</b>
                         </a>
                     </li>
-                    <li class="bold">
-                        <a href="Executa?logicaDeNegocio=JobServlet&tarefa=consultarLista" class="waves-effect waves-teal">
+                    <li class="menu-lateral bold">
+                        <a href="Executa?logicaDeNegocio=JobServlet&tarefa=consultarLista" class="menu-lateral waves-effect waves-teal">
                             <b>Operação</b>
                         </a>
                     </li>
-                    <li id="li-clientes" class="bold">
-                        <a href="Executa?logicaDeNegocio=ClienteServlet&tarefa=consultarLista" class="waves-effect waves-light">
+                    <li id="li-clientes" class="menu-lateral bold">
+                        <a href="Executa?logicaDeNegocio=ClienteServlet&tarefa=consultarLista" class="menu-lateral waves-effect waves-light">
                             <b>Clientes</b>
                         </a>
                     </li>
-                    <li class="no-padding">
+                    <li class="menu-lateral">
                         <ul class="collapsible collapsible-accordion">
-                            <li class="no-padding bold active">
-                                <a class="collapsible-header waves-effect waves-light">
+                            <li class="menu-lateral bold active">
+                                <a class="collapsible-header menu-lateral waves-effect waves-light">
                                     <b>Cadastros</b>
                                 </a>
                                 <div class="collapsible-body" style="display: block;">
                                     <ul>
                                         <!--Para deixar algum item ativado, adicionar class="active" -->
-                                        <li><a href="Executa?logicaDeNegocio=TipoClienteServlet&tarefa=consultarLista"><b>Tipo de Cliente</b></a></li>
-                                        <li><a href="Executa?logicaDeNegocio=TipoContatoServlet&tarefa=consultarLista"><b>Tipo de Contato</b></a></li>
-                                        <li><a href="Executa?logicaDeNegocio=TipoEnderecoServlet&tarefa=consultarLista"><b>Tipo de Endereço</b></a></li>
-                                        <li><a href="Executa?logicaDeNegocio=TipoFaturamentoServlet&tarefa=consultarLista"><b>Tipo de Faturamento</b></a></li>
-                                        <li><a href="Executa?logicaDeNegocio=CidadeServlet&tarefa=consultarLista"><b>Cidade</b></a></li>
-                                        <li><a href="Executa?logicaDeNegocio=UFServlet&tarefa=consultarLista"><b>UF</b></a></li>
+                                        <li><a class="menu-lateral" href="Executa?logicaDeNegocio=TipoClienteServlet&tarefa=consultarLista">Tipo de Cliente</a></li>
+                                        <li><a class="menu-lateral" href="Executa?logicaDeNegocio=TipoContatoServlet&tarefa=consultarLista">Tipo de Contato</a></li>
+                                        <li><a class="menu-lateral" href="Executa?logicaDeNegocio=TipoEnderecoServlet&tarefa=consultarLista">Tipo de Endereço</a></li>
+                                        <li><a class="menu-lateral" href="Executa?logicaDeNegocio=TipoFaturamentoServlet&tarefa=consultarLista">Tipo de Faturamento</a></li>
+                                        <li><a class="menu-lateral" href="Executa?logicaDeNegocio=CidadeServlet&tarefa=consultarLista">Cidade</a></li>
+                                        <li><a class="menu-lateral" href="Executa?logicaDeNegocio=UFServlet&tarefa=consultarLista">UF</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -92,7 +92,7 @@
                     </li>
 
                     <c:if test="${not empty usuarioLogado}">
-                        <li id="li-clientes" class="bold">
+                        <li id="li-clientes" class="menu-lateral bold">
                             <a href="Executa?logicaDeNegocio=Logout" class="waves-effect waves-light">
                                 Sair
                             </a>

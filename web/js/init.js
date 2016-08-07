@@ -12,8 +12,6 @@ $(document).ready(function () {
 
     $('.scrollspy').scrollSpy();
 
-    $('.tabs-wrapper').pushpin({top: $('.tabs-wrapper').offset().top});
-
     $(".botao-alterar").click(function () {
 
         var codigo = this.id;
