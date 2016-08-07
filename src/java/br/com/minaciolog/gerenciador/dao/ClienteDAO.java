@@ -6,6 +6,7 @@
 package br.com.minaciolog.gerenciador.dao;
 
 import br.com.minaciolog.gerenciador.beans.Cliente;
+import br.com.minaciolog.gerenciador.beans.Job;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -179,6 +180,51 @@ public class ClienteDAO implements DAO<Cliente> {
                 obj.setCodigoFaturamento(rs.getInt("TIPO_FATURAMENTO_TIFA_ID"));
                 obj.setCodigoTipoCliente(rs.getInt("TIPO_CLIENTE_TICL_ID"));
                 lista.add(obj);
+            }
+            p.close();
+            bd.desconectar();
+            return lista;
+        } catch (SQLException ex) {
+            bd.desconectar();
+            throw ex;
+        }
+    }
+
+    public ArrayList<Job> ConsultarJob(int codigo) throws SQLException {
+        try {
+            Job obj = null;
+            ArrayList<Job> lista = new ArrayList<>();
+            bd.conectar();
+            String strSQL = "SELECT A.JOB_ID, A.JOB_CODIGO, A.JOB_TITU, A.JOB_OS, A.JOB_DT_ENTR, A.JOB_DT_SAIDA, A.JOB_VALOR, "
+                    + "A.JOB_OBS, A.JOB_QTDE_PARC, A.CLIENTE_CLIE_ID, A.TIPO_FATURAMENTO_TIFA_ID, B.COMI_BV, B.COMI_BV_AGEN, B.COMI_BV_PROD, "
+                    + "C.CLIE_NM FROM job A "
+                    + "JOIN comissao B ON A.JOB_ID = B.JOB_JOB_ID "
+                    + "JOIN cliente C ON A.CLIENTE_CLIE_ID = C.CLIE_ID "
+                    + "WHERE A.CLIENTE_CLIE_ID = ?";
+            
+            PreparedStatement p = bd.connection.prepareStatement(strSQL);
+            p.setInt(1, codigo);
+            ResultSet rs = p.executeQuery();
+            if (rs.next()) {
+                obj = new Job();
+                obj.setCodigo(rs.getInt("JOB_ID"));
+                obj.setCodigoECalc(rs.getInt("JOB_CODIGO"));
+                obj.setTitulo(rs.getString("JOB_TITU"));
+                obj.setCodigoOS(rs.getInt("JOB_OS"));
+                obj.setDataEntrada(rs.getDate("JOB_DT_ENTR"));
+                obj.setDataSaida(rs.getDate("JOB_DT_SAIDA"));
+                obj.setValor(rs.getDouble("JOB_VALOR"));
+                obj.setObservacao(rs.getString("JOB_OBS"));
+                obj.setQtdParcelas(rs.getInt("JOB_QTDE_PARC"));
+                obj.setCodigoCliente(rs.getInt("CLIENTE_CLIE_ID"));
+                obj.setTipoFaturamento(rs.getInt("TIPO_FATURAMENTO_TIFA_ID"));
+                obj.setBv(rs.getFloat("COMI_BV"));
+                obj.setBvAgencia(rs.getFloat("COMI_BV_AGEN"));
+                obj.setBvProdutor(rs.getFloat("COMI_BV_PROD"));
+                obj.setCliente(rs.getString("CLIE_NM"));
+                p.close();
+                bd.desconectar();
+                return lista;
             }
             p.close();
             bd.desconectar();

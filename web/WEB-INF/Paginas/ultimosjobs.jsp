@@ -38,9 +38,9 @@
     </div>
     <div class="row" style="margin: 10px;">
         <div class="col s12 m12 l12 center-on-small-only">
-            <a class="waves-effect waves-light btn-large red" style="width: 222px"><i class="material-icons left">contact_phone</i>Agenda</a>
+            <a class="waves-effect waves-light btn-large cyan darken-2" style="width: 222px"><i class="material-icons left">contact_phone</i>Agenda</a>
             <a class="waves-effect waves-light btn-large cyan darken-2" style="width: 222px"><i class="material-icons left">settings_phone</i>Registrar</a>
-            <a href="Executa?logicaDeNegocio=ClienteServlet&tarefa=consultarJobs&codigo=1" class="waves-effect waves-light btn-large cyan darken-2" style="width: 222px"><i class="material-icons left">restore</i>Últ. Trabalhos</a>
+            <a href="Executa?logicaDeNegocio=ClienteServlet&tarefa=consultarJobs&codigo=1" class="waves-effect waves-light btn-large red" style="width: 222px"><i class="material-icons left">restore</i>Últ. Trabalhos</a>
             <a class="waves-effect waves-light btn-large cyan darken-2" style="width: 222px"><i class="material-icons left">location_on</i>Endereços</a>
         </div>
     </div>           

@@ -109,7 +109,6 @@ public class RegistrarContatoServlet implements LogicaDeNegocio {
                     //Instancia uma nova cliente
                     cliente = new Cliente();
 
-                    //Grava um nova cliente no banco de dados
                     cliente = new ClienteDAO().Consultar(Integer.parseInt(req.getParameter("codigo")));
 
                     ArrayList<ContatoCliente> listaContatos = new ContatoClienteDAO().Consultar(cliente);

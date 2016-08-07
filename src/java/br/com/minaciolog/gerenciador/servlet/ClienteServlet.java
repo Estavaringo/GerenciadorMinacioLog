@@ -137,8 +137,23 @@ public class ClienteServlet implements LogicaDeNegocio {
                     return "erro.html";
                 }
                 return "/WEB-INF/Paginas/cliente.jsp";
+            case "consultarJobs":
+                try {
+
+                    ArrayList<Job> listaJob = new ArrayList<>();
+
+                    listaJob = new ClienteDAO().ConsultarJob(Integer.parseInt(req.getParameter("codigo")));
+
+                    //Atribui a lista de jobs como Atributo a ser enviado na próxima Requisição 
+                    req.setAttribute("listaJob", listaJob);
+
+                } catch (SQLException ex) {
+                    System.err.println("Erro ao cosultar jobs do cliente no banco de dados. Detalhes: " + ex.getMessage());
+                    return "erro.html";
+                }
+                return "/WEB-INF/Paginas/ultimosjobs.jsp";
             default:
-                System.err.println("Erro ao cosultar cliente no banco de dados. Ação inválida!");
+                System.err.println("Erro. Ação inválida!");
                 return "erro.html";
 
         }
@@ -146,7 +161,7 @@ public class ClienteServlet implements LogicaDeNegocio {
 
             ArrayList<Cliente> listaCliente = new ArrayList<>();
 
-            //Grava um nova cliente no banco de dados
+   
             listaCliente = new ClienteDAO().Consultar();
             ArrayList<TipoCliente> listaTipoCliente = new TipoClienteDAO().Consultar();
             ArrayList<TipoFaturamento> listaTipoFaturamento = new TipoFaturamentoDAO().Consultar();

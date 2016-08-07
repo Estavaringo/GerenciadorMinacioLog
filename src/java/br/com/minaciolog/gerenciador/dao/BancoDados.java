@@ -17,10 +17,16 @@ public class BancoDados {
     private final String DRIVER = "com.mysql.jdbc.Driver";
     private final String LOCAL = "minaciolog";
     
+    
+    /*Conexão com o banco de dados do kinghost*/
+    private final String URL = "jdbc:mysql://" + "mysql.minaciolog.com.br:3306/" + LOCAL;
+    private final String LOGIN = "minaciolog";
+    private final String SENHA = "Chicasilvina123";
+    
     /*Conexão com o banco de dados na AWS da Amazon*/
-    private final String URL = "jdbc:mysql://" + "dbinstancemysql.czzc5ptkwvqs.us-west-2.rds.amazonaws.com:3306/" + LOCAL;
-    private final String LOGIN = "admin";
-    private final String SENHA = "password";
+    //private final String URL = "jdbc:mysql://" + "dbinstancemysql.czzc5ptkwvqs.us-west-2.rds.amazonaws.com:3306/" + LOCAL;
+    //private final String LOGIN = "admin";
+    //private final String SENHA = "password";
     
     //Conexão com o banco de dados Azure
     //----------------------------------
