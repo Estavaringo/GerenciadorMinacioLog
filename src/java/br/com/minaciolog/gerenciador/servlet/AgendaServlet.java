@@ -17,7 +17,7 @@ import java.util.ArrayList;
  *
  * @author gabri
  */
-public class RegistrarContatoServlet implements LogicaDeNegocio {
+public class AgendaServlet implements LogicaDeNegocio {
 
     //Declarações
     private Cliente cliente = null;
@@ -31,76 +31,12 @@ public class RegistrarContatoServlet implements LogicaDeNegocio {
         tarefa = req.getParameter("tarefa");
         switch (tarefa) {
             case "incluir":
-                try {
-
-                    //instancia uma nova cliente
-                    cliente = new Cliente();
-
-                    //Atribui as informações da cliente no objeto
-                    cliente.setNome(req.getParameter("descricao"));
-                    cliente.setCodigoFaturamento(Integer.parseInt(req.getParameter("tipoFaturamento")));
-                    cliente.setCodigoTipoCliente(Integer.parseInt(req.getParameter("tipoCliente")));
-
-                    //Grava um nova cliente no banco de dados
-                    new ClienteDAO().Incluir(cliente);
-
-                    //Atribui a ultima cliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("incluidoCliente", cliente);
-
-                } catch (SQLException ex) {
-                    System.err.println("Erro ao inserir cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "erro.html";
-                }
                 break;
 
             case "remover":
-                try {
-
-                    //instancia uma nova cliente
-                    cliente = new Cliente();
-
-                    //Atribui as informações da cliente no objeto
-                    cliente.setNome(req.getParameter("descricao"));
-                    cliente.setCodigo(Integer.parseInt(req.getParameter("codigo")));
-                    cliente.setCodigoFaturamento(Integer.parseInt(req.getParameter("tipoFaturamento")));
-                    cliente.setCodigoTipoCliente(Integer.parseInt(req.getParameter("tipoCliente")));
-
-                    //Exclui cliente no banco de dados
-                    new EnderecoClienteDAO().ExcluirCliente(cliente.getCodigo());
-                    new ContatoClienteDAO().ExcluirCliente(cliente.getCodigo());
-                    new ClienteDAO().Excluir(cliente.getCodigo());
-
-                    //Atribui a ultima cliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("excluidoCliente", cliente);
-
-                } catch (SQLException ex) {
-                    System.err.println("Erro ao remover cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "erro.html";
-                }
                 break;
 
             case "alterar":
-                try {
-
-                    //instancia uma nova cliente
-                    cliente = new Cliente();
-
-                    //Atribui as informações da cliente no objeto
-                    cliente.setNome(req.getParameter("descricao"));
-                    cliente.setCodigo(Integer.parseInt(req.getParameter("codigo")));
-                    cliente.setCodigoFaturamento(Integer.parseInt(req.getParameter("tipoFaturamento")));
-                    cliente.setCodigoTipoCliente(Integer.parseInt(req.getParameter("tipoCliente")));
-
-                    //altera cliente no banco de dados
-                    new ClienteDAO().Alterar(cliente);
-
-                    //Atribui a ultima cliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("alteradoCliente", cliente);
-
-                } catch (SQLException ex) {
-                    System.err.println("Erro ao alterar cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "erro.html";
-                }
                 break;
 
             case "consultar":
@@ -128,7 +64,7 @@ public class RegistrarContatoServlet implements LogicaDeNegocio {
                     System.err.println("Erro ao consultar cliente no banco de dados. Detalhes: " + ex.getMessage());
                     return "erro.html";
                 }
-                return "/WEB-INF/Paginas/registrarcontato.jsp";
+                return "/WEB-INF/Paginas/agenda.jsp";
             default:
                 System.err.println("Erro ao consultar cliente no banco de dados. Ação inválida!");
                 return "erro.html";
@@ -159,7 +95,7 @@ public class RegistrarContatoServlet implements LogicaDeNegocio {
             System.err.println("Erro ao consultar cliente no banco de dados. Detalhes: " + ex.getMessage());
             return "erro.html";
         }
-        return "/WEB-INF/Paginas/registrarcontato.jsp";
+        return "/WEB-INF/Paginas/agenda.jsp";
     }
 
     @Override
