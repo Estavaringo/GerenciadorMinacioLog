@@ -134,14 +134,6 @@
                         <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
                     </div>
                 </form>
-            </div>
-            <!-- ATALHOS DAS SESSÕES DA PÁGINA -->
-            <div class="col offset-l11 l1 hide-on-small-only">
-                <div class="tabs-wrapper" style="top: 0px;">
-                    <ul class="section">
-                        <li><a href="#introduction"><i class="material-icons">arrow_upward</i></a></li>
-                    </ul>
-                </div>
             </div>		
         </div>
 

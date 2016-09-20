@@ -332,15 +332,7 @@
                     </div>
                 </form>
             </div>
-
-            <!-- ATALHOS DAS SESSÕES DA PÁGINA -->
-            <div class="col hide-on-small-only m3 l1">
-                <div class="tabs-wrapper" style="top: 0px;">
-                    <ul class="section table-of-contents">
-                        <li><a href="#introduction">Topo da Página</a></li>
-                    </ul>
-                </div>
-            </div>		
+		
         </div>
 
     </div>
