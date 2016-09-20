@@ -44,7 +44,6 @@ public class EnderecoClienteServlet implements LogicaDeNegocio {
                     enderecoCliente.setCodigoCidade(Integer.parseInt(req.getParameter("codigoCidade")));
                     enderecoCliente.setCodigoTipo(Integer.parseInt(req.getParameter("codigoTipo")));
                     enderecoCliente.setCodigoCliente(Integer.parseInt(req.getParameter("codigoCliente")));
-                    
 
                     //Grava um nova enderecoCliente no banco de dados
                     new EnderecoClienteDAO().Incluir(enderecoCliente);
@@ -115,7 +114,6 @@ public class EnderecoClienteServlet implements LogicaDeNegocio {
                     return "erro.html";
                 }
                 break;
-
             case "consultar":
                 try {
 
@@ -123,10 +121,10 @@ public class EnderecoClienteServlet implements LogicaDeNegocio {
                     Cliente cliente = new Cliente();
 
                     cliente = new ClienteDAO().Consultar(Integer.parseInt(req.getParameter("codigo")));
-                    
+
                     //Atribui a ultima cliente como Atributo a ser enviado na próxima Requisição 
                     req.setAttribute("Cliente", cliente);
-                    
+
                     //instancia uma nova enderecoCliente
                     enderecoCliente = new EnderecoCliente();
 
@@ -140,27 +138,31 @@ public class EnderecoClienteServlet implements LogicaDeNegocio {
                     System.err.println("Erro ao consultar endereco de cliente no banco de dados. Detalhes: " + ex.getMessage());
                     return "erro.jsp";
                 }
-                break;
-            case "consultarLista":
-                try {
+                return "/WEB-INF/Paginas/enderecocliente.jsp";
+        }
 
-                    ArrayList<EnderecoCliente> listaEnderecoCliente = new ArrayList<>();
+        try {
 
-                    //Grava um nova enderecoCliente no banco de dados
-                    listaEnderecoCliente = new EnderecoClienteDAO().Consultar();
+            //Instancia uma nova cliente
+            Cliente cliente = new Cliente();
 
-                    //Atribui a ultima enderecoCliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("listaEnderecoCliente", listaEnderecoCliente);
+            cliente = new ClienteDAO().Consultar(Integer.parseInt(req.getParameter("codigo")));
 
-                } catch (SQLException ex) {
-                    System.err.println("Erro ao cosultar endereco de cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "erro.html";
-                }
-                break;
-            default:
-                    System.err.println("Erro ao cosultar endereco de cliente no banco de dados. Ação inválida!");
-                    return "erro.html";
+            //Atribui a ultima cliente como Atributo a ser enviado na próxima Requisição 
+            req.setAttribute("Cliente", cliente);
 
+            //instancia uma nova enderecoCliente
+            enderecoCliente = new EnderecoCliente();
+
+            //consulta um nova enderecoCliente no banco de dados
+            enderecoCliente = new EnderecoClienteDAO().Consultar(Integer.parseInt(req.getParameter("codigo")));
+
+            //Atribui a ultima enderecoCliente como Atributo a ser enviado na próxima Requisição 
+            req.setAttribute("listaEndereco", enderecoCliente);
+
+        } catch (SQLException ex) {
+            System.err.println("Erro ao consultar endereco de cliente no banco de dados. Detalhes: " + ex.getMessage());
+            return "erro.jsp";
         }
         return "/WEB-INF/Paginas/enderecocliente.jsp";
     }
