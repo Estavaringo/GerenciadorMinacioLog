@@ -44,7 +44,7 @@
                                         <tr>
                                             <th scope="row">${cliente.codigo}</th>
                                             <td id="nome-${cliente.codigo}"> 
-                                                <a href="Executa?logicaDeNegocio=RegistrarContatoServlet&tarefa=consultar&codigo=${cliente.codigo}" class="waves-effect waves-light">
+                                                <a href="Executa?logicaDeNegocio=AgendaServlet&tarefa=consultar&codigo=${cliente.codigo}" class="waves-effect waves-light">
                                                     ${cliente.nome}
                                                     <i class="tiny material-icons">open_in_new</i>
                                                 </a>
