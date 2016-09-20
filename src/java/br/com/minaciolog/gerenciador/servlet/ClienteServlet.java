@@ -142,7 +142,15 @@ public class ClienteServlet implements LogicaDeNegocio {
 
                     ArrayList<Job> listaJob = new ArrayList<>();
 
+                    //Instancia uma nova cliente
+                    cliente = new Cliente();
+
+                    cliente = new ClienteDAO().Consultar(Integer.parseInt(req.getParameter("codigo")));
+
                     listaJob = new ClienteDAO().ConsultarJob(Integer.parseInt(req.getParameter("codigo")));
+                    
+                    //Atribui a ultima cliente como Atributo a ser enviado na próxima Requisição 
+                    req.setAttribute("Cliente", cliente);
 
                     //Atribui a lista de jobs como Atributo a ser enviado na próxima Requisição 
                     req.setAttribute("listaJob", listaJob);
@@ -161,7 +169,6 @@ public class ClienteServlet implements LogicaDeNegocio {
 
             ArrayList<Cliente> listaCliente = new ArrayList<>();
 
-   
             listaCliente = new ClienteDAO().Consultar();
             ArrayList<TipoCliente> listaTipoCliente = new TipoClienteDAO().Consultar();
             ArrayList<TipoFaturamento> listaTipoFaturamento = new TipoFaturamentoDAO().Consultar();

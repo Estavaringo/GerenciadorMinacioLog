@@ -192,7 +192,6 @@ public class ClienteDAO implements DAO<Cliente> {
 
     public ArrayList<Job> ConsultarJob(int codigo) throws SQLException {
         try {
-            Job obj = null;
             ArrayList<Job> lista = new ArrayList<>();
             bd.conectar();
             String strSQL = "SELECT A.JOB_ID, A.JOB_CODIGO, A.JOB_TITU, A.JOB_OS, A.JOB_DT_ENTR, A.JOB_DT_SAIDA, A.JOB_VALOR, "
@@ -205,8 +204,8 @@ public class ClienteDAO implements DAO<Cliente> {
             PreparedStatement p = bd.connection.prepareStatement(strSQL);
             p.setInt(1, codigo);
             ResultSet rs = p.executeQuery();
-            if (rs.next()) {
-                obj = new Job();
+            while (rs.next()) {
+                Job obj = new Job();
                 obj.setCodigo(rs.getInt("JOB_ID"));
                 obj.setCodigoECalc(rs.getInt("JOB_CODIGO"));
                 obj.setTitulo(rs.getString("JOB_TITU"));
@@ -222,9 +221,7 @@ public class ClienteDAO implements DAO<Cliente> {
                 obj.setBvAgencia(rs.getFloat("COMI_BV_AGEN"));
                 obj.setBvProdutor(rs.getFloat("COMI_BV_PROD"));
                 obj.setCliente(rs.getString("CLIE_NM"));
-                p.close();
-                bd.desconectar();
-                return lista;
+                lista.add(obj);
             }
             p.close();
             bd.desconectar();

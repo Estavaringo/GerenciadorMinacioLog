@@ -12,6 +12,8 @@ public class EnderecoCliente {
     private int codigoCidade = 0;
     private int codigoTipo = 0;
     private int codigoCliente = 0;
+    private String tipo = "";
+    private String cidade = "";
 
     /**
      * @return the codigo
@@ -137,6 +139,20 @@ public class EnderecoCliente {
      */
     public void setCodigoCliente(int codigoCliente) {
         this.codigoCliente = codigoCliente;
+    }
+
+    /**
+     * @return the tipo
+     */
+    public String getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
 }

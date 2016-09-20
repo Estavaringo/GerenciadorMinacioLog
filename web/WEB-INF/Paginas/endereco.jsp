@@ -39,7 +39,7 @@
     </div>
     <div class="row" style="margin: 10px;">
         <div class="col s12 m12 l12 center-on-small-only">
-            <a href="Executa?logicaDeNegocio=RegistrarContatoServlet&tarefa=consultar&codigo=${Cliente.codigo}" class="waves-effect waves-light btn-large cyan darken-2" style="width: 222px"><i class="material-icons left">contact_phone</i>Agenda</a>
+            <a href="Executa?logicaDeNegocio=RegistrarContatoServlet&tarefa=consultar&codigo=${cliente.codigo}" class="waves-effect waves-light btn-large red" style="width: 222px"><i class="material-icons left">contact_phone</i>Agenda</a>
             <a class="waves-effect waves-light btn-large cyan darken-2" style="width: 222px"><i class="material-icons left">settings_phone</i>Registrar</a>
             <a href="Executa?logicaDeNegocio=ClienteServlet&tarefa=consultarJobs&codigo=${Cliente.codigo}" class="waves-effect waves-light btn-large red" style="width: 222px"><i class="material-icons left">restore</i>Últ. Trabalhos</a>
             <a href="Executa?logicaDeNegocio=EnderecoClienteServlet&tarefa=consultar&codigo=${Cliente.codigo}" class="waves-effect waves-light btn-large cyan darken-2" style="width: 222px"><i class="material-icons left">location_on</i>Endereços</a>
@@ -51,40 +51,31 @@
             <!-- CONTEÚDO DE CADA PÁGINA -->
             <div class="col s12 m10 l10">
                 <div id="introduction" class="section scrollspy">
-                    <h4 class="header">Últimos Trabalhos</h4>
+                    <h4 class="header">Endereços</h4>
                     <div class="section">
                         <table class="responsive-table">
                             <thead>
                                 <tr>
-                                    <th data-field="cliente">Cliente</th>
-                                    <th data-field="ecalc">JOB</th>
-                                    <th data-field="os">O.S.</th>
-                                    <th data-field="titulo">Titulo</th>
-                                    <th data-field="dataEntrada">Entrada</th>
-                                    <th data-field="dataSaida">Saida</th>
-                                    <th data-field="valor">Valor</th>
-                                    <th data-field="comissao">Comissão à Receber</th>
-                                    <th data-field="comissaoAgencia">Comissão à Pagar Agência</th>
-                                    <th data-field="comissaoProdutor">Comissão à Pagar Produtor</th>
-                                    <th data-field="observacao">Observações</th>
-                                    <th data-field="acoes">Ações</th>
+                                    <th data-field="logradouro">Logradouro</th>
+                                    <th data-field="numero">Número</th>
+                                    <th data-field="complemento">Complemento</th>
+                                    <th data-field="bairro">Bairro</th>
+                                    <th data-field="cidade">Cidade</th>
+                                    <th data-field="cep">CEP</th>
+                                    <th data-field="tipo">Tipo de Endereço</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:if test="${not empty listaJob}">
-                                    <c:forEach var="job" items="${listaJob}">
+                                <c:if test="${not empty listaEndereco}">
+                                    <c:forEach var="endereco" items="${listaEndereco}">
                                         <tr>
-                                            <td id="cliente-${job.codigo}">${job.cliente}</td>
-                                            <td id="ecalc-${job.codigo}">${job.codigoECalc}</td>
-                                            <td id="os-${job.codigo}">${job.codigoOS}</td>
-                                            <td id="descricao-${job.codigo}"> ${job.titulo}</td>
-                                            <td id="data-entrada-${job.codigo}"><fmt:formatDate value="${job.dataEntrada}" pattern="dd/MM/yyyy"/></td>
-                                            <td id="data-saida-${job.codigo}"><fmt:formatDate value="${job.dataSaida}" pattern="dd/MM/yyyy"/></td>
-                                            <td id="valor-${job.codigo}"> <fmt:formatNumber pattern="R$ #0.00" value="${job.valor}"/> </td>
-                                            <td id="bv-${job.codigo}"> <fmt:formatNumber pattern="R$ #0.00" value="${job.valor * job.bv / 100}"/></td>
-                                            <td id="bv-agencia-${job.codigo}"> <fmt:formatNumber pattern="R$ #0.00" value="${job.valor * job.bvAgencia / 100}"/></td>
-                                            <td id="bv-produtor-${job.codigo}"> <fmt:formatNumber pattern="R$ #0.00" value="${job.valor * job.bvProdutor / 100}"/></td>
-                                            <td id="observacao-${job.codigo}" > ${job.observacao}</td>
+                                            <td id="logradouro-${endereco.codigo}">${endereco.logradouro}</td>
+                                            <td id="numero-${endereco.codigo}">${endereco.numero}</td>
+                                            <td id="complemento-${endereco.codigo}">${endereco.complemento}</td>
+                                            <td id="bairro-${endereco.codigo}"> ${endereco.bairro}</td>
+                                            <td id="cidade-${endereco.codigo}"> ${endereco.cidade}></td>
+                                            <td id="cep-${endereco.codigo}">${endereco.cep}</td>
+                                            <td id="tipo-${endereco.codigo}">${endereco.tipo}</td>
                                             <td>
                                                 <!-- Dropdown Trigger -->
                                                 <a class='dropdown-button btn-floating grey darken-2' href='#' data-constrainwidth="false" data-activates='dropdown${job.codigo}'><i class="material-icons">menu</i></a>
