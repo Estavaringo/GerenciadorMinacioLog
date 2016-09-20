@@ -72,6 +72,7 @@
                     </div>
                 </div>
             </div>
+            
             <!-- ESTRUTURA DA MODAL ALTERAR -->
             <div id="modal-alterar" class="modal modal-fixed-footer">
                 <form method="POST" action="Executa">

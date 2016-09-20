@@ -155,4 +155,18 @@ public class EnderecoCliente {
         this.tipo = tipo;
     }
 
+    /**
+     * @return the cidade
+     */
+    public String getCidade() {
+        return cidade;
+    }
+
+    /**
+     * @param cidade the cidade to set
+     */
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
 }

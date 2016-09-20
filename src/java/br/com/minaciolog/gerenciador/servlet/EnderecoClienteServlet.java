@@ -5,10 +5,12 @@
  */
 package br.com.minaciolog.gerenciador.servlet;
 
+import br.com.minaciolog.gerenciador.beans.Cliente;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import br.com.minaciolog.gerenciador.beans.EnderecoCliente;
+import br.com.minaciolog.gerenciador.dao.ClienteDAO;
 import br.com.minaciolog.gerenciador.dao.EnderecoClienteDAO;
 import java.util.ArrayList;
 
@@ -117,6 +119,14 @@ public class EnderecoClienteServlet implements LogicaDeNegocio {
             case "consultar":
                 try {
 
+                    //Instancia uma nova cliente
+                    Cliente cliente = new Cliente();
+
+                    cliente = new ClienteDAO().Consultar(Integer.parseInt(req.getParameter("codigo")));
+                    
+                    //Atribui a ultima cliente como Atributo a ser enviado na próxima Requisição 
+                    req.setAttribute("Cliente", cliente);
+                    
                     //instancia uma nova enderecoCliente
                     enderecoCliente = new EnderecoCliente();
 
@@ -124,11 +134,11 @@ public class EnderecoClienteServlet implements LogicaDeNegocio {
                     enderecoCliente = new EnderecoClienteDAO().Consultar(Integer.parseInt(req.getParameter("codigo")));
 
                     //Atribui a ultima enderecoCliente como Atributo a ser enviado na próxima Requisição 
-                    req.setAttribute("consultaEnderecoCliente", enderecoCliente);
+                    req.setAttribute("listaEndereco", enderecoCliente);
 
                 } catch (SQLException ex) {
                     System.err.println("Erro ao consultar endereco de cliente no banco de dados. Detalhes: " + ex.getMessage());
-                    return "erro.html";
+                    return "erro.jsp";
                 }
                 break;
             case "consultarLista":

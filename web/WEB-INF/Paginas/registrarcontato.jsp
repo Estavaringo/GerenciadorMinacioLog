@@ -46,11 +46,11 @@
     </div>           
     <div class="row">
         <!-- ARMAZENAR TODAS AS DIVS DE CONTEÚDO DO SITE -->
-        <div class="col s9 m8 l9">
+        <div class="col s9 m8 l10">
             <!-- CONTEÚDO DE CADA PÁGINA -->
-            <div class="col s12 m10 l10">
+            <div class="col s12 m12 l12">
                 <div id="introduction" class="section scrollspy">
-                    <h4 class="header">Clientes cadastrados</h4>
+                    <h4 class="header">Contatos Efetuados</h4>
                     <div class="section">
                         <table class="responsive-table">
                             <thead>
@@ -183,15 +183,7 @@
                         <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
                     </div>
                 </form>
-            </div>
-            <!-- ATALHOS DAS SESSÕES DA PÁGINA -->
-            <div class="col hide-on-small-only m3 l2">
-                <div class="tabs-wrapper" style="top: 0px;">
-                    <ul class="section table-of-contents">
-                        <li><a href="#introduction">Topo da Página</a></li>
-                    </ul>
-                </div>
-            </div>		
+            </div>	
         </div>
 
     </div>

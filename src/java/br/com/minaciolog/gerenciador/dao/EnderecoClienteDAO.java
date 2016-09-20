@@ -154,19 +154,33 @@ public class EnderecoClienteDAO implements DAO<EnderecoCliente> {
         }
     }
 
-    public ArrayList<EnderecoCliente> ConsultarCliente(Cliente cliente) throws SQLException {
+    public ArrayList<EnderecoCliente> ConsultarCliente(int codigo) throws SQLException {
         try {
-            ArrayList<EnderecoCliente> listaEndereco = new ArrayList<>();
+            ArrayList<EnderecoCliente> lista = new ArrayList<>();
             bd.conectar();
-
-            String strSQL = "SELECT ENDE_COMPLEMENTO, ENDE_BAIRRO, "
-                    + "ENDE_CEP, ENDE_NUMERO, ENDE_LOGRADOURO, CLIENTE_CLIE_ID, TIPO_ENDERECO_TIEN_ID, "
-                    + "CIDADE_CIDA_ID, ENDE_ID FROM endereco_cliente WHERE CLIENTE_CLIE_ID = ?";
-
+            String strSQL = "SELECT "
+                    + "A.ENDE_COMPLEMENTO, "
+                    + "A.ENDE_BAIRRO, "
+                    + "A.ENDE_CEP, "
+                    + "A.ENDE_NUMERO, "
+                    + "A.ENDE_LOGRADOURO, "
+                    + "A.CLIENTE_CLIE_ID, "
+                    + "A.TIPO_ENDERECO_TIEN_ID, "
+                    + "A.CIDADE_CIDA_ID, "
+                    + "A.ENDE_ID "
+                    + "B.CIDA_DESC"
+                    + "C.TIEN_DESC"
+                    + "FROM endereco_cliente A"
+                    + "JOIN cidade B"
+                    + "ON A.CIDADE_CIDA_ID = B.CIDA_ID"
+                    + "JOIN tipo_endereco C"
+                    + "ON A.TIPO_ENDERECO_TIEN_ID = C.TIEN_ID"
+                    + "WHERE A.CLIENTE_CLIE_ID = ?";
+            
             PreparedStatement p = bd.connection.prepareStatement(strSQL);
-            p.setInt(1, cliente.getCodigo());
+            p.setInt(1, codigo);
             ResultSet rs = p.executeQuery();
-
+            
             while (rs.next()) {
                 EnderecoCliente obj = new EnderecoCliente();
                 obj.setCodigo(rs.getInt("ENDE_ID"));
@@ -178,11 +192,12 @@ public class EnderecoClienteDAO implements DAO<EnderecoCliente> {
                 obj.setComplemento(rs.getString("ENDE_COMPLEMENTO"));
                 obj.setLogradouro(rs.getString("ENDE_LOGRADOURO"));
                 obj.setNumero(rs.getString("ENDE_NUMERO"));
-                listaEndereco.add(obj);
+                obj.setTipo(rs.getString("TIEN_DESC"));
+                obj.setCidade(rs.getString("CIDA_DESC"));
+                lista.add(obj);
             }
-            p.close();
             bd.desconectar();
-            return listaEndereco;
+            return lista;
         } catch (SQLException ex) {
             bd.desconectar();
             throw ex;
@@ -205,5 +220,9 @@ public class EnderecoClienteDAO implements DAO<EnderecoCliente> {
             throw ex;
         }
     }
+    
+    
+    
+        
 
 }

@@ -39,17 +39,17 @@
     </div>
     <div class="row" style="margin: 10px;">
         <div class="col s12 m12 l12 center-on-small-only">
-            <a href="Executa?logicaDeNegocio=RegistrarContatoServlet&tarefa=consultar&codigo=${cliente.codigo}" class="waves-effect waves-light btn-large red" style="width: 222px"><i class="material-icons left">contact_phone</i>Agenda</a>
+            <a href="Executa?logicaDeNegocio=RegistrarContatoServlet&tarefa=consultar&codigo=${Cliente.codigo}" class="waves-effect waves-light btn-large cyan darken-2" style="width: 222px"><i class="material-icons left">contact_phone</i>Agenda</a>
             <a class="waves-effect waves-light btn-large cyan darken-2" style="width: 222px"><i class="material-icons left">settings_phone</i>Registrar</a>
-            <a href="Executa?logicaDeNegocio=ClienteServlet&tarefa=consultarJobs&codigo=${Cliente.codigo}" class="waves-effect waves-light btn-large red" style="width: 222px"><i class="material-icons left">restore</i>Últ. Trabalhos</a>
-            <a href="Executa?logicaDeNegocio=EnderecoClienteServlet&tarefa=consultar&codigo=${Cliente.codigo}" class="waves-effect waves-light btn-large cyan darken-2" style="width: 222px"><i class="material-icons left">location_on</i>Endereços</a>
+            <a href="Executa?logicaDeNegocio=ClienteServlet&tarefa=consultarJobs&codigo=${Cliente.codigo}" class="waves-effect waves-light btn-large cyan darken-2" style="width: 222px"><i class="material-icons left">restore</i>Últ. Trabalhos</a>
+            <a href="Executa?logicaDeNegocio=EnderecoClienteServlet&tarefa=consultar&codigo=${Cliente.codigo}" class="waves-effect waves-light btn-large red" style="width: 222px"><i class="material-icons left">location_on</i>Endereços</a>
         </div>
     </div>           
     <div class="row">
         <!-- ARMAZENAR TODAS AS DIVS DE CONTEÚDO DO SITE -->
-        <div class="col s9 m8 l9">
+        <div class="col s9 m8 l10">
             <!-- CONTEÚDO DE CADA PÁGINA -->
-            <div class="col s12 m10 l10">
+            <div class="col s12 m12 l12">
                 <div id="introduction" class="section scrollspy">
                     <h4 class="header">Endereços</h4>
                     <div class="section">
@@ -78,14 +78,14 @@
                                             <td id="tipo-${endereco.codigo}">${endereco.tipo}</td>
                                             <td>
                                                 <!-- Dropdown Trigger -->
-                                                <a class='dropdown-button btn-floating grey darken-2' href='#' data-constrainwidth="false" data-activates='dropdown${job.codigo}'><i class="material-icons">menu</i></a>
+                                                <a class='dropdown-button btn-floating grey darken-2' href='#' data-constrainwidth="false" data-activates='dropdown${endereco.codigo}'><i class="material-icons">menu</i></a>
 
                                                 <!-- Dropdown Structure -->
-                                                <ul id='dropdown${job.codigo}' class='dropdown-content'>
+                                                <ul id='dropdown${endereco.codigo}' class='dropdown-content'>
                                                     <li class="divider"></li>
-                                                    <li><a class="botao-alterar-job grey-text text-darken-4" id="${job.codigo}"><i class="material-icons yellow-text text-darken-4">edit</i>Alterar</a></li>
+                                                    <li><a class="botao-alterar-job grey-text text-darken-4" id="${endereco.codigo}"><i class="material-icons yellow-text text-darken-4">edit</i>Alterar</a></li>
                                                     <li class="divider"></li>
-                                                    <li><a class="botao-excluir grey-text text-darken-4" id="${job.codigo}"><i class="material-icons red-text">delete</i>Excluir</a></li>
+                                                    <li><a class="botao-excluir grey-text text-darken-4" id="${endereco.codigo}"><i class="material-icons red-text">delete</i>Excluir</a></li>
                                                 </ul>
                                             </td>
                                         </tr>
@@ -189,14 +189,6 @@
                         <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
                     </div>
                 </form>
-            </div>
-            <!-- ATALHOS DAS SESSÕES DA PÁGINA -->
-            <div class="col hide-on-small-only m3 l2">
-                <div class="tabs-wrapper" style="top: 0px;">
-                    <ul class="section table-of-contents">
-                        <li><a href="#introduction">Topo da Página</a></li>
-                    </ul>
-                </div>
             </div>		
         </div>
 
