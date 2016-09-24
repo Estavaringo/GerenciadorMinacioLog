@@ -62,7 +62,7 @@
                                     <th data-field="bairro">Bairro</th>
                                     <th data-field="cidade">Cidade</th>
                                     <th data-field="cep">CEP</th>
-                                    <th data-field="tipo">Tipo de Endereço</th>
+                                    <th data-field="tipo">Tipo</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -59,8 +59,6 @@ public class ClienteServlet implements LogicaDeNegocio {
                     //Atribui as informações da cliente no objeto
                     cliente.setNome(req.getParameter("descricao"));
                     cliente.setCodigo(Integer.parseInt(req.getParameter("codigo")));
-                    cliente.setCodigoFaturamento(Integer.parseInt(req.getParameter("tipoFaturamento")));
-                    cliente.setCodigoTipoCliente(Integer.parseInt(req.getParameter("tipoCliente")));
 
                     //Exclui cliente no banco de dados
                     new EnderecoClienteDAO().ExcluirCliente(cliente.getCodigo());

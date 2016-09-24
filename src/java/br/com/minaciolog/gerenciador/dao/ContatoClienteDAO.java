@@ -174,7 +174,7 @@ public class ContatoClienteDAO implements DAO<ContatoCliente> {
         try {
             bd.conectar();
             String strSql
-                    = "DELETE FROM contato_cliente WHERE CLIE_ID = ?";
+                    = "DELETE FROM contato_cliente WHERE CLIENTE_CLIE_ID = ?";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
             p.setInt(1, codigo);

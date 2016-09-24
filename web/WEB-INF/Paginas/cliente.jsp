@@ -13,7 +13,7 @@
         <div class="container">
             <div class="row">
                 <div class="col s12 m9">
-                    <h1 class="header center-on-small-only">Cliente</h1>
+                    <h1 class="header center-on-small-only">Clientes</h1>
                     <h4 class="light cyan-text text-lighten-4 center-on-small-only">Gerenciador de Clientes</h4>
                 </div>
             </div>
@@ -21,19 +21,19 @@
     </div>
     <div class="row">
         <!-- ARMAZENAR TODAS AS DIVS DE CONTEÚDO DO SITE -->
-        <div class="col s9 m8 l9">
+        <div class="col s9 m8 l10">
             <!-- CONTEÚDO DE CADA PÁGINA -->
-            <div class="col s12 m8 l9">
+            <div class="col s12 m8 l12">
                 <div id="introduction" class="section scrollspy">
                     <div class="divider"></div>
-                    <h4 class="header">Clientes cadastrados</h4>
+                    <h4 class="header">Clientes <i class="material-icons">face</i></h4>
                     <div class="section">
                         <table class="responsive-table">
                             <thead>
                                 <tr>
                                     <th data-field="codigo">Código</th>
                                     <th data-field="descricao">Nome do Cliente</th>
-                                    <th data-field="tipo-cliente">Tipo de Faturamento</th>
+                                    <th data-field="tipo-cliente">Tipo de Cliente</th>
                                     <th data-field="tipo-faturamento">Tipo de Faturamento</th>
                                     <th data-field="acao">Ação</th>
                                 </tr>
@@ -43,22 +43,17 @@
                                     <c:forEach var="cliente" items="${listaCliente}">
                                         <tr>
                                             <th scope="row">${cliente.codigo}</th>
-                                            <td id="nome-${cliente.codigo}"> 
-                                                <a href="Executa?logicaDeNegocio=AgendaServlet&tarefa=consultar&codigo=${cliente.codigo}" class="waves-effect waves-light">
-                                                    ${cliente.nome}
-                                                    <i class="tiny material-icons">open_in_new</i>
-                                                </a>
-                                            </td>
-                                            <td id="tipo-cliente${cliente.codigo}"> ${cliente.descricaoTipoCliente}</td>
-                                            <td id="tipo-faturamento-${cliente.codigo}"> ${cliente.descricaoFaturamento}</td>
+                                            <td id="descricao-${cliente.codigo}"><a href="Executa?logicaDeNegocio=AgendaServlet&tarefa=consultar&codigo=${cliente.codigo}" class="waves-effect waves-light">${cliente.nome}</a></td>
+                                            <td id="tipo-cliente${cliente.codigo}">${cliente.descricaoTipoCliente}</td>
+                                            <td id="tipo-faturamento-${cliente.codigo}">${cliente.descricaoFaturamento}</td>
                                             <td>
                                                 <!-- Dropdown Trigger -->
-                                                <a class='dropdown-button btn-floating grey darken-2' href='#' data-constrainwidth="false" data-activates='dropdown${cliente.codigo}'><i class="material-icons">menu</i></a>
+                                                <a class='dropdown-button btn-floating cyan darken-2' href='#' data-constrainwidth="false" data-activates='dropdown${cliente.codigo}'><i class="material-icons">more_horiz</i></a>
 
                                                 <!-- Dropdown Structure -->
                                                 <ul id='dropdown${cliente.codigo}' class='dropdown-content'>
                                                     <li class="divider"></li>
-                                                    <li><a class="botao-alterar grey-text text-darken-4" id="${cliente.codigo}"><i class="material-icons yellow-text text-darken-4">edit</i>Alterar</a></li>
+                                                    <li><a class="botao-alterar-cliente grey-text text-darken-4" id="${cliente.codigo}"><i class="material-icons yellow-text text-darken-4">edit</i>Alterar</a></li>
                                                     <li class="divider"></li>
                                                     <li><a class="botao-excluir grey-text text-darken-4" id="${cliente.codigo}"><i class="material-icons red-text">delete</i>Excluir</a></li>
                                                 </ul>
@@ -72,7 +67,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- ESTRUTURA DA MODAL ALTERAR -->
             <div id="modal-alterar" class="modal modal-fixed-footer">
                 <form method="POST" action="Executa">
@@ -81,7 +76,7 @@
                         <p>Altere o Cliente selecionado:</p>
 
                         <!--Nome das Classes que deverão ser informadas na requisição-->
-                        <input type="hidden" name="logicaDeNegocio" value="TipoClienteServlet">
+                        <input type="hidden" name="logicaDeNegocio" value="ClienteServlet">
                         <input type="hidden" name="tarefa" value="alterar">
                         <input type="hidden" name="codigo" id="codigo-alterar">
 
@@ -89,6 +84,25 @@
                             <i class="material-icons prefix">description</i>
                             <input id="descricao-alterar" type="text" name="descricao" />
                         </div>
+
+                        <div class="input-field">
+                            <select name="tipoCliente" id="select-tipo-cliente">
+                                <option value="" disabled selected>Escolha o Tipo de Cliente</option>
+                                <c:forEach var="tipoCliente" items="${listaTipoCliente}">
+                                    <option value="${tipoCliente.codigo}" class="form-control" >${tipoCliente.descricao}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <select name="tipoFaturamento">
+                                <option value="" disabled selected>Escolha o Tipo de Faturamento</option>
+                                <c:forEach var="tipoFaturamento" items="${listaTipoFaturamento}">
+                                    <option value="${tipoFaturamento.codigo}" >${tipoFaturamento.descricao}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="modal-action waves-effect waves-green btn btn-default" value="Alterar">Alterar</button>
@@ -104,7 +118,7 @@
                         <p>Confirme a exclusão do Cliente selecionado:</p>
 
                         <!--Nome das Classes que deverão ser informadas na requisição-->
-                        <input type="hidden" name="logicaDeNegocio" value="TipoClienteServlet">
+                        <input type="hidden" name="logicaDeNegocio" value="ClienteServlet">
                         <input type="hidden" name="tarefa" value="remover">
                         <input type="hidden" name="codigo" id="codigo-excluir">
 
@@ -112,6 +126,9 @@
                             <i class="material-icons prefix">description</i>
                             <input disabled class="grey-text text-darken-4" id="descricao-excluir" type="text" name="descricao" value="" />
                         </div>
+
+
+
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="modal-action waves-effect waves-green btn btn-default" value="Alterar">Confirmar Exclusão</button>
@@ -119,6 +136,7 @@
                     </div>
                 </form>
             </div>
+
             <!-- ABRE MODAL INCLUIR -->
             <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
                 <a class="modal-trigger btn-floating btn-large red" href="#modal-incluir">
@@ -135,13 +153,13 @@
                         <!--Nome das Classes que deverão ser informadas na requisição-->
                         <input type="hidden" name="logicaDeNegocio" value="ClienteServlet">
                         <input type="hidden" name="tarefa" value="incluir">
-                        
+
                         <div class="input-field">
                             <i class="material-icons prefix">account_circle</i>
                             <label for="descricao-incluir">Nome</label>
                             <input id="descricao-incluir" type="text" class="validate" name="descricao" value="" />
                         </div>
-                        
+
                         <div class="input-field">
                             <select name="tipoCliente">
                                 <option value="" disabled selected>Escolha o Tipo de Cliente</option>

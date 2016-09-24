@@ -59,8 +59,23 @@ $(document).ready(function () {
         */
 
         $('#modal-alterar').openModal('');
+        
     });
+    
+    $(".botao-alterar-cliente").click(function () {
 
+        var codigo = this.id;
+        var descricao = $('#descricao-' + codigo).text();
+        var tipo = $('#tipo-cliente' + codigo).text();
+
+        $('#codigo-alterar').val(codigo);
+        $('#descricao-alterar').val(descricao);
+        $('#select-tipo-cliente').val(tipo);
+        
+
+        $('#modal-alterar').openModal('');
+    });
+    
     $(".botao-excluir").click(function () {
 
         var codigo = this.id;
