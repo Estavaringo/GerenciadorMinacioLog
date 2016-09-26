@@ -1,7 +1,3 @@
-/**
- * 
- */
-
 $(document).ready(function () {
 
     // Show sideNav
@@ -24,6 +20,18 @@ $(document).ready(function () {
         $('#modal-alterar').openModal('');
     });
 
+    $(".botao-incluir-prospeccao").click(function () {
+
+        var codigo = this.id;
+
+        var cliente = $('#cliente-' + codigo).text();
+
+        $('#cliente-incluir').val(cliente);
+
+        $('#modal-incluir').openModal('');
+    });
+
+
     $(".botao-alterar-job").click(function () {
 
         var codigo = this.id;
@@ -44,24 +52,24 @@ $(document).ready(function () {
         $('#ecalc-alterar').val(ecalc);
         $('#os-alterar').val(os);
         $('#valor-alterar').val(valor).text();
-        $('#bv-alterar').val(bv*100/valor).text();
-        $('#bv-agencia-alterar').val(bvAgencia*100/valor).text();
-        $('#bv-produtor-alterar').val(bvProdutor*100/valor).text();
+        $('#bv-alterar').val(bv * 100 / valor).text();
+        $('#bv-agencia-alterar').val(bvAgencia * 100 / valor).text();
+        $('#bv-produtor-alterar').val(bvProdutor * 100 / valor).text();
         $('#observacao-alterar').val(observacao);
-/*
-        $(".data-entrada-alterar").datepicker({}).on("show", function () {
-            $(this).val(dataEntrada).datepicker('update');
-        });
-        
-        $(".data-saida-alterar").datepicker({}).on("show", function () {
-            $(this).val(dataSaida).datepicker('update');
-        });
-        */
+        /*
+         $(".data-entrada-alterar").datepicker({}).on("show", function () {
+         $(this).val(dataEntrada).datepicker('update');
+         });
+         
+         $(".data-saida-alterar").datepicker({}).on("show", function () {
+         $(this).val(dataSaida).datepicker('update');
+         });
+         */
 
         $('#modal-alterar').openModal('');
-        
+
     });
-    
+
     $(".botao-alterar-cliente").click(function () {
 
         var codigo = this.id;
@@ -71,11 +79,11 @@ $(document).ready(function () {
         $('#codigo-alterar').val(codigo);
         $('#descricao-alterar').val(descricao);
         $('#select-tipo-cliente').val(tipo);
-        
+
 
         $('#modal-alterar').openModal('');
     });
-    
+
     $(".botao-excluir").click(function () {
 
         var codigo = this.id;
@@ -116,16 +124,16 @@ $(document).ready(function () {
         selectMonths: true, // Creates a dropdown to control month
         selectYears: 15 // Creates a dropdown of 15 years to control year
     });
-    
+
     $(".dropdown-button").dropdown({
-      inDuration: 300,
-      outDuration: 225,
-      constrain_width: true, // Does not change width of dropdown to that of the activator
-      hover: true, // Activate on hover
-      gutter: 0, // Spacing from edge
-      belowOrigin: true, // Displays dropdown below the button
-      alignment: 'right' // Displays dropdown with edge aligned to the right of button
+        inDuration: 300,
+        outDuration: 225,
+        constrain_width: true, // Does not change width of dropdown to that of the activator
+        hover: true, // Activate on hover
+        gutter: 0, // Spacing from edge
+        belowOrigin: true, // Displays dropdown below the button
+        alignment: 'right' // Displays dropdown with edge aligned to the right of button
     }
-  );
-    
+    );
+
 });

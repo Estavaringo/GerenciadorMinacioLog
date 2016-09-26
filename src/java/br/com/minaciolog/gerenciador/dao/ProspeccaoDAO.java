@@ -26,7 +26,7 @@ public class ProspeccaoDAO implements DAO<Prospeccao> {
         try {
             bd.conectar();
             String strSql
-                    = "INSERT INTO cliente_prospeccao (PROS_DT, PROS_NM, PROS_DESC, CLIENTE_CLIE_ID) VALUES (?,?,?,?)";
+                    = "INSERT INTO prospeccao (PROS_DT, PROS_NM, PROS_DESC, CLIENTE_CLIE_ID) VALUES (?,?,?,?)";
             PreparedStatement p = bd.connection.prepareStatement(strSql);
             p.setDate(1, obj.getData());
             p.setString(2, obj.getNome());
@@ -46,7 +46,7 @@ public class ProspeccaoDAO implements DAO<Prospeccao> {
         try {
             bd.conectar();
             String strSql
-                    = "DELETE FROM cliente_prospeccao WHERE PROS_ID = ?";
+                    = "DELETE FROM prospeccao WHERE PROS_ID = ?";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
             p.setInt(1, codigo);
@@ -64,7 +64,7 @@ public class ProspeccaoDAO implements DAO<Prospeccao> {
         try {
             bd.conectar();
             String strSql
-                    = "UPDATE cliente_prospeccao SET PROS_DT = ?, PROS_NM = ?, PROS_DESC = ?, CLIENTE_CLIE_ID = ?  WHERE PROS_ID= ?";
+                    = "UPDATE prospeccao SET PROS_DT = ?, PROS_NM = ?, PROS_DESC = ?, CLIENTE_CLIE_ID = ?  WHERE PROS_ID= ?";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
             p.setDate(1, obj.getData());
@@ -88,7 +88,7 @@ public class ProspeccaoDAO implements DAO<Prospeccao> {
             bd.conectar();
             Statement comando;
             comando = bd.connection.createStatement();
-            ResultSet rs = comando.executeQuery("SELECT PROS_ID, PROS_DT, PROS_NM, PROS_DESC, CLIENTE_CLIE_ID FROM cliente_prospeccao");
+            ResultSet rs = comando.executeQuery("SELECT PROS_ID, PROS_DT, PROS_NM, PROS_DESC, CLIENTE_CLIE_ID FROM prospeccao");
             while (rs.next()) {
                 Prospeccao obj = new Prospeccao();
                 obj.setCodigo(rs.getInt("PROS_ID"));
@@ -111,7 +111,7 @@ public class ProspeccaoDAO implements DAO<Prospeccao> {
         try {
             Prospeccao obj = null;
             bd.conectar();
-            String strSQL = "SELECT PROS_ID, PROS_DT, PROS_NM, PROS_DESC, CLIENTE_CLIE_ID FROM cliente_prospeccao WHERE PROS_ID = ?";
+            String strSQL = "SELECT PROS_ID, PROS_DT, PROS_NM, PROS_DESC, CLIENTE_CLIE_ID FROM prospeccao WHERE CLIENTE_CLIE_ID = ?";
             PreparedStatement p = bd.connection.prepareStatement(strSQL);
             p.setInt(1, codigo);
             ResultSet rs = p.executeQuery();
@@ -137,7 +137,7 @@ public class ProspeccaoDAO implements DAO<Prospeccao> {
         try {
             bd.conectar();
             String strSql
-                    = "DELETE FROM cliente_prospeccao WHERE CLIENTE_CLIE_ID = ?";
+                    = "DELETE FROM prospeccao WHERE CLIENTE_CLIE_ID = ?";
             PreparedStatement p
                     = bd.connection.prepareStatement(strSql);
             p.setInt(1, codigo);
@@ -149,5 +149,29 @@ public class ProspeccaoDAO implements DAO<Prospeccao> {
             throw ex;
         }
     }
-
+       
+    public ArrayList<Prospeccao> ConsultarCliente(int codigo) throws SQLException {
+        try {
+            ArrayList<Prospeccao> lista = new ArrayList<>();
+            bd.conectar();
+            String strSQL = "SELECT PROS_ID, PROS_DT, PROS_NM, PROS_DESC, CLIENTE_CLIE_ID FROM prospeccao WHERE CLIENTE_CLIE_ID = ?";
+            PreparedStatement p = bd.connection.prepareStatement(strSQL);
+            p.setInt(1, codigo);
+            ResultSet rs = p.executeQuery();
+            while (rs.next()) {
+                Prospeccao obj = new Prospeccao();
+                obj.setCodigo(rs.getInt("PROS_ID"));
+                obj.setData(rs.getDate("PROS_DT"));
+                obj.setNome(rs.getString("PROS_NM"));
+                obj.setDescricao(rs.getString("PROS_DESC"));
+                obj.setCodigoCliente(rs.getInt("CLIENTE_CLIE_ID"));
+                lista.add(obj);
+            }
+            bd.desconectar();
+            return lista;
+        } catch (SQLException ex) {
+            bd.desconectar();
+            throw ex;
+        }
+    }
 }

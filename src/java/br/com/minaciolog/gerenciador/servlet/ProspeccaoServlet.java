@@ -5,10 +5,12 @@
  */
 package br.com.minaciolog.gerenciador.servlet;
 
+import br.com.minaciolog.gerenciador.beans.Cliente;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import br.com.minaciolog.gerenciador.beans.Prospeccao;
+import br.com.minaciolog.gerenciador.dao.ClienteDAO;
 import br.com.minaciolog.gerenciador.dao.ProspeccaoDAO;
 import java.sql.Date;
 import java.text.ParseException;
@@ -22,6 +24,7 @@ import java.util.ArrayList;
 public class ProspeccaoServlet implements LogicaDeNegocio {
 
     //Declarações
+    private Cliente cliente = null;
     private Prospeccao prospeccao = null;
     private String tarefa;
 
@@ -42,7 +45,7 @@ public class ProspeccaoServlet implements LogicaDeNegocio {
                     prospeccao.setDescricao(req.getParameter("descricao"));
                     prospeccao.setCodigoCliente(Integer.parseInt(req.getParameter("codigoCliente")));
                     prospeccao.setNome(req.getParameter("nome"));
-                    
+
                     java.util.Date date = formato.parse(req.getParameter("data"));
                     Date sql = new Date(date.getTime());
                     prospeccao.setData(sql);
@@ -77,7 +80,7 @@ public class ProspeccaoServlet implements LogicaDeNegocio {
                     prospeccao.setCodigo(Integer.parseInt(req.getParameter("codigo")));
                     prospeccao.setCodigoCliente(Integer.parseInt(req.getParameter("codigoCliente")));
                     prospeccao.setNome(req.getParameter("nome"));
-                    
+
                     java.util.Date date = formato.parse(req.getParameter("data"));
                     Date sql = new Date(date.getTime());
                     prospeccao.setData(sql);
@@ -108,7 +111,7 @@ public class ProspeccaoServlet implements LogicaDeNegocio {
                     prospeccao.setCodigo(Integer.parseInt(req.getParameter("codigo")));
                     prospeccao.setCodigoCliente(Integer.parseInt(req.getParameter("codigoCliente")));
                     prospeccao.setNome(req.getParameter("nome"));
-                    
+
                     java.util.Date date = formato.parse(req.getParameter("data"));
                     Date sql = new Date(date.getTime());
                     prospeccao.setData(sql);
@@ -148,10 +151,18 @@ public class ProspeccaoServlet implements LogicaDeNegocio {
             case "consultarLista":
                 try {
 
+                    //Instancia uma nova cliente
+                    cliente = new Cliente();
+
+                    cliente = new ClienteDAO().Consultar(Integer.parseInt(req.getParameter("codigo")));
+
+                    //Atribui a ultima cliente como Atributo a ser enviado na próxima Requisição 
+                    req.setAttribute("Cliente", cliente);
+
                     ArrayList<Prospeccao> listaProspeccao = new ArrayList<>();
 
                     //Grava um nova prospeccao no banco de dados
-                    listaProspeccao = new ProspeccaoDAO().Consultar();
+                    listaProspeccao = new ProspeccaoDAO().ConsultarCliente(Integer.parseInt(req.getParameter("codigo")));
 
                     //Atribui a ultima prospeccao como Atributo a ser enviado na próxima Requisição 
                     req.setAttribute("listaProspeccao", listaProspeccao);
@@ -160,12 +171,36 @@ public class ProspeccaoServlet implements LogicaDeNegocio {
                     System.err.println("Erro ao cosultar prospeccao no banco de dados. Detalhes: " + ex.getMessage());
                     return "erro.html";
                 }
-                break;
+                return "/WEB-INF/Paginas/prospeccao.jsp";
+
             default:
                 System.err.println("Erro ao cosultar prospeccao no banco de dados. Ação inválida!");
                 return "erro.html";
-
         }
+
+        try {
+
+            //Instancia uma nova cliente
+            cliente = new Cliente();
+
+            cliente = new ClienteDAO().Consultar(Integer.parseInt(req.getParameter("codigo")));
+
+            //Atribui a ultima cliente como Atributo a ser enviado na próxima Requisição 
+            req.setAttribute("Cliente", cliente);
+
+            ArrayList<Prospeccao> listaProspeccao = new ArrayList<>();
+
+            //Grava um nova prospeccao no banco de dados
+            listaProspeccao = new ProspeccaoDAO().ConsultarCliente(Integer.parseInt(req.getParameter("codigo")));
+
+            //Atribui a ultima prospeccao como Atributo a ser enviado na próxima Requisição 
+            req.setAttribute("listaProspeccao", listaProspeccao);
+
+        } catch (SQLException ex) {
+            System.err.println("Erro ao cosultar prospeccao no banco de dados. Detalhes: " + ex.getMessage());
+            return "erro.html";
+        }
+        
         return "/WEB-INF/Paginas/prospeccao.jsp";
     }
 

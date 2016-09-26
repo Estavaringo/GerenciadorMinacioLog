@@ -39,9 +39,9 @@
     <div class="row" style="margin: 10px;">
         <div class="col s12 m12 l12 center-on-small-only">
             <a href="Executa?logicaDeNegocio=AgendaServlet&tarefa=consultar&codigo=${Cliente.codigo}" class="waves-effect waves-light btn-large red" style="width: 222px"><i class="material-icons left">contact_phone</i>Agenda</a>
-            <a class="waves-effect waves-light btn-large red darken-2" style="width: 222px"><i class="material-icons left">settings_phone</i>Registrar</a>
-            <a href="Executa?logicaDeNegocio=UltimosJobsServlet&tarefa=consultar&codigo=${Cliente.codigo}" class="waves-effect waves-light btn-large red darken-2" style="width: 222px"><i class="material-icons left">restore</i>Últ. Trabalhos</a>
-            <a href="Executa?logicaDeNegocio=EnderecoClienteServlet&tarefa=consultar&codigo=${Cliente.codigo}" class="waves-effect waves-light btn-large red darken-2" style="width: 222px"><i class="material-icons left">location_on</i>Endereços</a>
+            <a href="Executa?logicaDeNegocio=ProspeccaoServlet&tarefa=consultar&codigo=${Cliente.codigo}" class="waves-effect waves-light btn-large cyan darken-2" style="width: 222px"><i class="material-icons left">settings_phone</i>Registrar</a>
+            <a href="Executa?logicaDeNegocio=UltimosJobsServlet&tarefa=consultar&codigo=${Cliente.codigo}" class="waves-effect waves-light btn-large cyan darken-2" style="width: 222px"><i class="material-icons left">restore</i>Últ. Trabalhos</a>
+            <a href="Executa?logicaDeNegocio=EnderecoClienteServlet&tarefa=consultar&codigo=${Cliente.codigo}" class="waves-effect waves-light btn-large cyan darken-2" style="width: 222px"><i class="material-icons left">location_on</i>Endereços</a>
         </div>
     </div>           
     <div class="row">
@@ -50,15 +50,15 @@
             <!-- CONTEÚDO DE CADA PÁGINA -->
             <div class="col s12 m12 l12">
                 <div id="introduction" class="section scrollspy">
-                    <h4 class="header">Contatos Efetuados</h4>
+                    <h4 class="header">Contatos</h4>
                     <div class="section">
                         <table class="responsive-table">
                             <thead>
                                 <tr>
                                     <th data-field="codigo">Código</th>
-                                    <th data-field="descricao">Nome do Cliente</th>
-                                    <th data-field="tipo-cliente">Tipo de Faturamento</th>
-                                    <th data-field="tipo-faturamento">Tipo de Faturamento</th>
+                                    <th data-field="descricao"></th>
+                                    <th data-field="tipo-cliente"></th>
+                                    <th data-field="tipo-faturamento"></th>
                                     <th data-field="acao">Ação</th>
                                 </tr>
                             </thead>
