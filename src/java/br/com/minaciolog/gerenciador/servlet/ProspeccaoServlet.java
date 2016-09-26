@@ -44,7 +44,7 @@ public class ProspeccaoServlet implements LogicaDeNegocio {
                     //Atribui as informações da prospeccao no objeto
                     prospeccao.setDescricao(req.getParameter("descricao"));
                     prospeccao.setCodigoCliente(Integer.parseInt(req.getParameter("codigoCliente")));
-                    prospeccao.setNome(req.getParameter("nome"));
+                    prospeccao.setNome(req.getParameter("contato"));
 
                     java.util.Date date = formato.parse(req.getParameter("data"));
                     Date sql = new Date(date.getTime());
@@ -138,7 +138,7 @@ public class ProspeccaoServlet implements LogicaDeNegocio {
                     prospeccao = new Prospeccao();
 
                     //Grava um nova prospeccao no banco de dados
-                    prospeccao = new ProspeccaoDAO().Consultar(Integer.parseInt(req.getParameter("codigo")));
+                    prospeccao = new ProspeccaoDAO().Consultar(Integer.parseInt(req.getParameter("codigoCliente")));
 
                     //Atribui a ultima prospeccao como Atributo a ser enviado na próxima Requisição 
                     req.setAttribute("consultaProspeccao", prospeccao);
@@ -154,7 +154,7 @@ public class ProspeccaoServlet implements LogicaDeNegocio {
                     //Instancia uma nova cliente
                     cliente = new Cliente();
 
-                    cliente = new ClienteDAO().Consultar(Integer.parseInt(req.getParameter("codigo")));
+                    cliente = new ClienteDAO().Consultar(Integer.parseInt(req.getParameter("codigoCliente")));
 
                     //Atribui a ultima cliente como Atributo a ser enviado na próxima Requisição 
                     req.setAttribute("Cliente", cliente);
@@ -162,7 +162,7 @@ public class ProspeccaoServlet implements LogicaDeNegocio {
                     ArrayList<Prospeccao> listaProspeccao = new ArrayList<>();
 
                     //Grava um nova prospeccao no banco de dados
-                    listaProspeccao = new ProspeccaoDAO().ConsultarCliente(Integer.parseInt(req.getParameter("codigo")));
+                    listaProspeccao = new ProspeccaoDAO().ConsultarCliente(Integer.parseInt(req.getParameter("codigoCliente")));
 
                     //Atribui a ultima prospeccao como Atributo a ser enviado na próxima Requisição 
                     req.setAttribute("listaProspeccao", listaProspeccao);
@@ -183,7 +183,7 @@ public class ProspeccaoServlet implements LogicaDeNegocio {
             //Instancia uma nova cliente
             cliente = new Cliente();
 
-            cliente = new ClienteDAO().Consultar(Integer.parseInt(req.getParameter("codigo")));
+            cliente = new ClienteDAO().Consultar(Integer.parseInt(req.getParameter("codigoCliente")));
 
             //Atribui a ultima cliente como Atributo a ser enviado na próxima Requisição 
             req.setAttribute("Cliente", cliente);
@@ -191,7 +191,7 @@ public class ProspeccaoServlet implements LogicaDeNegocio {
             ArrayList<Prospeccao> listaProspeccao = new ArrayList<>();
 
             //Grava um nova prospeccao no banco de dados
-            listaProspeccao = new ProspeccaoDAO().ConsultarCliente(Integer.parseInt(req.getParameter("codigo")));
+            listaProspeccao = new ProspeccaoDAO().ConsultarCliente(Integer.parseInt(req.getParameter("codigoCliente")));
 
             //Atribui a ultima prospeccao como Atributo a ser enviado na próxima Requisição 
             req.setAttribute("listaProspeccao", listaProspeccao);

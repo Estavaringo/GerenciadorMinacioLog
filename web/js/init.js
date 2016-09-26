@@ -22,9 +22,7 @@ $(document).ready(function () {
 
     $(".botao-incluir-prospeccao").click(function () {
 
-        var codigo = this.id;
-
-        var cliente = $('#cliente-' + codigo).text();
+        var cliente = this.id;
 
         $('#cliente-incluir').val(cliente);
 

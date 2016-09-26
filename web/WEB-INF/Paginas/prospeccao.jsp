@@ -40,7 +40,7 @@
     <div class="row" style="margin: 10px;">
         <div class="col s12 m12 l12 center-on-small-only">
             <a href="Executa?logicaDeNegocio=AgendaServlet&tarefa=consultar&codigo=${Cliente.codigo}" class="waves-effect waves-light btn-large cyan darken-2" style="width: 222px"><i class="material-icons left">contact_phone</i>Agenda</a>
-            <a href="Executa?logicaDeNegocio=ProspeccaoServlet&tarefa=consultar&codigo=${Cliente.codigo}" class="waves-effect waves-light btn-large red" style="width: 222px"><i class="material-icons left">settings_phone</i>Registrar</a>
+            <a href="Executa?logicaDeNegocio=ProspeccaoServlet&tarefa=consultarLista&codigoCliente=${Cliente.codigo}" class="waves-effect waves-light btn-large red" style="width: 222px"><i class="material-icons left">settings_phone</i>Registrar</a>
             <a href="Executa?logicaDeNegocio=UltimosJobsServlet&tarefa=consultar&codigo=${Cliente.codigo}" class="waves-effect waves-light btn-large cyan darken-2" style="width: 222px"><i class="material-icons left">restore</i>Últ. Trabalhos</a>
             <a href="Executa?logicaDeNegocio=EnderecoClienteServlet&tarefa=consultar&codigo=${Cliente.codigo}" class="waves-effect waves-light btn-large cyan darken-2" style="width: 222px"><i class="material-icons left">location_on</i>Endereços</a>
         </div>
@@ -94,7 +94,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- ESTRUTURA DA MODAL ALTERAR -->
             <div id="modal-alterar" class="modal modal-fixed-footer">
                 <form method="POST" action="Executa">
@@ -141,10 +141,10 @@
                     </div>
                 </form>
             </div>
-            
+
             <!-- ABRE MODAL INCLUIR -->
             <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-                <a class="botao-incluir-prospeccao btn-floating btn-large red" id="${prospeccao.codigo}">
+                <a class="botao-incluir-prospeccao btn-floating btn-large red" id="${Cliente.nome}">
                     <i class="large material-icons">add</i>
                 </a>
             </div>
@@ -153,26 +153,38 @@
                 <form method="POST" action="Executa">
                     <div class="modal-content">
                         <h4>Registrar Contato</h4>
-                        <p>Insira os dados do contato:</p>
-
+                        <br><br>
                         <!--Nome das Classes que deverão ser informadas na requisição-->
-                        <input type="hidden" name="logicaDeNegocio" value="ClienteServlet">
+                        <input type="hidden" name="logicaDeNegocio" value="ProspeccaoServlet">
                         <input type="hidden" name="tarefa" value="incluir">
+                        <input type="hidden" name="codigoCliente" value="${Cliente.codigo}">
 
                         <div class="input-field">
                             <i class="material-icons prefix">account_circle</i>
-                            <label for="cliente-incluir">Nome</label>
-                            <input id="descricao-incluir" type="text" class="validate" name="cliente" value="" />
+                            <label for="cliente-incluir">Cliente</label>
+                            <input id="cliente-incluir" placeholder="" type="text" class="validate" name="cliente" value="" />
+                        </div>
+
+
+                        //IMPLEMENTAR SELECT DE CONTATO
+                        <div class="input-field">
+                            <i class="material-icons prefix">perm_contact_calendar</i>
+                            <label for="contato-incluir">Contato</label>
+                            <input id="contato-incluir" type="text" class="validate" name="contato" value="" />
                         </div>
 
                         <div class="input-field">
-                            
+                            <i class="material-icons prefix">mode_edit</i>
+                            <label for="descricao-incluir">Descrição</label>
+                            <textarea id="descricao-incluir" name="descricao" class="materialize-textarea"></textarea>
                         </div>
 
-                        <div class="form-group">
-                            
+                        <div class="input-field">
+                            <i class="material-icons prefix">date_range</i>
+                            <label for="datepicker">Data</label>
+                            <input type="date" id="data-saida-alterar" class="datepicker" name="data" />
                         </div>
-                        
+
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="modal-action waves-effect waves-green btn btn-default" value="Cadastrar">Cadastrar</button>
