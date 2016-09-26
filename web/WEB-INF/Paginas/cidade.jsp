@@ -84,7 +84,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default" value="Alterar">Alterar</button>
+                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default red" value="Alterar">Alterar</button>
                         <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
                     </div>
                 </form>
@@ -107,7 +107,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default" value="Alterar">Confirmar Exclusão</button>
+                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default red" value="Alterar">Confirmar Exclusão</button>
                         <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
                     </div>
                 </form>
@@ -135,7 +135,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default" value="Incluir">Incluir</button>
+                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default red" value="Incluir">Incluir</button>
                         <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
                     </div>
                 </form>

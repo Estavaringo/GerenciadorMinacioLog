@@ -18,23 +18,14 @@
     </div>
     <div class="row">
         <!-- ARMAZENAR TODAS AS DIVS DE CONTEÚDO DO SITE -->
-        <div class="col s9 m8 l9">
+        <div class="col s12 m12 l12">
             <!-- CONTEÚDO DE CADA PÁGINA -->
-            <div class="col s12 m8 l9">
+            <div class="col s12 m12 l12">
                 <div id="introduction" class="section scrollspy">
-                    <div class="divider"></div>
                         <h4 class="header">Faça login para ter acesso ao sistema!</h4>
-                        <a href="index.jsp" class="btn btn-default">
+                        <a href="index.jsp" class="btn btn-default red">
                             Fazer Login
                         </a>
-                </div>
-            </div>
-            <!-- ATALHOS DAS SESSÕES DA PÁGINA -->
-            <div class="col hide-on-small-only m3 l2">
-                <div class="tabs-wrapper" style="top: 0px;">
-                    <ul class="section table-of-contents">
-                        <li><a href="#introduction">Topo da Página</a></li>
-                    </ul>
                 </div>
             </div>		
         </div>

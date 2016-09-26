@@ -1,6 +1,6 @@
 <%-- 
     Document   : index
-    Created on : 09/04/2016, 19:00:03
+    Created on : 25/09/2016, 10:00:03
     Author     : flaviosampaioreisdelima
 --%>
 
@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-        <title>App Minacio Log</title>
+        <title>Minacio Log</title>
 
         <!-- CSS  -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -22,7 +22,7 @@
             <!-- ÁREA DO USUÁRIO -->
             <ul id="dropdown-user" class="dropdown-content">
                 <li class="divider"></li>
-                <li><a href="Executa?logicaDeNegocio=Logout"><i class="material-icons left">close</i>Sair</a></li>
+                <li><a href="Executa?logicaDeNegocio=Logout" class="red-text"><i class="material-icons left">close</i>Sair</a></li>
             </ul>
             <!-- BARRA SUPERIOR-->
             <nav class="grey darken-3" role="navigation">
@@ -30,7 +30,7 @@
                 <div class="nav-wrapper container">
                     <!-- Botão de Menu que irá aparecer quando a tela for pequena, para abrir o Menu que estará oculto -->
                     <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-                    <a id="logo-container" href="/gerenciadorMinacioLog" class="brand-logo"><img src="img/minaciolog_texto.png" alt="Logotipo Minacio Log"></a>
+                    <a id="logo-container" href="/gerenciadorMinacioLog" class="brand-logo"><img src="img/minaciolog_texto.png" alt="Minacio Log"></a>
                     <c:if test="${not empty usuarioLogado}">
                         <ul class="right">
                             <!-- Dropdown Trigger -->

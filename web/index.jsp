@@ -46,7 +46,7 @@
                             <div class="input-field">
                                 <i class="material-icons prefix">perm_identity</i>
                                 <label for="descricao-incluir">E-Mail</label>
-                                <input id="descricao-incluir" type="email" data-error="e-mail inválido" class="validate" name="email" value="" />
+                                <input id="descricao-incluir red" type="email" data-error="e-mail inválido" class="validate" name="email" value="" />
                             </div>
 
 
@@ -67,7 +67,7 @@
                                 <input id="descricao-incluir" type="password" class="validate" name="senha" value="" />
                             </div>
 
-                            <button type="submit" class="btn btn-default" value="Cadastrar">Login</button>
+                            <button type="submit" class="btn btn-default red" value="Cadastrar">Login</button>
 
                         </form>
                     </c:if>

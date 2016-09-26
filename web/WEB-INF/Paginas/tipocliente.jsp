@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col s12">
                     <h1 class="header center-on-small-only">Tipo de Cliente</h1>
-                    <h4 class="light cyan-text text-lighten-4 center-on-small-only">Cadastro de Tipos de Clientes.</h4>
+                    <h4 class="light red-text text-lighten-4 center-on-small-only">Cadastro de Tipos de Clientes.</h4>
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@
                                             <td id="descricao-${tipoCliente.codigo}"> ${tipoCliente.descricao}</td>
                                             <td>
                                                 <!-- Dropdown Trigger -->
-                                                <a class='dropdown-button btn-floating cyan darken-2' href='#' data-constrainwidth="false" data-activates='dropdown${tipoCliente.codigo}'><i class="material-icons">more_horiz</i></a>
+                                                <a class='dropdown-button btn-floating red darken-2' href='#' data-constrainwidth="false" data-activates='dropdown${tipoCliente.codigo}'><i class="material-icons">more_horiz</i></a>
 
                                                 <!-- Dropdown Structure -->
                                                 <ul id='dropdown${tipoCliente.codigo}' class='dropdown-content'>
@@ -79,7 +79,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default" value="Alterar">Alterar</button>
+                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default red" value="Alterar">Alterar</button>
                         <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
                     </div>
                 </form>
@@ -102,7 +102,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default" value="Alterar">Confirmar Exclusão</button>
+                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default red" value="Alterar">Confirmar Exclusão</button>
                         <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
                     </div>
                 </form>
@@ -130,7 +130,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default" value="Incluir">Incluir</button>
+                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default red" value="Incluir">Incluir</button>
                         <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
                     </div>
                 </form>

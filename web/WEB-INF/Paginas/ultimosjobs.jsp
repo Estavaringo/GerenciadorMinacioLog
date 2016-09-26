@@ -21,17 +21,17 @@
         </div>
         <div class="row">
             <div class="col s12 m3">
-                <h5 class="light cyan-text text-lighten-4 center-on-small-only">
+                <h5 class="light red-text text-lighten-4 center-on-small-only">
                     <i class="small material-icons left" style="position: relative;bottom: 4px;">stars</i>${Cliente.descricaoTipoCliente}
                 </h5>
             </div>
             <div class="col s12 m3">
-                <h5 class="light cyan-text text-lighten-4 center-on-small-only">
+                <h5 class="light red-text text-lighten-4 center-on-small-only">
                     <i class="small material-icons left" style="position: relative;bottom: 4px;">shopping_cart</i>${Cliente.descricaoFaturamento}
                 </h5>
             </div>
             <div class="col s12 m3">
-                <h5 class="light cyan-text text-lighten-4 center-on-small-only">
+                <h5 class="light red-text text-lighten-4 center-on-small-only">
                     <i class="small material-icons left" style="position: relative;bottom: 4px;">today</i>${Cliente.dataInclusao}
                 </h5>
             </div>
@@ -39,10 +39,10 @@
     </div>
     <div class="row" style="margin: 10px;">
         <div class="col s12 m12 l12 center-on-small-only">
-            <a href="Executa?logicaDeNegocio=AgendaServlet&tarefa=consultar&codigo=${Cliente.codigo}" class="waves-effect waves-light btn-large cyan darken-2" style="width: 222px"><i class="material-icons left">contact_phone</i>Agenda</a>
-            <a class="waves-effect waves-light btn-large cyan darken-2" style="width: 222px"><i class="material-icons left">settings_phone</i>Registrar</a>
+            <a href="Executa?logicaDeNegocio=AgendaServlet&tarefa=consultar&codigo=${Cliente.codigo}" class="waves-effect waves-light btn-large red darken-2" style="width: 222px"><i class="material-icons left">contact_phone</i>Agenda</a>
+            <a class="waves-effect waves-light btn-large red darken-2" style="width: 222px"><i class="material-icons left">settings_phone</i>Registrar</a>
             <a href="Executa?logicaDeNegocio=UltimosJobsServlet&tarefa=consultar&codigo=${Cliente.codigo}" class="waves-effect waves-light btn-large red" style="width: 222px"><i class="material-icons left">restore</i>Últ. Trabalhos</a>
-            <a href="Executa?logicaDeNegocio=EnderecoClienteServlet&tarefa=consultar&codigo=${Cliente.codigo}" class="waves-effect waves-light btn-large cyan darken-2" style="width: 222px"><i class="material-icons left">location_on</i>Endereços</a>
+            <a href="Executa?logicaDeNegocio=EnderecoClienteServlet&tarefa=consultar&codigo=${Cliente.codigo}" class="waves-effect waves-light btn-large red darken-2" style="width: 222px"><i class="material-icons left">location_on</i>Endereços</a>
         </div>
     </div>           
     <div class="row">
@@ -124,7 +124,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default" value="Alterar">Alterar</button>
+                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default red" value="Alterar">Alterar</button>
                         <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
                     </div>
                 </form>
@@ -147,7 +147,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default" value="Alterar">Confirmar Exclusão</button>
+                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default red" value="Alterar">Confirmar Exclusão</button>
                         <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
                     </div>
                 </form>
@@ -194,7 +194,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default" value="Cadastrar">Cadastrar</button>
+                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default red" value="Cadastrar">Cadastrar</button>
                         <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
                     </div>
                 </form>
