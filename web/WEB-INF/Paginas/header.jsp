@@ -22,7 +22,7 @@
             <!-- ÁREA DO USUÁRIO -->
             <ul id="dropdown-user" class="dropdown-content">
                 <li class="divider"></li>
-                <li><a href="Executa?logicaDeNegocio=Logout" class="red-text"><i class="material-icons left">close</i>Sair</a></li>
+                <li><a href="Executa?logicaDeNegocio=Logout" class="deep-orange-text"><i class="material-icons left">close</i>Sair</a></li>
             </ul>
             <!-- BARRA SUPERIOR-->
             <nav class="grey darken-3" role="navigation">

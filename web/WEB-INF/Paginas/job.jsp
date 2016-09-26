@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col s12 m9">
                     <h1 class="header center-on-small-only">Job</h1>
-                    <h4 class="light red-text text-lighten-4 center-on-small-only">Gerenciador de Jobs</h4>
+                    <h4 class="light deep-orange-text text-lighten-4 center-on-small-only">Gerenciador de Jobs</h4>
                 </div>
             </div>
         </div>
@@ -72,7 +72,7 @@
                                                     <li class="divider"></li>
                                                     <li><a class="botao-alterar-job grey-text text-darken-4" id="${job.codigo}"><i class="material-icons yellow-text text-darken-4">edit</i>Alterar</a></li>
                                                     <li class="divider"></li>
-                                                    <li><a class="botao-excluir grey-text text-darken-4" id="${job.codigo}"><i class="material-icons red-text">delete</i>Excluir</a></li>
+                                                    <li><a class="botao-excluir grey-text text-darken-4" id="${job.codigo}"><i class="material-icons deep-orange-text">delete</i>Excluir</a></li>
                                                 </ul>
                                             </td>
                                         </tr>
@@ -177,7 +177,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default red" value="Alterar">Alterar</button>
+                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default deep-orange" value="Alterar">Alterar</button>
                         <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
                     </div>
                 </form>
@@ -200,7 +200,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default red" value="Alterar">Confirmar Exclusão</button>
+                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default deep-orange" value="Alterar">Confirmar Exclusão</button>
                         <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
                     </div>
                 </form>
@@ -327,7 +327,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default red" value="Cadastrar">Cadastrar</button>
+                        <button type="submit" class="modal-action waves-effect waves-green btn btn-default deep-orange" value="Cadastrar">Cadastrar</button>
                         <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
                     </div>
                 </form>

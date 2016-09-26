@@ -67,7 +67,7 @@
                                 <input id="descricao-incluir" type="password" class="validate" name="senha" value="" />
                             </div>
 
-                            <button type="submit" class="btn btn-default red" value="Cadastrar">Login</button>
+                            <button type="submit" class="btn btn-default deep-orange" value="Cadastrar">Login</button>
 
                         </form>
                     </c:if>
